@@ -1,0 +1,37 @@
+.ant-click-animating-node {
+  display: none !important;
+}
+[ant-click-animating-without-extra-node="true"]::after {
+  display: none !important;
+}
+.ant-btn::after {
+  all: unset !important;
+}
+
+.error-notification {
+  border-radius: 4px !important;
+}
+
+.ant-spin-dot-item{
+  background-color: var(--purple) !important;
+}
+
+/* @/app/components/templates/createNft/CreateNft.js*/
+.displayResultModal {
+  width: 400px !important;
+  max-width: 90vw !important;
+  border-radius: 4px !important;
+}
+.displayResultModal .ant-modal-header {
+  text-align: center !important;
+}
+.displayResultModal .ant-modal-title {
+  font-size: 1.5rem !important;
+  font-weight: 400;
+  letter-spacing: normal !important;
+  line-height: 2rem;
+  padding-left: 18px !important;
+}
+.displayResultModal .ant-modal-body {
+  padding: 30px 20px 40px 20px;
+}
