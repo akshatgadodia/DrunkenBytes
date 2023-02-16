@@ -1,13 +1,16 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import styles from "./homePage.module.css"
-import AppContext from "@/app/context/AppContext";
+import Head from 'next/head'
+import FirstFold from './components/FirstFold';
 
 const HomePage = () => {
-  const { loggedInDetails } = useContext(AppContext);
   return (
-    <div className={styles.homePage}>
-    HomePage
-    </div>
+    <>
+       <Head>
+        <title>Drunken Bytes</title>
+      </Head>
+      <FirstFold/>
+    </>
   )
 }
 

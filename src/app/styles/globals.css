@@ -6,7 +6,7 @@
   --white: #fefefe;
   --black: #0c0c0d;
   --darkWhite: #e9ebef;
-  --greyishWhite: #f4f4f4;
+  --greyishWhite: #f9f8fa;
   --green: #4caf50;
   /* color:#636676;
     color: #9291a5; */
@@ -19,24 +19,23 @@ body {
   background-color: var(--white);
   margin: 0;
   min-height: 100%;
-  background-color: #fff;
   font-family: "TT Hoves", sans-serif;
   color: var(--black);
   font-size: 16px;
   line-height: 1.5em;
   font-weight: 400;
+  padding-top: 80px !important;
+  scroll-behavior: smooth;
 }
 a {
   text-decoration: none !important;
 }
 
-h1 {
-  font-size: 50px !important;
-  line-height: 1.1em !important;
-  font-weight: 500 !important;
+#nprogress .bar{
+  background: var(--purple) !important;
+  height: 5px !important;
 }
-@media only screen and (max-width: 768px) {
-  h1 {
-    font-size: 36 !important;
-  }
+#nprogress .spinner-icon{
+  border-top-color: var(--purple) !important;
+  border-left-color: var(--purple) !important;
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { UserOutlined, LockOutlined, LogoutOutlined} from "@ant-design/icons";
 import { Dropdown, Avatar, Button } from "antd";
 import AppContext from "@/app/context/AppContext";
+import SideDrawer from "./SideDrawer";
 
 const Navbar = () => {
   const { loggedInDetails } = useContext(AppContext);
@@ -16,10 +17,16 @@ const Navbar = () => {
       setNavBarFixed(false);
     }
   };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   });
+
+  const logoutHandler = async () =>{
+
+  }
+
   const items = [
     {
       key: "1",
@@ -45,8 +52,7 @@ const Navbar = () => {
     {
       key: "3",
       label: (
-        // <button className={styles.avatarItemButton} onClick={logoutHandler}>
-        <button className={styles.avatarItemButton}>
+        <button className={styles.avatarItemButton} onClick={logoutHandler}>
           <div className={styles.avatarItem}>
             <LogoutOutlined className={styles.avatarItemIcon} />
             Logout
@@ -70,10 +76,10 @@ const Navbar = () => {
       </div>
       <div className={styles.buttonsContainer}>
       <div className={styles.linksContainer}>
-        <Link href="/" className={styles.link}>Pricing</Link>
-        <Link href="/" className={styles.link}>Documentation</Link>
-        {!loggedInDetails.isLoggedIn && <Link href="/" className={styles.link}>Create</Link> }
-        {!loggedInDetails.isLoggedIn && <Link href="/" className={styles.link}>Transfer</Link> }
+        {!loggedInDetails.isLoggedIn && <Link href="/create" className={styles.link}>Create</Link> }
+        {!loggedInDetails.isLoggedIn && <Link href="/transfer" className={styles.link}>Transfer</Link> }
+        <Link href="/pricing" className={styles.link}>Pricing</Link>
+        <Link href="/documentation" className={styles.link}>Documentation</Link>
       </div>
         {!loggedInDetails.isLoggedIn
           ? <Dropdown
@@ -97,6 +103,7 @@ const Navbar = () => {
                 className={styles.avatar}
               />
             </Link>}
+          <SideDrawer/>
       </div>
     </div>
   );
