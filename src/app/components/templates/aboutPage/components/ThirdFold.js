@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "../stylesheets/ThirdFold.module.css";
+import styles from "../stylesheets/thirdFold.module.css";
 const ThirdFold = () => {
+//Editod using GITHUB
   return (
     <div className={styles.thirdFold}>
     <div className={styles.mainImageDiv} id="main-image-div">
