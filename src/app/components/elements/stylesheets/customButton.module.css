@@ -32,10 +32,12 @@
 .buttonGradient:hover{
     background: transparent;
     color: var(--purple) !important;
+    border: 1px solid var(--purple) !important;
 }
 .buttonGradient:focus, .buttonGradient:active{
     background: transparent;
     color: var(--purple) !important;
+    border: 1px solid var(--purple) !important;
 }
 
 
