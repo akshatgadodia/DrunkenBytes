@@ -29,7 +29,7 @@ const FirstFold = () => {
             Our end-to-end solution allows you to create blockchain projects and experiences that make using NFTs feel effortless for everyone.
             </p>
         <div className={styles.buttonContainer}>
-          <CustomButton type="OnlyBorder" text="Register Now" />
+          <CustomButton type="OnlyBorder" text="Try Now" />
           <CustomButton type="Gradient" text="Documentation" />
         </div>
       </div>
