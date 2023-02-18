@@ -46,8 +46,6 @@ const DocumentationText = props => {
         &ensp;body<span>:</span> JSON.stringify<span>(</span>
         <span>&#123;</span>
         <br />
-        &ensp;&ensp;createdBy<span>:</span> createdBy<span>,</span>
-        <br />
         &ensp;&ensp;buyerName<span>:</span> buyerName<span>,</span>
         <br />
         &ensp;&ensp;buyerEmail<span>:</span> buyerEmail<span>,</span>
@@ -217,8 +215,6 @@ const DocumentationText = props => {
         &ensp;body<span>:</span> JSON.stringify<span>(</span>
         <span>&#123;</span>
         <br />
-        &ensp;&ensp;createdBy<span>:</span> createdBy<span>,</span>
-        <br />
         &ensp;&ensp;buyerName<span>:</span> buyerName<span>,</span>
         <br />
         &ensp;&ensp;buyerEmail<span>:</span> buyerEmail<span>,</span>
@@ -284,8 +280,6 @@ const DocumentationText = props => {
         <br />
         &ensp;body<span>:</span> JSON.stringify<span>(</span>
         <span>&#123;</span>
-        <br />
-        &ensp;&ensp;createdBy<span>:</span> createdBy<span>,</span>
         <br />
         &ensp;&ensp;buyerName<span>:</span> buyerName<span>,</span>
         <br />

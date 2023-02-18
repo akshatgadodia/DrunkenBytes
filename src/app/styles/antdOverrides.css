@@ -16,6 +16,13 @@
   background-color: var(--purple) !important;
 }
 
+.ant-select-selector, .ant-select-selection-search{
+  height: 50px !important;
+}
+.ant-select-selection-placeholder{
+  display: flex !important;
+  align-items: center !important;
+}
 /* @/app/components/templates/createNft/CreateNft.js*/
 .displayResultModal {
   width: 400px !important;
