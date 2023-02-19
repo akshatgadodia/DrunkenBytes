@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "../modules/Navbar";
 import Footer from "../modules/Footer";
 import ScrollToTop from "../modules/ScrollToTop";
@@ -14,24 +14,27 @@ import { goerli } from "wagmi/chains";
 
 const projectId = "5eb3b4632acfeff4d00404640ce75685";
 const chains = [goerli];
-
 const { provider } = configureChains(chains, [
   walletConnectProvider({ projectId })
 ]);
-const wagmiClient = createClient({
-  autoConnect: true,
-  connectors: modalConnectors({
-    projectId,
-    version: "2", // or "2"
-    appName: "web3Modal",
-    chains
-  }),
-  provider
-});
 
-const ethereumClient = new EthereumClient(wagmiClient, chains);
 
 const DefaultLayout = ({ children }) => {
+  const [isReady, setIsReady] = useState(false);  
+  useEffect(() => setIsReady(true), []);
+
+  const wagmiClient = createClient({
+    autoConnect: isReady,
+    connectors: modalConnectors({
+      projectId,
+      version: "2", // or "2"
+      appName: "web3Modal",
+      chains
+    }),
+    provider
+  });
+  
+  const ethereumClient = new EthereumClient(wagmiClient, chains);
   const { theme, setTheme } = useWeb3ModalTheme();
     setTheme({
       themeMode: "light",
@@ -48,7 +51,7 @@ const DefaultLayout = ({ children }) => {
         </main>
         <Footer />
       </WagmiConfig>
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} className="default-layout-web3modal"/>
     </div>
   );
 };

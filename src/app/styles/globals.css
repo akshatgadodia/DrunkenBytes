@@ -40,3 +40,7 @@ a {
   border-top-color: var(--purple) !important;
   border-left-color: var(--purple) !important;
 }
+
+.default-layout-web3modal{
+  z-index: 9000 !important;
+}

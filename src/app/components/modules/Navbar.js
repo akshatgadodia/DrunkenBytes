@@ -15,6 +15,34 @@ const Navbar = () => {
   const { open } = useWeb3Modal();
   const [isNavBarFixed, setNavBarFixed] = useState(false);
 
+  const account = useAccount({
+    onConnect({ address, connector, isReconnected }) {
+      const sendLoginRequest = async () => {
+        try {
+          await sendRequest(
+            "/user/login",
+            "POST",
+            JSON.stringify({
+              accountAddress: address
+            })
+          );
+        } catch (err) { }
+      }
+      sendLoginRequest();
+    },
+    onDisconnect() {
+      const sendLogoutRequest = async () => {
+        try {
+          await sendRequest(
+            "/user/logout",
+            "POST"
+          );
+        } catch (err) { }
+      }
+      sendLogoutRequest();
+      },
+  })
+
   const handleScroll = () => {
     if (window.scrollY >= 30) {
       setNavBarFixed(true);
@@ -27,40 +55,6 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   });
-
-  useEffect(() => {
-    const sendLoginRequest = async ()=>{
-      try {
-        await sendRequest(
-          "/user/login",
-          "POST",
-          JSON.stringify({
-            accountAddress: address
-          })
-        );
-        // if (!error) {
-        //   console.log(result);
-        // }
-      } catch (err) {}
-    }
-    if(isConnected){
-      sendLoginRequest();
-    }
-  }, [isConnected]);
-
-  const loginHandler = async () => {
-    await open();
-  };
-
-  const logoutHandler = async () => {
-    disconnect();
-    try {
-      await sendRequest(
-        "/user/logout",
-        "POST"
-      );
-    } catch (err) {}
-  };
 
   const items = [
     {
@@ -87,7 +81,7 @@ const Navbar = () => {
     {
       key: "3",
       label: (
-        <button className={styles.avatarItemButton} onClick={logoutHandler}>
+        <button className={styles.avatarItemButton} onClick={() => disconnect()}>
           <div className={styles.avatarItem}>
             <LogoutOutlined className={styles.avatarItemIcon} />
             Logout
@@ -128,26 +122,26 @@ const Navbar = () => {
         </div>
         {isConnected
           ? <Dropdown
-              menu={{
-                items
-              }}
-              placement="bottom"
-            >
-              <Avatar
-                type="button"
-                size="large"
-                icon={<UserOutlined />}
-                className={styles.avatar}
-              />
-            </Dropdown>
-          : <button className={styles.button} onClick={loginHandler}>
-              <Avatar
-                type="button"
-                size="large"
-                icon={<UserOutlined />}
-                className={styles.avatar}
-              />
-            </button>}
+            menu={{
+              items
+            }}
+            placement="bottom"
+          >
+            <Avatar
+              type="button"
+              size="large"
+              icon={<UserOutlined />}
+              className={styles.avatar}
+            />
+          </Dropdown>
+          : <button className={styles.button} onClick={async () => await open()}>
+            <Avatar
+              type="button"
+              size="large"
+              icon={<UserOutlined />}
+              className={styles.avatar}
+            />
+          </button>}
         <SideDrawer />
       </div>
     </div>
