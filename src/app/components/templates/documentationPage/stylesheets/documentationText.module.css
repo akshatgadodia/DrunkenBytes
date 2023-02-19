@@ -75,6 +75,12 @@
     background-color: #f9f2f4;
     border-radius: 4px;
 }
+.tableContainer{
+    margin:0;
+    padding:0;
+    width: 100%;
+    overflow-x: scroll;
+}
 .documentationText table{
     width: 100%;
     margin-bottom: 10px;

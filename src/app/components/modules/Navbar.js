@@ -1,13 +1,18 @@
 import styles from "./stylesheets/navbar.module.css";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { UserOutlined, LockOutlined, LogoutOutlined} from "@ant-design/icons";
-import { Dropdown, Avatar, Button } from "antd";
-import AppContext from "@/app/context/AppContext";
+import { UserOutlined, LockOutlined, LogoutOutlined } from "@ant-design/icons";
+import { Dropdown, Avatar } from "antd";
 import SideDrawer from "./SideDrawer";
+import { useWeb3Modal } from "@web3modal/react";
+import { useAccount, useDisconnect } from "wagmi";
+import { useHttpClient } from "@/app/hooks/useHttpClient";
 
 const Navbar = () => {
-  const { loggedInDetails } = useContext(AppContext);
+  const { error, sendRequest } = useHttpClient();
+  const { address, isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
+  const { open } = useWeb3Modal();
   const [isNavBarFixed, setNavBarFixed] = useState(false);
 
   const handleScroll = () => {
@@ -23,9 +28,39 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   });
 
-  const logoutHandler = async () =>{
+  useEffect(() => {
+    const sendLoginRequest = async ()=>{
+      try {
+        await sendRequest(
+          "/user/login",
+          "POST",
+          JSON.stringify({
+            accountAddress: address
+          })
+        );
+        // if (!error) {
+        //   console.log(result);
+        // }
+      } catch (err) {}
+    }
+    if(isConnected){
+      sendLoginRequest();
+    }
+  }, [isConnected]);
 
-  }
+  const loginHandler = async () => {
+    await open();
+  };
+
+  const logoutHandler = async () => {
+    disconnect();
+    try {
+      await sendRequest(
+        "/user/logout",
+        "POST"
+      );
+    } catch (err) {}
+  };
 
   const items = [
     {
@@ -75,13 +110,23 @@ const Navbar = () => {
         </Link>
       </div>
       <div className={styles.buttonsContainer}>
-      <div className={styles.linksContainer}>
-        {!loggedInDetails.isLoggedIn && <Link href="/create" className={styles.link}>Create</Link> }
-        {!loggedInDetails.isLoggedIn && <Link href="/transfer" className={styles.link}>Transfer</Link> }
-        <Link href="/pricing" className={styles.link}>Pricing</Link>
-        <Link href="/documentation" className={styles.link}>Documentation</Link>
-      </div>
-        {!loggedInDetails.isLoggedIn
+        <div className={styles.linksContainer}>
+          {isConnected &&
+            <Link href="/create" className={styles.link}>
+              Create
+            </Link>}
+          {isConnected &&
+            <Link href="/transfer" className={styles.link}>
+              Transfer
+            </Link>}
+          <Link href="/pricing" className={styles.link}>
+            Pricing
+          </Link>
+          <Link href="/documentation" className={styles.link}>
+            Documentation
+          </Link>
+        </div>
+        {isConnected
           ? <Dropdown
               menu={{
                 items
@@ -95,15 +140,15 @@ const Navbar = () => {
                 className={styles.avatar}
               />
             </Dropdown>
-          : <Link href="/login" className={styles.button}>
+          : <button className={styles.button} onClick={loginHandler}>
               <Avatar
                 type="button"
                 size="large"
                 icon={<UserOutlined />}
                 className={styles.avatar}
               />
-            </Link>}
-          <SideDrawer/>
+            </button>}
+        <SideDrawer />
       </div>
     </div>
   );

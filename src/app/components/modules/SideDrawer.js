@@ -1,11 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Button, Drawer } from "antd";
 import "./stylesheets/sideDrawer.css";
 import Link from "next/link";
-import AppContext from "@/app/context/AppContext";
+// import { useAccount } from "wagmi/connectors/injected";
+import { useAccount, useDisconnect } from 'wagmi';
 
 const SideDrawer = () => {
-  const { loggedInDetails } = useContext(AppContext);
+  const { isConnected } = useAccount()
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpen(true);
@@ -44,12 +45,12 @@ const SideDrawer = () => {
       >
         <div className="side-drawer-main-div">
           <div className="drawer-links">
-            {loggedInDetails.isLoggedIn &&
+            {isConnected &&
               <Link href="/create" className="side-drawer-link">
                 Create
               </Link>}
 
-            {loggedInDetails.isLoggedIn &&
+            {isConnected &&
               <Link href="/transfer" className="side-drawer-link">
                 Transfer
               </Link>}

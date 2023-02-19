@@ -116,6 +116,7 @@ const DocumentationText = props => {
       <p className={styles.paragraph}>
         <strong className={styles.subTitle}>Common API Errors:</strong>
       </p>
+      <div className={styles.tableContainer}>
       <table>
         <thead>
           <tr>
@@ -192,7 +193,7 @@ const DocumentationText = props => {
           </tr>
         </tbody>
       </table>
-
+</div>
       <h2 className={styles.heading}>API Endpoints</h2>
       <h3 className={styles.subHeading} id="create-nft">Create NFT</h3>
       <hr className={styles.hr} />
