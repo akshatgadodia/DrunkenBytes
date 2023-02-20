@@ -77,10 +77,10 @@
 }
 @media only screen and (max-width: 768px) {
   .fourthFold {
-    padding: 20px 5vw;
+    padding: 40px 5vw;
   }
   .heading {
-    font-size: 45px;
+    font-size: 40px;
   }
   .mainDiv{
     display: grid;

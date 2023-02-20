@@ -53,10 +53,10 @@
 
 @media only screen and (max-width: 768px) {
   .thirdFold {
-    padding: 20px 5vw;
+    padding: 40px 5vw;
   }
   .heading {
-    font-size: 45px;
+    font-size: 40px;
   }
   .div{
     flex-direction: column;

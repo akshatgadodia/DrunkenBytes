@@ -16,7 +16,6 @@
     color: var(--purple);
 }
 
-
 .buttonGradient{
     height: 40px;
     min-width: 127px;
@@ -50,13 +49,27 @@
     background: transparent;
     outline: none;
     box-shadow: none;
-    color: var(--purple)
+    color: var(--purple);
 }
 .buttonOnlyBorder:hover{
     background: linear-gradient(90deg,#7866d5,#9c90eb);
     color: var(--white) !important;
+    border: 1px solid var(--purple) !important;
 }
 .buttonOnlyBorder:focus, .buttonGradient:active{
     background: linear-gradient(90deg,#7866d5,#9c90eb);
     color: var(--white) !important;
+    border: 1px solid var(--purple) !important;
+}
+.buttonOnlyBorder:disabled,
+.buttonOnlyBorder[disabled]{
+    cursor: not-allowed;
+    color: var(--purple) !important;
+    background: transparent !important;
+}
+.buttonOnlyBorder:disabled:hover,
+.buttonOnlyBorder[disabled]:hover{
+    cursor: not-allowed;
+    color: var(--purple) !important;
+    background: transparent !important;
 }

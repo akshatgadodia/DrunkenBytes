@@ -42,7 +42,7 @@
 
 @media only screen and (max-width: 768px) {
   .firstFold {
-    padding: 20px 5vw;
+    padding: 40px 5vw;
   padding-top: calc(20px + 80px);
     gap: 20px;
     flex-direction: column;

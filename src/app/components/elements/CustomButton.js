@@ -17,7 +17,7 @@ const CustomButton = props => {
     buttonStyles = styles.buttonOnlyBorder;
   }
   return (
-    <Button onClick={onClick} className={buttonStyles}>
+    <Button onClick={onClick} className={buttonStyles} {...props}>
       {props.text}
     </Button>
   );

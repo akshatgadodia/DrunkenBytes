@@ -43,10 +43,10 @@
 
 @media only screen and (max-width: 768px) {
   .secondFold {
-    padding: 20px 5vw;
+    padding: 40px 5vw;
   }
   .heading {
-    font-size: 45px;
+    font-size: 40px;
   }
   .mainImage {
     order: 1;

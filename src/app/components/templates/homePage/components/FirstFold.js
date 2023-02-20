@@ -15,8 +15,12 @@ const FirstFold = () => {
               1000,
               "", // Deletes 'One' and types 'Two'
               500, 
-              "Two Three",
-              500
+              "use to enhance client experinece",
+              1000,
+              "", // Deletes 'One' and types 'Two'
+              500, 
+              "use to verify authenticity",
+              1000
             ]}
             speed={50}
             wrapper="div"

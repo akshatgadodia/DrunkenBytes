@@ -2,11 +2,14 @@ import styles from "./stylesheets/navbar.module.css";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { UserOutlined, LockOutlined, LogoutOutlined } from "@ant-design/icons";
-import { Dropdown, Avatar } from "antd";
+import { Dropdown, Avatar, notification } from "antd";
 import SideDrawer from "./SideDrawer";
 import { useWeb3Modal } from "@web3modal/react";
 import { useAccount, useDisconnect } from "wagmi";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
+import { useSignMessage } from 'wagmi'
+import Cookies from "js-cookie";
+import AcceptAndSignModal from "./AcceptAndSignModal";
 
 const Navbar = () => {
   const { error, sendRequest } = useHttpClient();
@@ -14,25 +17,35 @@ const Navbar = () => {
   const { disconnect } = useDisconnect();
   const { open } = useWeb3Modal();
   const [isNavBarFixed, setNavBarFixed] = useState(false);
+  const [message, setMessage] = useState();
+  const [acceptModalOpen, setAcceptModalOpen] = useState(false);
+  const [modalLoading, setModalLoading] = useState(false);
+
+  const sendInitialLoginRequest = async () => {
+    try {
+      const result = await sendRequest(
+        "/user/initial-login",
+        "POST",
+        JSON.stringify({
+          accountAddress: address
+        })
+      );
+      if(!error){
+        setMessage(result.message);
+        setAcceptModalOpen(true);
+      }
+    } catch (err) { }
+  }
 
   const account = useAccount({
-    onConnect({ address, connector, isReconnected }) {
-      const sendLoginRequest = async () => {
-        try {
-          await sendRequest(
-            "/user/login",
-            "POST",
-            JSON.stringify({
-              accountAddress: address
-            })
-          );
-        } catch (err) { }
-      }
-      sendLoginRequest();
+    onConnect() {
+      const loggedInStatus = Cookies.get("userLoggedIn");
+      if(loggedInStatus !== 'true') sendInitialLoginRequest();
     },
     onDisconnect() {
       const sendLogoutRequest = async () => {
         try {
+          Cookies.remove('userLoggedIn');
           await sendRequest(
             "/user/logout",
             "POST"
@@ -42,6 +55,56 @@ const Navbar = () => {
       sendLogoutRequest();
       },
   })
+  
+
+  const { signMessage } = useSignMessage({
+    onSuccess(data, variables) {
+      const sendLoginRequest =  async() =>{
+        await sendRequest(
+          "/user/login",
+          "POST",
+          JSON.stringify({
+            accountAddress: address,
+            signedData: data,
+            message: variables.message,
+          })
+        );
+        if(error){
+          Cookies.remove('userLoggedIn');
+          disconnect();
+        }
+        setAcceptModalOpen(false);
+        setModalLoading(false);
+        Cookies.set('userLoggedIn', 'true');
+      }
+      sendLoginRequest();
+    },
+    onError(error){
+      notification.error({
+        message: "Error",
+        description: error.message,
+        placement: "top",
+        // duration: null,
+        className: "error-notification"
+      });
+      setAcceptModalOpen(false)
+      Cookies.remove('userLoggedIn');
+      setModalLoading(false);
+      disconnect();
+    }
+  })
+
+  const onAcceptHandler = ()=>{
+    setModalLoading(true);
+    signMessage({ message })
+  }
+
+  const onModalClose = ()=>{
+    setModalLoading(false);
+    setAcceptModalOpen(false)
+    Cookies.remove('userLoggedIn');
+    disconnect();
+  }
 
   const handleScroll = () => {
     if (window.scrollY >= 30) {
@@ -94,6 +157,7 @@ const Navbar = () => {
     <div
       className={`${styles.navbar} ${isNavBarFixed ? styles.fixedNavbar : ""}`}
     >
+      <AcceptAndSignModal acceptModalOpen={acceptModalOpen} modalLoading={modalLoading} onModalClose={onModalClose} onAcceptHandler={onAcceptHandler}/>
       <div className={styles.logoContainer}>
         <Link href="/">
           <img

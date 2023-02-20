@@ -40,7 +40,7 @@
 
 @media only screen and (max-width: 768px) {
   .thirdFold {
-    padding: 20px 5vw;
+    padding: 40px 5vw;
     gap: 20px;
     flex-direction: column;
     justify-content: center;
@@ -50,7 +50,7 @@
     text-align: center;
   }
   .heading {
-    font-size: 45px;
+    font-size: 40px;
   }
   .mainImage {
     height: 90%;

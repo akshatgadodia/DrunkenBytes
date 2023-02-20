@@ -50,7 +50,7 @@ height: 150%;
 
 @media only screen and (max-width: 768px) {
   .firstFold {
-    padding: 20px 5vw;
+    padding: 40px 5vw;
     padding-bottom: 50px;
     gap: 20px;
     flex-direction: column;
@@ -62,7 +62,7 @@ height: 150%;
     text-align: center;
   }
   .heading {
-    font-size: 45px;
+    font-size: 40px;
   }
   .mainImage {
     order: 1;

@@ -61,7 +61,7 @@
 
 @media only screen and (max-width: 768px) {
   .firstFold {
-    padding: 20px 5vw;
+    padding: 40px 5vw;
     padding-bottom: 50px;
     gap: 20px;
     flex-direction: column;
@@ -74,10 +74,10 @@
   }
   .heading {
     height: 180px;
-    font-size: 45px;
+    font-size: 40px;
   }
   .typingHeading {
-    font-size: 45px;
+    font-size: 40px;
   }
   .buttonContainer {
     justify-content: center;
