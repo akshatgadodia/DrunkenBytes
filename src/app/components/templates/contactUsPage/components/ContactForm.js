@@ -1,32 +1,46 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styles from "../stylesheets/contactForm.module.css";
-import { Button, Form, Input, DatePicker, Spin, Select  } from "antd";
+import { Button, Form, Input, Spin, Select, notification  } from "antd";
 
-import Loader from "@/app/components/modules/Loader";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
+
+import { useAccount } from "wagmi";
+
 const ContactForm = props => {
+  const { isConnected } = useAccount();
   const { Option } = Select;
   const { TextArea } = Input;
   const { error, sendRequest, isLoading } = useHttpClient();
   const [topic, setTopic] = useState(null);
   const [form] = Form.useForm();
+
+  useEffect(()=>{
+  },[isConnected])
+
   const onFinish = async values => {
     try {
       const result = await sendRequest(
-        "/message/save-message",
+        (isConnected) ? '/message/save-message' : '/message/save-contact-message',
         "POST",
         JSON.stringify({
           name: values.name,
           email: values.email,
           subject: values.subject,
-          type: topic,
+          type: topic ?? 'sales',
           message: values.message,
         })
       );
       if (!error) {
+        notification.success({
+          message: "Success",
+          description: result.message,
+          placement: "top",
+          // duration: null,
+          className: "error-notification"
+        });
         form.resetFields();
       }
-    } catch (err) {}
+    } catch (err) { }
   };
 
   const onTopicChange = (value) => {
@@ -47,7 +61,7 @@ const ContactForm = props => {
 
   return (
     <div className={styles.contactForm}>
-      <Loader isLoading={isLoading} />
+      <Spin size="large" spinning={isLoading}>
       <Form
         name="basic"
         form={form}
@@ -55,6 +69,7 @@ const ContactForm = props => {
         onFinish={onFinish}
         autoComplete="on"
       >
+        {!isConnected && 
         <Form.Item
           name="name"
           rules={[
@@ -67,7 +82,8 @@ const ContactForm = props => {
         >
           <Input placeholder="Name" className={styles.input} />
         </Form.Item>
-
+        }
+        {!isConnected &&
         <Form.Item
           name="email"
           rules={[
@@ -84,7 +100,7 @@ const ContactForm = props => {
         >
           <Input placeholder="Email" className={styles.input} />
         </Form.Item>
-
+        }
         <Form.Item
           name="subject"
           rules={[
@@ -97,9 +113,10 @@ const ContactForm = props => {
         >
           <Input placeholder="Subject" className={styles.input} />
         </Form.Item>
+        {isConnected && 
         
         <Form.Item
-        name="gender"
+        name="topic"
         rules={[
           {
             required: true,
@@ -118,6 +135,7 @@ const ContactForm = props => {
           <Option value="other">Other</Option>
         </Select>
       </Form.Item>
+        }
       <Form.Item
           name="message"
           rules={[
@@ -136,6 +154,7 @@ const ContactForm = props => {
           </Button>
         </Form.Item>
       </Form>
+      </Spin>
     </div>
   );
 };

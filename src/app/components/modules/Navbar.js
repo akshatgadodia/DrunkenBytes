@@ -10,24 +10,27 @@ import { useHttpClient } from "@/app/hooks/useHttpClient";
 import { useSignMessage } from 'wagmi'
 import Cookies from "js-cookie";
 import AcceptAndSignModal from "./AcceptAndSignModal";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const { error, sendRequest } = useHttpClient();
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
   const { open } = useWeb3Modal();
+  const router = useRouter();
+  const { pathname } = useRouter();
   const [isNavBarFixed, setNavBarFixed] = useState(false);
   const [message, setMessage] = useState();
   const [acceptModalOpen, setAcceptModalOpen] = useState(false);
   const [modalLoading, setModalLoading] = useState(false);
 
-  const sendInitialLoginRequest = async () => {
+  const sendInitialLoginRequest = async (accountAddress) => {
     try {
       const result = await sendRequest(
         "/user/initial-login",
         "POST",
         JSON.stringify({
-          accountAddress: address
+          accountAddress
         })
       );
       if(!error){
@@ -38,9 +41,9 @@ const Navbar = () => {
   }
 
   const account = useAccount({
-    onConnect() {
+    onConnect({address}) {
       const loggedInStatus = Cookies.get("userLoggedIn");
-      if(loggedInStatus !== 'true') sendInitialLoginRequest();
+      if(loggedInStatus !== 'true') sendInitialLoginRequest(address);
     },
     onDisconnect() {
       const sendLogoutRequest = async () => {
@@ -76,6 +79,8 @@ const Navbar = () => {
         setAcceptModalOpen(false);
         setModalLoading(false);
         Cookies.set('userLoggedIn', 'true');
+        console.log(pathname);
+        if(pathname==='/hold') router.back();
       }
       sendLoginRequest();
     },
@@ -84,7 +89,6 @@ const Navbar = () => {
         message: "Error",
         description: error.message,
         placement: "top",
-        // duration: null,
         className: "error-notification"
       });
       setAcceptModalOpen(false)

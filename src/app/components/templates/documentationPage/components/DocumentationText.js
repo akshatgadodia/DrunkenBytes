@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "../stylesheets/documentationText.module.css";
-import baseURL from "@/app/constants/baseURL";
+import Prism from "prismjs";
+import "../stylesheets/prism.css"
 
 const DocumentationText = props => {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
   return (
     <div className={styles.documentationText}>
       <h1 className={styles.mainHeading}>API Documentation</h1>
@@ -36,43 +40,32 @@ const DocumentationText = props => {
         the Authentication Header as Bearer &lt;api_secret&gt;.
       </p>
       <p className={styles.paragraph}>Find a Nodejs example below.</p>
-      <div className={styles.code}>
-        fetch<span>(</span>
-        <br />
-        &ensp;{baseURL}/nft/mint-nft?api_key=YOUR_API_KEY'<span>,</span>{" "}
-        <span>&#123;</span> <br />
-        &ensp;method<span>:</span> "POST"<span>,</span>
-        <br />
-        &ensp;body<span>:</span> JSON.stringify<span>(</span>
-        <span>&#123;</span>
-        <br />
-        &ensp;&ensp;buyerName<span>:</span> buyerName<span>,</span>
-        <br />
-        &ensp;&ensp;buyerEmail<span>:</span> buyerEmail<span>,</span>
-        <br />
-        &ensp;&ensp;brandName<span>:</span> brandName<span>,</span>
-        <br />
-        &ensp;&ensp;productName<span>:</span> productName<span>,</span>
-        <br />
-        &ensp;&ensp;productId<span>:</span> productId<span>,</span>
-        <br />
-        &ensp;&ensp;warrantyExpireDate<span>:</span> warrantyExpireDate<span>,</span>
-        <br />
-        &ensp;&ensp;buyerMetamaskAddress<span>:</span> buyerMetamaskAddress<span>,</span>
-        <br />
-        &ensp;&ensp;methodType<span>:</span> 0<br />
-        &ensp;<span>&#125;</span>
-        <span>)</span>
-        <br />
-        &ensp;headers<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp;&ensp;Authorization<span>:</span> "Bearer " + YOUR_API_SECRET<br />
-        &ensp;<span>&#125;</span>
-        <span>)</span>
-        <br />
-        <span>&#125;</span>
-        <span>)</span>;
-      </div>
+
+      <pre>
+        <code className="language-javascript">
+{`fetch(
+  'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY', {
+    method: "POST",
+    body: JSON.stringify({
+      buyerName: buyerName,
+      buyerEmail: buyerEmail,
+      brandName: brandName,
+      productName: productName,
+      productId: productId,
+      warrantyExpireDate: warrantyExpireDate,
+      buyerMetamaskAddress: buyerMetamaskAddress,
+      methodType: 0
+  })
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': "Bearer " + YOUR_API_SECRET
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));`}
+        </code>
+      </pre>
       <div className={styles.warning}>
         <strong>Keek you key and secret safe</strong>: To prevent unauthorized
         access to your drunken bytes account, please make sure to keep your API
@@ -82,7 +75,7 @@ const DocumentationText = props => {
       <h3 className={styles.subHeading} id="api-error">API Error</h3>
       <hr className={styles.hr} />
       <p className={styles.paragraph}>
-        If your request to the aviationstack API does not succeed, the API will
+        If your request to the drunken bytes API does not succeed, the API will
         return a JSON error response that contains error <code>code</code> and{" "}
         <code>message</code> objects indicating the type of error that occurred.
         The API also supports HTTP status codes, returning a code of{" "}
@@ -100,19 +93,16 @@ const DocumentationText = props => {
       <p className={styles.paragraph}>
         <strong className={styles.subTitle}>Example Error:</strong>
       </p>
-      <div className={styles.code}>
-        <span>&#123;</span>
-        <br />
-        &ensp; success<span>:</span> "failed" <span>,</span>
-        <br />
-        &ensp; error<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp; &ensp; message<span>:</span> "Internal Server Error" <br />
-        &ensp;<span>&#125;</span>
-        <br />
-        <span>&#125;</span>
-        <br />
-      </div>
+      <pre>
+        <code className="language-javascript">
+{`{
+  success: false ,
+  error: {
+    message: "Internal Server Error"
+  }
+}`}
+        </code>
+      </pre>
       <p className={styles.paragraph}>
         <strong className={styles.subTitle}>Common API Errors:</strong>
       </p>
@@ -206,60 +196,50 @@ const DocumentationText = props => {
       <p className={styles.paragraph}>
         <strong className={styles.subTitle}>Example API Request:</strong>
       </p>
-      <div className={styles.code}>
-        fetch<span>(</span>
-        <br />
-        &ensp;{baseURL}/nft/mint-nft?api_key=YOUR_API_KEY'<span>,</span>{" "}
-        <span>&#123;</span> <br />
-        &ensp;method<span>:</span> "POST"<span>,</span>
-        <br />
-        &ensp;body<span>:</span> JSON.stringify<span>(</span>
-        <span>&#123;</span>
-        <br />
-        &ensp;&ensp;buyerName<span>:</span> buyerName<span>,</span>
-        <br />
-        &ensp;&ensp;buyerEmail<span>:</span> buyerEmail<span>,</span>
-        <br />
-        &ensp;&ensp;brandName<span>:</span> brandName<span>,</span>
-        <br />
-        &ensp;&ensp;productName<span>:</span> productName<span>,</span>
-        <br />
-        &ensp;&ensp;productId<span>:</span> productId<span>,</span>
-        <br />
-        &ensp;&ensp;warrantyExpireDate<span>:</span> warrantyExpireDate<span>,</span>
-        <br />
-        &ensp;&ensp;buyerMetamaskAddress<span>:</span> buyerMetamaskAddress<span>,</span>
-        <br />
-        &ensp;&ensp;methodType<span>:</span> 0<br />
-        &ensp;<span>&#125;</span>
-        <span>)</span>
-        <br />
-        &ensp;headers<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp;&ensp;Authorization<span>:</span> "Bearer " + YOUR_API_SECRET<br />
-        &ensp;<span>&#125;</span>
-        <span>)</span>
-        <br />
-        <span>&#125;</span>
-        <span>)</span>;
-      </div>
+      <pre>
+        <code className="language-javascript">
+        {`fetch(
+  'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY', {
+    method: "POST",
+    body: JSON.stringify({
+      buyerName: buyerName,
+      buyerEmail: buyerEmail,
+      brandName: brandName,
+      productName: productName,
+      productId: productId,
+      warrantyExpireDate: warrantyExpireDate,
+      buyerMetamaskAddress: buyerMetamaskAddress,
+      methodType: 0
+  })
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': "Bearer " + YOUR_API_SECRET
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));`}
+        </code>
+      </pre>
+      
       <p className={styles.paragraph}>
         <strong className={styles.subTitle}>Example API Response:</strong>
       </p>
-      <div className={styles.code}>
-        <span>&#123;</span>
-        <br />
-        &ensp; success<span>:</span> "failed" <span>,</span>
-        <br />
-        &ensp; error<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp; &ensp; message<span>:</span> "Internal Server Error" <br />
-        &ensp;<span>&#125;</span>
-        <br />
-        <span>&#125;</span>
-        <br />
+      <pre>
+        <code className="language-javascript">
+{`{
+  success: true ,
+  data: {
+    txid: TRANSACTION_HASH
+  }
+}`}
+        </code>
+      </pre>
+      <div className={styles.info}>
+        This Transaction Hash can be viewed at https://goerli.etherscan.io/tx/TRANACTION_HASH. It is just a initial code of a 
+        process and you can view the status at Etherscan and we will also send you an email when the generation of your NFT is 
+        complete.
       </div>
-      <span className={styles.space} />
 
       <h3 className={styles.subHeading} id="transfer-nft">Transfer NFT</h3>
       <hr className={styles.hr} />
@@ -272,64 +252,53 @@ const DocumentationText = props => {
       <p className={styles.paragraph}>
         <strong className={styles.subTitle}>Example API Request:</strong>
       </p>
-      <div className={styles.code}>
-        fetch<span>(</span>
-        <br />
-        &ensp;{baseURL}/nft/mint-nft?api_key=YOUR_API_KEY'<span>,</span>{" "}
-        <span>&#123;</span> <br />
-        &ensp;method<span>:</span> "POST"<span>,</span>
-        <br />
-        &ensp;body<span>:</span> JSON.stringify<span>(</span>
-        <span>&#123;</span>
-        <br />
-        &ensp;&ensp;buyerName<span>:</span> buyerName<span>,</span>
-        <br />
-        &ensp;&ensp;buyerEmail<span>:</span> buyerEmail<span>,</span>
-        <br />
-        &ensp;&ensp;brandName<span>:</span> brandName<span>,</span>
-        <br />
-        &ensp;&ensp;productName<span>:</span> productName<span>,</span>
-        <br />
-        &ensp;&ensp;productId<span>:</span> productId<span>,</span>
-        <br />
-        &ensp;&ensp;warrantyExpireDate<span>:</span> warrantyExpireDate<span>,</span>
-        <br />
-        &ensp;&ensp;buyerMetamaskAddress<span>:</span> buyerMetamaskAddress<span>,</span>
-        <br />
-        &ensp;&ensp;methodType<span>:</span> 0<br />
-        &ensp;<span>&#125;</span>
-        <span>)</span>
-        <br />
-        &ensp;headers<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp;&ensp;Authorization<span>:</span> "Bearer " + YOUR_API_SECRET<br />
-        &ensp;<span>&#125;</span>
-        <span>)</span>
-        <br />
-        <span>&#125;</span>
-        <span>)</span>;
-      </div>
+      <pre>
+        <code className="language-javascript">
+        {`fetch(
+  'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY', {
+    method: "POST",
+    body: JSON.stringify({
+      buyerName: buyerName,
+      buyerEmail: buyerEmail,
+      brandName: brandName,
+      productName: productName,
+      productId: productId,
+      warrantyExpireDate: warrantyExpireDate,
+      buyerMetamaskAddress: buyerMetamaskAddress,
+      methodType: 0
+  })
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': "Bearer " + YOUR_API_SECRET
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));`}
+        </code>
+      </pre>
       <p className={styles.paragraph}>
         <strong className={styles.subTitle}>Example API Response:</strong>
       </p>
-      <div className={styles.code}>
-        <span>&#123;</span>
-        <br />
-        &ensp; success<span>:</span> "failed" <span>,</span>
-        <br />
-        &ensp; error<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp; &ensp; message<span>:</span> "Internal Server Error" <br />
-        &ensp;<span>&#125;</span>
-        <br />
-        <span>&#125;</span>
-        <br />
+      <pre>
+        <code className="language-javascript">
+{`{
+  success: true ,
+  data: {
+    txid: TRANSACTION_HASH
+  }
+}`}
+        </code>
+      </pre>
+      <div className={styles.info}>
+        This Transaction Hash can be viewed at https://goerli.etherscan.io/tx/TRANACTION_HASH. It is just a initial code of a 
+        process and you can view the status at Etherscan and we will also send you an email when the generation of your NFT is 
+        complete.
       </div>
-
       <h2 className={styles.heading} id="code-examples">Code Examples</h2>
       <p className={styles.paragraph}>
         A number of code examples in different programming languages were
-        prepared for you to get up and running with the aviationstack API as
+        prepared for you to get up and running with the drunken bytes API as
         quickly as possible. You will find them below in PHP, Python, Node.js.,
         jQuery, Go and Ruby.
       </p>
@@ -337,104 +306,186 @@ const DocumentationText = props => {
 
       <h3 className={styles.subHeading} id="php">PHP</h3>
       <hr className={styles.hr} />
-      <div className={styles.code}>
-        <span>&#123;</span>
-        <br />
-        &ensp; success<span>:</span> "failed" <span>,</span>
-        <br />
-        &ensp; error<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp; &ensp; message<span>:</span> "Internal Server Error" <br />
-        &ensp;<span>&#125;</span>
-        <br />
-        <span>&#125;</span>
-        <br />
-      </div>
+      <pre>
+        <code className="language-javascript">
+{`$url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY'; 
+$data = array('name' => 'John Doe', 'email' => 'john@example.com');
+// For the list of arguments refer to the API Endpoint Section
+$token = 'your_token_here';
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_POST, 1);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+  'Authorization: Bearer ' . $token,
+));
+$response = curl_exec($curl);
+if ($response === false) {
+  $error = curl_error($curl);
+  echo 'Error: ' . $error;
+} else {
+  echo 'API response: ' . $response;
+}
+curl_close($curl);`}
+        </code>
+      </pre>
       <span className={styles.space} />
 
       <h3 className={styles.subHeading} id="python">Python</h3>
       <hr className={styles.hr} />
-      <div className={styles.code}>
-        <span>&#123;</span>
-        <br />
-        &ensp; success<span>:</span> "failed" <span>,</span>
-        <br />
-        &ensp; error<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp; &ensp; message<span>:</span> "Internal Server Error" <br />
-        &ensp;<span>&#125;</span>
-        <br />
-        <span>&#125;</span>
-        <br />
-      </div>
+      <pre>
+        <code className="language-javascript">
+{`import requests
+import json
+url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY'
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer <token>'
+}
+data = {
+    'key1': 'value1',
+    'key2': 'value2'
+}
+# For the list of arguments refer to the API Endpoint Section
+response = requests.post(url, headers=headers, data=json.dumps(data))
+if response.status_code == 200:
+    response_data = response.json()
+    print(response_data)
+else:
+    error_message = f"API call failed with status code {response.status_code}"
+    print(error_message)`}
+        </code>
+      </pre>
       <span className={styles.space} />
 
       <h3 className={styles.subHeading} id="nodejs">Nodejs</h3>
       <hr className={styles.hr} />
-      <div className={styles.code}>
-        <span>&#123;</span>
-        <br />
-        &ensp; success<span>:</span> "failed" <span>,</span>
-        <br />
-        &ensp; error<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp; &ensp; message<span>:</span> "Internal Server Error" <br />
-        &ensp;<span>&#125;</span>
-        <br />
-        <span>&#125;</span>
-        <br />
-      </div>
+      <pre>
+        <code className="language-javascript">
+        {`fetch(
+  'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY', {
+    method: "POST",
+    body: JSON.stringify({
+      buyerName: buyerName,
+      buyerEmail: buyerEmail,
+      brandName: brandName,
+      productName: productName,
+      productId: productId,
+      warrantyExpireDate: warrantyExpireDate,
+      buyerMetamaskAddress: buyerMetamaskAddress,
+      methodType: 0
+  })
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': "Bearer " + YOUR_API_SECRET
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));`}
+        </code>
+      </pre>
       <span className={styles.space} />
 
       <h3 className={styles.subHeading} id="jquery">jQuery</h3>
       <hr className={styles.hr} />
-      <div className={styles.code}>
-        <span>&#123;</span>
-        <br />
-        &ensp; success<span>:</span> "failed" <span>,</span>
-        <br />
-        &ensp; error<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp; &ensp; message<span>:</span> "Internal Server Error" <br />
-        &ensp;<span>&#125;</span>
-        <br />
-        <span>&#125;</span>
-        <br />
-      </div>
+      <pre>
+        <code className="language-javascript">
+{`$.ajax({
+  url: 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY',
+  type: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer <token>'
+  },
+  data: JSON.stringify({
+    key1: 'value1',
+    key2: 'value2'
+  }),
+  // For the list of arguments refer to the API Endpoint Section
+  success: function(response) {
+    console.log(response);
+  },
+  error: function(xhr, status, error) {
+    console.error(error);
+  }
+});`}
+        </code>
+      </pre>
       <span className={styles.space} />
 
       <h3 className={styles.subHeading} id="go">Go</h3>
       <hr className={styles.hr} />
-      <div className={styles.code}>
-        <span>&#123;</span>
-        <br />
-        &ensp; success<span>:</span> "failed" <span>,</span>
-        <br />
-        &ensp; error<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp; &ensp; message<span>:</span> "Internal Server Error" <br />
-        &ensp;<span>&#125;</span>
-        <br />
-        <span>&#125;</span>
-        <br />
-      </div>
+      <pre>
+        <code className="language-javascript">
+{`package main
+import (
+  "bytes"
+  "encoding/json"
+  "fmt"
+  "net/http"
+)
+func main() {
+  url := "https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY"
+  requestData := map[string]string{"key1": "value1", "key2": "value2"}
+  // For the list of arguments refer to the API Endpoint Section
+  jsonPayload, _ := json.Marshal(requestData)
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonPayload))
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  req.Header.Set("Content-Type", "application/json")
+  req.Header.Set("Authorization", "Bearer <token>")
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  defer resp.Body.Close()
+  if resp.StatusCode == http.StatusOK {
+    var response map[string]interface{}
+    err = json.NewDecoder(resp.Body).Decode(&response)
+    if err != nil {
+      fmt.Println(err)
+      return
+    }
+    fmt.Println(response)
+  } else {
+    fmt.Printf("API call failed with status code %d", resp.StatusCode)
+  }
+}`}
+        </code>
+      </pre>
       <span className={styles.space} />
 
       <h3 className={styles.subHeading} id="ruby">Ruby</h3>
       <hr className={styles.hr} />
-      <div className={styles.code}>
-        <span>&#123;</span>
-        <br />
-        &ensp; success<span>:</span> "failed" <span>,</span>
-        <br />
-        &ensp; error<span>:</span> <span>&#123;</span>
-        <br />
-        &ensp; &ensp; message<span>:</span> "Internal Server Error" <br />
-        &ensp;<span>&#125;</span>
-        <br />
-        <span>&#125;</span>
-        <br />
-      </div>
+      <pre>
+        <code className="language-javascript">
+{`require 'net/http'
+require 'json'
+uri = URI.parse('https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY')
+data = { 'key1' => 'value1', 'key2' => 'value2' }
+# For the list of arguments refer to the API Endpoint Section
+payload = JSON.generate(data)
+request = Net::HTTP::Post.new(uri)
+request.content_type = 'application/json'
+request['Authorization'] = 'Bearer <token>'
+request.body = payload
+response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+  http.request(request)
+end
+if response.code == '200'
+  result = JSON.parse(response.body)
+  puts result
+else
+  puts "Error: #{response.code} - #{response.message}"
+end`}
+        </code>
+      </pre>
       <span className={styles.space} />
     </div>
   );

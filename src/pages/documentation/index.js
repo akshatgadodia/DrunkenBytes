@@ -2,7 +2,7 @@ import React from "react";
 import DefaultLayout from "@/app/components/layouts/DefaultLayout";
 import DocumentationPage from '@/app/components/templates/documentationPage/DocumentationPage';
 
-const About = props => {
+const Documentation = props => {
   return (
     <DefaultLayout>
       <DocumentationPage/>
@@ -10,4 +10,4 @@ const About = props => {
   );
 };
 
-export default About;
+export default Documentation;

@@ -46,17 +46,6 @@
     line-height: 20px;
     margin: 0 0 10px;
 }
-.code{
-    border-radius: 4px;
-    background-color: var(--black);
-    padding: 20px 30px;
-    color: white;
-    margin-bottom: 15px;
-    color:#ffce54!important
-}
-.code span{
-    color: var(--white) !important;
-}
 .subTitle{
     display: block;
     padding-top: 10px !important;
@@ -67,13 +56,11 @@
     border-left: 5px solid #c7254e;
     margin-bottom: 50px;
 }
-.documentationText code{
-    padding: 2px 4px;
-    font-size: 97%;
-    color: #c7254e;
-    white-space: nowrap;
-    background-color: #f9f2f4;
-    border-radius: 4px;
+.info{
+    padding: 10px;
+    background-color: #cefad0 ;
+    border-left: 5px solid #4BB543 ;
+    margin-bottom: 50px;
 }
 .tableContainer{
     margin:0;
