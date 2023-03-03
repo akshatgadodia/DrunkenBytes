@@ -1,7 +1,7 @@
 import styles from "./stylesheets/navbar.module.css";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { UserOutlined, LockOutlined, LogoutOutlined } from "@ant-design/icons";
+import { UserOutlined, LockOutlined, LogoutOutlined, WalletOutlined } from "@ant-design/icons";
 import { Dropdown, Avatar, notification } from "antd";
 import SideDrawer from "./SideDrawer";
 import { useWeb3Modal } from "@web3modal/react";
@@ -127,6 +127,16 @@ const Navbar = () => {
     {
       key: "1",
       label: (
+        <Link href="/wallet">
+          <div className={styles.avatarItem}>
+            <WalletOutlined className={styles.avatarItemIcon} />Wallet
+          </div>
+        </Link>
+      )
+    },
+    {
+      key: "2",
+      label: (
         <Link href="/profile">
           <div className={styles.avatarItem}>
             <UserOutlined className={styles.avatarItemIcon} />Profile
@@ -135,7 +145,7 @@ const Navbar = () => {
       )
     },
     {
-      key: "2",
+      key: "3",
       label: (
         <Link href="/profile/change-password">
           <div className={styles.avatarItem}>
@@ -146,7 +156,7 @@ const Navbar = () => {
       )
     },
     {
-      key: "3",
+      key: "4",
       label: (
         <button className={styles.avatarItemButton} onClick={() => disconnect()}>
           <div className={styles.avatarItem}>

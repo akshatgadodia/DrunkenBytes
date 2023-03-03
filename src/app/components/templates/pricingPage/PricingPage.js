@@ -1,9 +1,21 @@
 import React from 'react'
-import styles from "./aboutPage.module.css";
-const AboutPage = () => {
+import styles from "./pricingPage.module.css";
+import Head from "next/head";
+import FirstFold from "./components/FirstFold";
+import SecondFold from './components/SecondFold';
+import ThirdHalfFold from './components/ThirdHalfFold';
+
+const PricingPage = () => {
   return (
-    <div className={styles.aboutPage}> AboutPage</div>
+    <div className={styles.pricingPage}> 
+    <Head>
+        <title>Pricing | Drunken Bytes</title>
+      </Head>
+      <FirstFold />
+      <SecondFold/>
+      <ThirdHalfFold/>
+    </div>
   )
 }
 
-export default AboutPage
+export default PricingPage
