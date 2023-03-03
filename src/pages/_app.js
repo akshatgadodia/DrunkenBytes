@@ -7,18 +7,10 @@ import { useRouter } from "next/router";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import authenticatedRoutes from "@/app/constants/authenticatedRoutes"
-import Cookies from "js-cookie";
 
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
   useEffect(() => {
-    const loggedInStatus = Cookies.get("userLoggedIn");
-    if (router.pathname === '/hold' && loggedInStatus === 'true') {
-      router.back();
-    }
-    if (authenticatedRoutes.includes(router.pathname) && loggedInStatus !== true) {
-      router.push('/hold');
-    }
     const handleStart = url => {
       NProgress.start()
     };

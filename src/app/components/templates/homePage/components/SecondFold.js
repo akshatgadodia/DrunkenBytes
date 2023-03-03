@@ -13,7 +13,7 @@ const SecondFold = () => {
         real-world assets.
       </p>
       <div className={styles.mainImageDiv} id="main-image-div">
-        <img src="/images/nft.png" alt="Image" className={styles.mainImage} />
+        <img src="/images/home-page-nft.png" alt="Image" className={styles.mainImage} />
       </div>
     </div>
   );

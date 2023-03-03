@@ -1,9 +1,15 @@
 import React from 'react'
-import styles from "./aboutPage.module.css";
-const AboutPage = () => {
+import styles from "./whyChooseUsPage.module.css";
+import FirstFold from "./components/FirstFold";
+import SecondFold from "./components/SecondFold";
+
+const WhyChooseUsPage = () => {
   return (
-    <div className={styles.aboutPage}> AboutPage</div>
+    <div className={styles.whyChooseUsPage}> 
+      <FirstFold/>
+      <SecondFold/>
+    </div>
   )
 }
 
-export default AboutPage
+export default WhyChooseUsPage

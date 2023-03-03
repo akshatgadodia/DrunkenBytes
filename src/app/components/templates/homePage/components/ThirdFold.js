@@ -18,7 +18,7 @@ const ThirdFold = () => {
       </div>
 
       <div className={styles.mainImageDiv} id="main-image-div">
-        <img src="/images/nft.png" alt="Image" className={styles.mainImage} />
+        <img src="/images/home-get-started.png" alt="Image" className={styles.mainImage} />
       </div>
       </div>
     </div>
