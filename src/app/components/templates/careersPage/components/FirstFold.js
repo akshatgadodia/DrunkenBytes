@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "../stylesheets/firstFold.module.css";
+import CustomButton from "@/app/components/elements/CustomButton";
+
 const FirstFold = () => {
   return (
     <div className={styles.firstFold}
@@ -12,14 +14,17 @@ const FirstFold = () => {
     >
       <div className={styles.mainDiv} id="main-div">
         <div className={styles.heading}>
-          Hi. We're Drunken Bytes.
+        Let’s build the future of Warranty Card NFT's together
         </div>
             <p className={styles.subParagraph}>
-            Drunken Bytes is a comprehensive platform that offers an end-to-end solution for creating NFT-based warranty cards. With our user-friendly interface, you can easily generate and distribute warranty cards that are seamlessly integrated with the blockchain. Our innovative approach ensures that using NFTs is effortless for both businesses and customers, while providing a high level of security and transparency.
+        Not only are we passionate about our work, we enjoy the people we surround ourselves with. At Drunken Bytes, we build trust, embrace feedback, grow rapidly, and love our work.
             </p>
+            <CustomButton type="Gradient" text="View our open positions" onClick={() => {console.log("CLICKED")}} />
+
+
       </div>
       <div className={styles.mainImageDiv} id="main-image-div">
-        <img src="/images/about-main.png" alt="Image" className={styles.mainImage}/>
+        <img src="/images/careers.png" alt="Image" className={styles.mainImage}/>
       </div>
     </div>
   );

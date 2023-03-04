@@ -2,7 +2,16 @@ import CustomButton from "@/app/components/elements/CustomButton";
 import React from "react";
 import styles from "../stylesheets/firstFold.module.css";
 import { TypeAnimation } from "react-type-animation";
+import { useWeb3Modal } from "@web3modal/react";
+import { useRouter } from 'next/router'
+
 const FirstFold = () => {
+  const router = useRouter();
+  const { open } = useWeb3Modal();
+  const onClickHandler = async () => {
+    await open();
+  }
+
   return (
     <div className={styles.firstFold}>
     <img src="/images/background/gradient-top-center-2354x1760.png" alt="bg" className={styles.bgImage}/>
@@ -30,11 +39,11 @@ const FirstFold = () => {
           />
         </div>
             <p className={styles.subParagraph}>
-            Our end-to-end solution allows you to create blockchain projects and experiences that make using NFTs feel effortless for everyone.
+            Empowering businesses with NFT-based warranty solutions, revolutionizing customer experience and trust in products.
             </p>
         <div className={styles.buttonContainer}>
-          <CustomButton type="OnlyBorder" text="Try Now" />
-          <CustomButton type="Gradient" text="Documentation" />
+          <CustomButton type="OnlyBorder" text="Try Now" onClick={onClickHandler}/>
+          <CustomButton type="Gradient" text="Documentation" onClick={()=>router.push("/documentation")}/>
         </div>
       </div>
       <div className={styles.mainImageDiv} id="main-image-div">

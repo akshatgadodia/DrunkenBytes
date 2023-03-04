@@ -20,6 +20,9 @@ const Footer = () => {
             <Link href="/about" className={styles.containerLinks}>
               About
             </Link>
+            <Link href="/careers" className={styles.containerLinks}>
+              Careers
+            </Link>
           </div>
           <div className={styles.container}>
             <p>Product</p>

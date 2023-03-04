@@ -5,14 +5,14 @@ const ThirdFold = () => {
   return (
     <div className={styles.thirdFold}>
     <div className={styles.mainImageDiv} id="main-image-div">
-        <img src="/images/nft.png" alt="Image" className={styles.mainImage}/>
+        <img src="/images/about-who.png" alt="Image" className={styles.mainImage}/>
       </div>
       <div className={styles.mainDiv} id="main-div">
         <div className={styles.heading}>
           Who We Are
         </div>
             <p className={styles.subParagraph}>
-            We’re a fully distributed team spread across five continents and 20 countries—unified by a mission to build futuristic, world-class products.
+            We’re a team of blockchain enthusiasts who are passionate about exploring the potential of NFTs in the world of warranties. We provide a user-friendly platform for businesses to create, distribute, and manage NFT-based warranty cards, as well as a wallet system for easy payment and commission management. Our goal is to help businesses improve their warranty systems through the use of innovative technology, while providing excellent customer support along the way.
             </p>
       </div>
       

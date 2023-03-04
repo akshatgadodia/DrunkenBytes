@@ -1,13 +1,9 @@
-.thirdFold {
+.secondFold {
   width: 100%;
   padding: 50px 10vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
   background-color: var(--greyishWhite) !important;
-}
-.mainDiv {
-  width: 50%;
+
 }
 .heading {
   color: var(--black);
@@ -24,39 +20,21 @@
   font-weight: 400;
   letter-spacing: 0.3px;
   color: var(--footerText);
-  max-width: 500px;
+  margin-right: auto;
+  margin-left: auto;
 }
-.mainImageDiv {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.mainImage {
-  height: 100%;
+.mainDiv{
+  max-width: 720px;
   width: 100%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 @media only screen and (max-width: 768px) {
-  .thirdFold {
+  .secondFold {
     padding: 40px 5vw;
-    gap: 20px;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .mainDiv {
-    width: 100%;
-    text-align: center;
   }
   .heading {
     font-size: 40px;
-  }
-  .mainImageDiv {
-    width: 100%;
-  }
-  .mainImage {
-    height: 90%;
-    width: 90%;
   }
 }

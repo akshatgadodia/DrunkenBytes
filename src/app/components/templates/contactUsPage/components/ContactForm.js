@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from "react";
 import styles from "../stylesheets/contactForm.module.css";
 import { Button, Form, Input, Spin, Select, notification  } from "antd";
-
 import { useHttpClient } from "@/app/hooks/useHttpClient";
-
 import { useAccount } from "wagmi";
 
 const ContactForm = props => {
@@ -15,6 +13,7 @@ const ContactForm = props => {
   const [form] = Form.useForm();
 
   useEffect(()=>{
+    console.log("Connection ",isConnected)
   },[isConnected])
 
   const onFinish = async values => {

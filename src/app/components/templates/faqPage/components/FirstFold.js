@@ -12,14 +12,14 @@ const FirstFold = () => {
     >
       <div className={styles.mainDiv} id="main-div">
         <div className={styles.heading}>
-          Hi. We're Drunken Bytes.
+          Frequently Asked Questions (FAQ)
         </div>
             <p className={styles.subParagraph}>
-            Drunken Bytes is a comprehensive platform that offers an end-to-end solution for creating NFT-based warranty cards. With our user-friendly interface, you can easily generate and distribute warranty cards that are seamlessly integrated with the blockchain. Our innovative approach ensures that using NFTs is effortless for both businesses and customers, while providing a high level of security and transparency.
+            Welcome to the Drunken Bytes FAQ page. Here, you'll find answers to some of the most common questions we receive about our platform and services. If you don't see an answer to your question below, please don't hesitate to contact us for further assistance.
             </p>
       </div>
       <div className={styles.mainImageDiv} id="main-image-div">
-        <img src="/images/about-main.png" alt="Image" className={styles.mainImage}/>
+        <img src="/images/faq.png" alt="Image" className={styles.mainImage}/>
       </div>
     </div>
   );

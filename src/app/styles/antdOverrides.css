@@ -68,3 +68,24 @@
     padding: 30px 0px 40px 0px;
   }
 }
+
+
+.ant-collapse-header{
+  box-shadow: 0px 24px 3px -24px rgba(0,0,0,0.3);
+}
+.ant-collapse-header-text{
+  text-align: left;
+}
+.ant-collapse-header {
+  padding: 20px 40px !important;
+  font-weight: 600 !important;
+  font-size: 18px !important; 
+}
+.ant-collapse-content-box{
+  box-shadow: 0px 24px 3px -24px rgba(0,0,0,0.3);
+  padding: 20px 40px !important;
+  padding-bottom: 10px !important;
+}
+.ant-collapse-content-box p{
+  text-align: justify !important;
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./aboutPage.module.css";
+import styles from "./careersPage.module.css";
 import Head from 'next/head'
 import FirstFold from './components/FirstFold';
 import SecondFold from './components/SecondFold';
@@ -7,11 +7,11 @@ import ThirdFold from './components/ThirdFold';
 import FourthFold from './components/FourthFold';
 import FifthFold from './components/FifthFold';
 
-const AboutPage = (props) => {
+const CareersPage = (props) => {
   return (
     <>
     <Head>
-        <title>About | Drunken Bytes</title>
+        <title>Careers | Drunken Bytes</title>
       </Head>
       <FirstFold/>
       <SecondFold businessServed={props.businessServed} nftsCreated={props.nftsCreated} netTransactionValue={props.netTransactionValue}/>
@@ -22,4 +22,4 @@ const AboutPage = (props) => {
   )
 }
 
-export default AboutPage
+export default CareersPage
