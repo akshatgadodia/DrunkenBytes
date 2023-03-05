@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../stylesheets/secondFold.module.css";
 import { Button, Form, Input, DatePicker, Spin } from "antd";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
-import CreateNftModal from "@/app/components/modules/CreateNftModal"
+import CreateNftModal from "@/app/components/modules/CreateNFTModal"
 const SecondFold = props => {
   const { error, sendRequest, clearError, isLoading } = useHttpClient();
   const [openModal, setOpenModal] = useState(false);
