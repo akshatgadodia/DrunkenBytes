@@ -6,9 +6,28 @@ import "../app/styles/antdOverrides.css"
 import { useRouter } from "next/router";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import authenticatedRoutes from "@/app/constants/authenticatedRoutes"
+import AppContext from "@/app/context/AppContext";
+import { reducer, initialLoggedInDetails } from "@/app/context/Reducer";
+import Cookies from "js-cookie";
 
 export default function MyApp({ Component, pageProps }) {
+  const [loggedInDetails, dispatch] = useReducer(
+    reducer,
+    initialLoggedInDetails
+  );
+  useEffect(() => {
+    const setLoggedInDetails = async () => {
+      const isConnected = Cookies.get("db_login");
+      const address = Cookies.get("db_login_address");
+      if (isConnected === 'true') {
+        dispatch({
+          type: "UserLogin",
+          payload: { address: address ?? null }
+        });
+      }
+    };
+    setLoggedInDetails();
+  }, []);
   const router = useRouter();
   useEffect(() => {
     const handleStart = url => {
@@ -30,7 +49,7 @@ export default function MyApp({ Component, pageProps }) {
     [router]
   );
   return (
-    <>
+    <AppContext.Provider value={{ loggedInDetails, dispatch }}>
       <Head>
         <title>Drunken Bytes</title>
         <meta charSet="UTF-8" />
@@ -38,6 +57,6 @@ export default function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Component {...pageProps} />
-    </>
+    </AppContext.Provider>
   );
 }

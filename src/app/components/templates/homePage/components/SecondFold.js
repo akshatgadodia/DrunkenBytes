@@ -6,7 +6,7 @@ const SecondFold = () => {
   return (
     <div className={styles.secondFold}>
       <p className={styles.subHeading}>Non-Fungible Tokens (NFTs)</p>
-      <h2 className={styles.heading}>What are Warranty Card NFT's?</h2>
+      <h2 className={styles.heading}>What are NFT's?</h2>
       <p className={styles.subParagraph}>
         NFTs are unique digital assets created on the blockchain. They can be
         everything from gaming items and digital art, to sports collectibles and

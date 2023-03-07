@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import Navbar from "../modules/Navbar";
 import Footer from "../modules/Footer";
 import ScrollToTop from "../modules/ScrollToTop";
-
 import {
   EthereumClient,
   modalConnectors,

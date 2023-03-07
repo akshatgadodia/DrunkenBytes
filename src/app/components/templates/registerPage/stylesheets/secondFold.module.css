@@ -35,6 +35,13 @@
     outline: none;
     text-decoration: none;
 }
+.formUploadItem{
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .label{
   padding-bottom: 100px !important;
   font-weight: 400 !important;

@@ -1,38 +1,114 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "../stylesheets/secondFold.module.css";
-import { Button, Form, Input, DatePicker, Spin } from "antd";
+import { Button, Form, Input, Spin, Switch, Upload, Modal } from "antd";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import CreateNftModal from "@/app/components/modules/CreateNFTModal"
+import {DeleteOutlined, PlusOutlined } from "@ant-design/icons"
+import { uploadImage } from "@/app/utils/uploadImage"
+
 const SecondFold = props => {
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
+  const [previewTitle, setPreviewTitle] = useState('');
+  const [fileList, setFileList] = useState([]);
   const { error, sendRequest, clearError, isLoading } = useHttpClient();
   const [openModal, setOpenModal] = useState(false);
   const [transactionID, setTransactionID] = useState("");
   const [form] = Form.useForm();
+  const [traits, setTraits] = useState([{ key: '', value: '' }]);
+  const [transferable, setTransferable] = useState(true);
+  const [useCustomImage, setUseCustomImage] = useState(false);
+
+  const handleCancel = () => setPreviewOpen(false);
+
+  const handlePreview = async (file) => {
+    setPreviewImage(file.url);
+    setPreviewOpen(true);
+    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+  };
+  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+
+  const uploadMainImage = async options => {
+    const { onSuccess, onError, file, onProgress } = options;
+    try {
+      const res = await uploadImage(file)
+      onSuccess("Ok");
+      setFileList([{
+        uid: file.uid,
+        name: file.name,
+        status: 'done',
+        url: res.file.url
+      }])
+    } catch (err) {
+      console.log(err);
+      onError({ err });
+    }
+  };
+  const removeMainImage = async (file) => {
+    console.log(file)
+  }
+
+  const uploadButton = (
+    <div>
+      <PlusOutlined />
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </div>
+  );
+
+  // Handle form input change
+  const handleInputChange = (event, index) => {
+    const { name, value } = event.target;
+    const list = [...traits];
+    list[index][name] = value;
+    setTraits(list);
+  };
+
+  // Handle add button click
+  const handleAddField = () => {
+    // Add new empty key-value pair to form data state
+    setTraits([...traits, { key: '', value: '' }]);
+  };
+
+  // Handle remove button click
+  const handleRemoveField = (index) => {
+    // Remove key-value pair from form data state at specified index
+    const list = [...traits];
+    list.splice(index, 1);
+    setTraits(list);
+  };
 
   const onFinish = async values => {
-    try {
-      const result = await sendRequest(
-        "/nft/mint-nft",
-        "POST",
-        JSON.stringify({
-          createdBy: values.createdBy,
-          buyerName: values.buyerName,
-          buyerEmail: values.buyerEmail,
-          brandName: values.brandName,
-          productName: values.productName,
-          productId: values.productId,
-          warrantyExpireDate: values.warrantyExpireDate.$d,
-          buyerMetamaskAddress: values.buyerMetamaskAddress,
-          methodType: 0
-        })
-      );
-      if (!error) {
-        setTransactionID(result.txId);
-        setOpenModal(true);
-        form.resetFields();
-      }
-      clearError();
-    } catch (err) { }
+    console.log(values)
+    console.log({
+      receiverName: values.receiverName,
+      receiverEmail: values.receiverEmail,
+      receiverWalletAddress: values.receiverWalletAddress,
+      traits
+    })
+    // try {
+    //   const result = await sendRequest(
+    //     "/nft/mint-nft",
+    //     "POST",
+    //     JSON.stringify({
+    //       receiverName: values.receiverName,
+    //       receiverEmail: values.receiverEmail,
+    //       receiverWalletAddress: values.receiverWalletAddress,
+    //       traits
+    //     })
+    //   );
+    //   if (!error) {
+    //     setTransactionID(result.txId);
+    //     setOpenModal(true);
+    //     form.resetFields();
+    //   }
+    //   clearError();
+    // } catch (err) { }
   };
   return (
     <div className={styles.createNft}
@@ -47,14 +123,6 @@ const SecondFold = props => {
       <div className={styles.loginDiv}>
         <Spin size="large" spinning={isLoading}>
           <Form
-            initialValues={{
-              buyerName: "Akshat Gadodia",
-              buyerEmail: "akshatgadodia@gmail.com",
-              brandName: "APPLE",
-              productName: "IPHONE 6",
-              productId: "IP6-NE-15486548641",
-              buyerMetamaskAddress: "0xdCFF746b4EBa3446c2ec3794A0961785c7c93013"
-            }}
             scrollToFirstError
             layout="vertical"
             name="basic"
@@ -64,21 +132,21 @@ const SecondFold = props => {
             autoComplete="on"
           >
             <Form.Item
-              label="Buyer Name" required
-              name="buyerName"
+              label="Receiver Name" required
+              name="receiverName"
               rules={[
                 {
                   required: true,
-                  message: "Please input Buyer Name!"
+                  message: "Please input Receiver Name!"
                 }
               ]}
               className={styles.formItem}
             >
-              <Input placeholder="Enter Buyer Name" className={styles.input} />
+              <Input placeholder="Enter Receiver Name" className={styles.input} />
             </Form.Item>
             <Form.Item
-              label="Buyer Email" required
-              name="buyerEmail"
+              label="Receiver Email" required
+              name="receiverEmail"
               rules={[
                 {
                   type: "email",
@@ -86,77 +154,21 @@ const SecondFold = props => {
                 },
                 {
                   required: true,
-                  message: "Please input Buyer Email!"
+                  message: "Please input Receiver Email!"
                 }
               ]}
               className={styles.formItem}
             >
-              <Input placeholder="Enter Buyer Email" className={styles.input} />
+              <Input placeholder="Enter Receiver Email" className={styles.input} />
             </Form.Item>
 
             <Form.Item
-              label="Brand Name" required
-              name="brandName"
+              label="Receiver Wallet Address" required
+              name="receiverWalletAddress"
               rules={[
                 {
                   required: true,
-                  message: "Please input Brand Name!"
-                }
-              ]}
-              className={styles.formItem}
-            >
-              <Input placeholder="Enter Brand Name" className={styles.input} />
-            </Form.Item>
-
-            <Form.Item
-              label="Product Name" required
-              name="productName"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input Product Name!"
-                }
-              ]}
-              className={styles.formItem}
-            >
-              <Input placeholder="Enter Product Name" className={styles.input} />
-            </Form.Item>
-            <Form.Item
-              label="Product ID" required
-              name="productId"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input Product ID!"
-                }
-              ]}
-              className={styles.formItem}
-            >
-              <Input placeholder="Enter Product ID" className={styles.input} />
-            </Form.Item>
-            <Form.Item
-              label="Warranty Expiry Date" required
-              name="warrantyExpireDate"
-              rules={[
-                {
-                  required: true,
-                  message: "Please select or enter Warranty Expiry Date!"
-                }
-              ]}
-              className={styles.formItem}
-            >
-              <DatePicker
-                className={styles.input}
-                placeholder="Select Warranty Expiry Date"
-              />
-            </Form.Item>
-            <Form.Item
-              label="Buyer Wallet Address" required
-              name="buyerMetamaskAddress"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input Buyer Wallet Address!"
+                  message: "Please input Receiver Wallet Address!"
                 },
                 {
                   pattern: new RegExp(/(\b0x[a-f0-9A-F]{40}\b)/g),
@@ -166,11 +178,99 @@ const SecondFold = props => {
               className={styles.formItem}
             >
               <Input
-                placeholder="Enter Buyer Metamask Address"
+                placeholder="Enter Receiver Wallet Address"
                 className={styles.input}
               />
             </Form.Item>
+
+            <Form.Item
+            rules={[
+              {
+                required: true,
+                message: "Please enter Main Photo"
+              }
+            ]}
+            className={styles.formItem}>
+            <Switch onChange={()=>setUseCustomImage(!useCustomImage)} checked={useCustomImage}/> &nbsp;
+              {(useCustomImage) ? 'I want to provide my own NFT Image' : 'Use auto-generated NFT Image'}<br/><br/>
+            <Upload
+              accept="image/*"
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={handlePreview}
+              onChange={handleChange}
+              customRequest={uploadMainImage}
+              onRemove={removeMainImage}
+              disabled={!useCustomImage}
+            >
+              {fileList.length >= 1 ? null : uploadButton}
+            </Upload>
+            <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+              <img
+                alt="example"
+                style={{
+                  width: '100%',
+                }}
+                src={previewImage}
+              />
+            </Modal>
+          </Form.Item>
+
+            <div className={styles.traitContainer}>
+            <div className={styles.titleContainer}>
+              <h2>Traits</h2>
+              <Button type="primary" onClick={() => handleAddField()} className={styles.deleteButton}>
+                        <PlusOutlined  style={{color: "black"}} size="large"/>
+                      </Button>
+            </div>
+              {
+                traits.map((field, index) => {
+                  return <div className={styles.formItemContainer}>
+                    <Form.Item
+                      label="Trait Type" required
+                      name={`key-${index}`}
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input Trait Type!"
+                        }
+                      ]}
+                    >
+                      <Input placeholder="Enter Trait Type" className={styles.input} id={`key-${index}`}
+                        name="key"
+                        value={field.key} onChange={(e) => handleInputChange(e, index)} />
+                    </Form.Item>
+                    <Form.Item
+                      label="Trait Value" required
+                      name={`value-${index}`}
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input Trait Value!"
+                        }
+                      ]}
+                      className={styles.formItem}
+                    >
+                      <Input placeholder="Enter Trait Value" className={styles.input} id={`value-${index}`}
+                        name="value"
+                        value={field.value}
+                        onChange={(e) => handleInputChange(e, index)} />
+                    </Form.Item>
+                    <Form.Item>
+                      <Button type="primary" onClick={() => handleRemoveField(index)} className={styles.deleteButton}>
+                        <DeleteOutlined style={{color: "black"}}/>
+                      </Button>
+                    </Form.Item>
+                  </div>
+              })
+              }
+            </div>
             <Form.Item>
+            <Form.Item valuePropName="checked">
+            <Switch onChange={()=>setTransferable(!transferable)} checked={transferable}/> &nbsp;
+              NFT is {(transferable) ? 'transferable' : 'not transferable'}
+
+            </Form.Item>
               <Button type="primary" htmlType="submit" className={styles.button}>
                 CREATE WARRANTY CARD NFT
               </Button>

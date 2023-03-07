@@ -4,16 +4,16 @@ import styles from "../stylesheets/firstFold.module.css";
 const FirstFold = () => {
   return (
     <div className={styles.firstFold}
-     style={{
+      style={{
         backgroundImage:
           "url(" +
           "/images/background/gradient-bottom-2000x1113.jpeg" +
           ")"
       }}
     >
-      <h1 className={styles.heading}>Create NFT</h1>
+      <h1 className={styles.heading}>Register</h1>
       <p className={styles.subParagraph}>
-      Design and Customize Your Own NFTs with Drunken Bytes
+        Unlock the Power of NFTs for Your Business - Register with Drunken Bytes Today!
       </p>
     </div>
   );

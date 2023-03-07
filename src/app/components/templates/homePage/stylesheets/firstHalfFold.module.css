@@ -7,9 +7,8 @@
   min-width: 100%;
   padding: 20px;
   border-radius: 20px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 30px;
   background-color: var(--white);
 }
@@ -41,8 +40,7 @@
     padding: 40px 5vw;
   }
   .mainDiv {
-    flex-direction: column;
-    align-items: flex-start;
+  grid-template-columns: 1fr;
     gap: 15px;
   }
 }

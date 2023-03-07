@@ -1,5 +1,7 @@
 import styles from "./stylesheets/navbar.module.css";
 import React, { useState, useEffect } from "react";
+import { useContext } from "react";
+import AppContext from "@/app/context/AppContext";
 import Link from "next/link";
 import { UserOutlined, LockOutlined, LogoutOutlined, WalletOutlined } from "@ant-design/icons";
 import { Dropdown, Avatar, notification } from "antd";
@@ -13,7 +15,9 @@ import AcceptAndSignModal from "./AcceptAndSignModal";
 import { useRouter } from "next/router";
 
 const Navbar = () => {
-  const { error, sendRequest } = useHttpClient();
+  const { loggedInDetails } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
+  const { error, sendRequest, clearError } = useHttpClient();
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
   const { open } = useWeb3Modal();
@@ -33,22 +37,52 @@ const Navbar = () => {
           accountAddress
         })
       );
-      if(!error){
+      if(result.message === "User Not Verified"){
+        notification.warning({
+          message: "Not Verified",
+          description: "Your account has not been verified yet and is still is process. Please Wait and if you have any issue contact to our customer support",
+          placement: "top",
+          className: "error-notification"
+        });
+        disconnect();
+        return null;
+      }
+      if (result.message === "Business Not Found") {
+        dispatch({
+          type: "UserLogin",
+          payload: { address: accountAddress }
+        });
+        Cookies.set('db_login', 'true');
+        Cookies.set('db_login_address', accountAddress);
+        Cookies.set('db_register', 'true');
+        router.push('/register');
+        return null;
+      }
+      if (!error) {
         setMessage(result.message);
         setAcceptModalOpen(true);
+      }
+      if (error) {
+        clearError();
       }
     } catch (err) { }
   }
 
-  const account = useAccount({
-    onConnect({address}) {
-      const loggedInStatus = Cookies.get("userLoggedIn");
-      if(loggedInStatus !== 'true') sendInitialLoginRequest(address);
+  useAccount({
+    onConnect({ address }) {
+      if (!loggedInDetails.isConnected) {
+        sendInitialLoginRequest(address);
+      }
     },
     onDisconnect() {
+      if (pathname === "/register") router.push('/');
       const sendLogoutRequest = async () => {
         try {
-          Cookies.remove('userLoggedIn');
+          Cookies.remove('db_login');
+          Cookies.remove('db_login_address');
+          dispatch({
+            type: "UserLogout",
+          });
           await sendRequest(
             "/user/logout",
             "POST"
@@ -56,13 +90,13 @@ const Navbar = () => {
         } catch (err) { }
       }
       sendLogoutRequest();
-      },
+    },
   })
-  
+
 
   const { signMessage } = useSignMessage({
     onSuccess(data, variables) {
-      const sendLoginRequest =  async() =>{
+      const sendLoginRequest = async () => {
         await sendRequest(
           "/user/login",
           "POST",
@@ -72,19 +106,27 @@ const Navbar = () => {
             message: variables.message,
           })
         );
-        if(error){
-          Cookies.remove('userLoggedIn');
+        if (error) {
+          Cookies.remove('db_login');
+          Cookies.remove('db_login_address');
+          dispatch({
+            type: "UserLogout",
+          });
           disconnect();
         }
         setAcceptModalOpen(false);
         setModalLoading(false);
-        Cookies.set('userLoggedIn', 'true');
-        console.log(pathname);
-        if(pathname==='/hold') router.back();
+        Cookies.set('db_login', 'true');
+        Cookies.set('db_login_address', address);
+        dispatch({
+          type: "UserLogin",
+          payload: { address: address }
+        });
+        if (pathname === '/hold') router.back();
       }
       sendLoginRequest();
     },
-    onError(error){
+    onError(error) {
       notification.error({
         message: "Error",
         description: error.message,
@@ -92,26 +134,28 @@ const Navbar = () => {
         className: "error-notification"
       });
       setAcceptModalOpen(false)
-      Cookies.remove('userLoggedIn');
+      Cookies.remove('db_login');
+      Cookies.remove('db_login_address');
       setModalLoading(false);
       disconnect();
     }
   })
 
-  const onAcceptHandler = ()=>{
+  const onAcceptHandler = () => {
     setModalLoading(true);
     signMessage({ message })
   }
 
-  const onModalClose = ()=>{
+  const onModalClose = () => {
     setModalLoading(false);
     setAcceptModalOpen(false)
-    Cookies.remove('userLoggedIn');
+    Cookies.remove('db_login');
+    Cookies.remove('db_login_address');
     disconnect();
   }
 
   const handleScroll = () => {
-    if (window.scrollY >= 30) {
+    if (window.pageYOffset >= 30) {
       setNavBarFixed(true);
     } else {
       setNavBarFixed(false);
@@ -171,7 +215,7 @@ const Navbar = () => {
     <div
       className={`${styles.navbar} ${isNavBarFixed ? styles.fixedNavbar : ""}`}
     >
-      <AcceptAndSignModal acceptModalOpen={acceptModalOpen} modalLoading={modalLoading} onModalClose={onModalClose} onAcceptHandler={onAcceptHandler}/>
+      <AcceptAndSignModal acceptModalOpen={acceptModalOpen} modalLoading={modalLoading} onModalClose={onModalClose} onAcceptHandler={onAcceptHandler} />
       <div className={styles.logoContainer}>
         <Link href="/">
           <img
@@ -186,10 +230,6 @@ const Navbar = () => {
           {isConnected &&
             <Link href="/create" className={styles.link}>
               Create
-            </Link>}
-          {isConnected &&
-            <Link href="/transfer" className={styles.link}>
-              Transfer
             </Link>}
           <Link href="/pricing" className={styles.link}>
             Pricing

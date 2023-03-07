@@ -44,6 +44,26 @@
   padding: 30px 20px 10px 20px;
 }
 
+/* @/app/components/templates/registerPage/componets/RegisterModal */
+.registerModal {
+  width: 600px !important;
+  max-width: 90vw !important;
+  border-radius: 4px !important;
+}
+/* .registerModal .ant-modal-header {
+  text-align: center !important;
+} */
+.registerModal .ant-modal-title {
+  font-size: 1.5rem !important;
+  font-weight: 400;
+  letter-spacing: normal !important;
+  line-height: 2rem;
+  padding-left: 18px !important;
+}
+.registerModal .ant-modal-body {
+  padding: 30px 20px 10px 20px;
+}
+
 /* @/app/components/templates/createNft/CreateNft.js*/
 .displayResultModal {
   width: 400px !important;
@@ -88,4 +108,10 @@
 }
 .ant-collapse-content-box p{
   text-align: justify !important;
+}
+
+
+.profile-tabs{
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2), 0 -5px 5px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 16px;
 }

@@ -12,7 +12,7 @@ const ThirdFold = () => {
         <div className={styles.contentDiv}>
           <h3 className={styles.subHeading}>Create, distribute and integrate Warranty Card NFTs</h3>
           <p className={styles.subParagraph}>
-            Drunken Bytes allows users to easily create, distribute, and integrate warranty card NFTs. This innovative solution saves time and resources for businesses, while providing an added layer of value and security for customers.
+            Drunken Bytes allows users to easily create, distribute, and integrate your Product NFTs and Document NFTs. This innovative solution saves time and resources for businesses, while providing an added layer of value and security for customers.
           </p>
           <CustomButton type="Gradient" text="Learn More" onClick={()=>router.push("/why-choose-us")}/>
         </div>

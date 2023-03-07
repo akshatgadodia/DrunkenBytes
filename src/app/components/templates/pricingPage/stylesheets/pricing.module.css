@@ -18,7 +18,13 @@
   margin: 0 !important;
   padding: 0 !important;
 }
-
+.costHead{
+  color: var(--footerText);
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-top: 30px !important;
+  padding-bottom: 5px !important;
+}
 .subParagraph{
   color: var(--footerText);
   margin: 0 !important;

@@ -38,6 +38,10 @@ const SecondFold = (props) => {
               paragraph: "To get started with Drunken Bytes, simply sign up for an account and start exploring our platform. If you have any questions or issues, please don't hesitate to contact us for further assistance."
             },
             {
+              header: "Will Drunken Bytes Integrate in my current Tech Stack?",
+              paragraph: "YES"
+            },
+            {
               header: "How do I know that my NFTs are secure on Drunken Bytes?",
               paragraph: "Drunken Bytes takes security very seriously and employs a number of measures to keep your NFTs safe. Our platform uses industry-standard encryption to protect your data, and we employ a range of other security features to ensure that your NFTs remain secure."
             },

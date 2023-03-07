@@ -39,11 +39,11 @@ const FirstFold = () => {
           />
         </div>
             <p className={styles.subParagraph}>
-            Empowering businesses with NFT-based warranty solutions, revolutionizing customer experience and trust in products.
+            Empowering businesses with innovative solutions that leverage the power of NFTs. Our platform enables you to create NFTs for your products and documents, providing a transparent and secure way to track ownership and transfer of assets.
             </p>
         <div className={styles.buttonContainer}>
           <CustomButton type="OnlyBorder" text="Try Now" onClick={onClickHandler}/>
-          <CustomButton type="Gradient" text="Documentation" onClick={()=>router.push("/documentation")}/>
+          <CustomButton type="Gradient" text="API Documentation" onClick={()=>router.push("/documentation")}/>
         </div>
       </div>
       <div className={styles.mainImageDiv} id="main-image-div">

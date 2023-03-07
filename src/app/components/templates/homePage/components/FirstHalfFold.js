@@ -11,17 +11,17 @@ const FirstHalfFold = () => {
           {
             src:"NotificationFilled",
             heading:"Added Value for Customers",
-            content: "NFT-based warranty cards are easily transferable and verifiable, providing added value to customers looking to sell or trade their products."
+            content: "Businesses can offer unique NFT assets of their products and certificates to customers, increasing their purchase value and uniqueness."
           },
           {
             src:"DollarCircleFilled",
-            heading:"Transparent Pricing",
-            content: "Drunken Bytes' commission fee of 5% is transparently displayed, ensuring customers know exactly what they are paying for."
+            heading:"New revenue streams",
+            content: "By allowing customers to trade or sell their NFTs, businesses can tap into a new ecosystem of value."
           },
           {
             src:"ToolFilled",
-            heading:"Seamless Integration",
-            content: "Businesses can easily integrate Drunken Bytes' API solution into their existing system for a hassle-free experience."
+            heading:"Secure and tamper-proof",
+            content: "By using blockchain technology, our platform ensures that the NFTs are unique and can't be duplicated or tampered with."
           },
           {
             src:"CustomerServiceFilled",

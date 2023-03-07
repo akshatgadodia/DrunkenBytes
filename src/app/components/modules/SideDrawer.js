@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Drawer } from "antd";
 import "./stylesheets/sideDrawer.css";
 import Link from "next/link";
-// import { useAccount } from "wagmi/connectors/injected";
 import { useAccount, useDisconnect } from 'wagmi';
 
 const SideDrawer = () => {
@@ -48,11 +47,6 @@ const SideDrawer = () => {
             {isConnected &&
               <Link href="/create" className="side-drawer-link">
                 Create
-              </Link>}
-
-            {isConnected &&
-              <Link href="/transfer" className="side-drawer-link">
-                Transfer
               </Link>}
             <Link href="/pricing" className="side-drawer-link">
               Pricing

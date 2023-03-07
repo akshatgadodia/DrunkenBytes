@@ -14,6 +14,7 @@
   --footerText: #9596af;
   --twelve: 12px;
   --sixteen: 16px;
+  --w3m-modal-z-index: 9000 !important;
 }
 
 body {
@@ -42,5 +43,9 @@ a {
 }
 
 .default-layout-web3modal{
+  z-index: 9000 !important;
+}
+
+.w3m-overlay{
   z-index: 9000 !important;
 }
