@@ -1,6 +1,7 @@
 const authenticatedRoutes = [
     '/profile',
     '/create',
-    '/transfer'
+    '/transfer',
+    '/add-product'
 ]
 export default authenticatedRoutes;

@@ -9,7 +9,7 @@ import 'nprogress/nprogress.css'
 import AppContext from "@/app/context/AppContext";
 import { reducer, initialLoggedInDetails } from "@/app/context/Reducer";
 import Cookies from "js-cookie";
-
+import Script from 'next/script'
 export default function MyApp({ Component, pageProps }) {
   const [loggedInDetails, dispatch] = useReducer(
     reducer,
@@ -56,6 +56,21 @@ export default function MyApp({ Component, pageProps }) {
         <meta name="author" content="Akshat Gadodia" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
+      <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-VYMRDDLQCS" />
+      <Script
+        id='google-analytics'
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-VYMRDDLQCS', {
+            page_path: window.location.pathname,
+          });
+        `,
+        }}
+      />
       <Component {...pageProps} />
     </AppContext.Provider>
   );

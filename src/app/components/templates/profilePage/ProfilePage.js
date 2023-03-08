@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./profilePage.module.css";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import { Image, Tabs } from 'antd';
+import Head from 'next/head'
+
 const ProfilePage = () => {
   const { error, sendRequest, clearError, isLoading } = useHttpClient();
   const [profileData, setProfileData] = useState({});
@@ -17,6 +19,11 @@ const ProfilePage = () => {
 
   return (
     <div className={styles.profile}>
+    <Head>
+        <title>Profile | Drunken Bytes</title>
+        <meta name="description" content="Get access to your personalized profile page on Drunken Bytes. View your account information, update your profile, and manage your settings." />
+        <meta name="keywords" content="profile page, account information, user settings, personalization, manage account. Drunken Bytes" />
+      </Head>
       <h1 className={styles.heading}>Drunken Bytes Profile</h1>
       <p className={styles.paragraph}>Here you can find your profile information</p>
       {(profileData?.logo !== null || profileData?.logo !== undefined) &&

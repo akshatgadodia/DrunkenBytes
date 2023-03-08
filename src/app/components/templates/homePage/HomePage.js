@@ -13,6 +13,8 @@ const HomePage = (props) => {
     <>
        <Head>
         <title>Drunken Bytes</title>
+        <meta name="description" content="Drunken Bytes is an innovative platform for creating and trading NFTs. Discover unique digital assets and join the blockchain revolution today." />
+        <meta name="keywords" content="Drunken Bytes, NFT, blockchain, digital assets, trading, marketplace." />
       </Head>
       <FirstFold/>
       <FirstHalfFold/>

@@ -23,6 +23,13 @@ const SecondFold = props => {
   const [form] = Form.useForm();
   const [modalOpen, setModalOpen] = useState(false);
 
+  const onClose = () => {
+    router.push("/");
+    Cookies.remove('db_register');
+    disconnect();
+    setModalOpen(false);
+}
+
   const handleCancel = () => setPreviewOpen(false);
 
   const handlePreview = async (file) => {
@@ -96,7 +103,7 @@ const SecondFold = props => {
 
   useEffect(()=>{
     form.setFieldsValue({ accountAddress: loggedInDetails.address })
-  },[])
+  },[loggedInDetails])
 
   return (
     <div className={styles.createNft}
@@ -201,11 +208,19 @@ const SecondFold = props => {
             >
               <Input placeholder="Enter Business Email" className={styles.input} />
             </Form.Item>
-            <Form.Item>
+            <div className={styles.buttonContainer}>
+            <Form.Item className={styles.buttonCancel}>
+              <Button type="primary" onClick={onClose} className={styles.button}>
+                Cancel
+              </Button>
+            </Form.Item>
+            <Form.Item className={styles.buttonRegister}>
               <Button type="primary" htmlType="submit" className={styles.button}>
                 Register
               </Button>
             </Form.Item>
+            
+            </div>
           </Form>
         </Spin>
       </div>

@@ -11,6 +11,8 @@ const RegisterPage = () => {
     <div className={styles.RegisterPage}> 
       <Head>
         <title>Register | Drunken Bytes</title>
+        <meta name="description" content="Create an account on Drunken Bytes and access our NFT marketplace. Register now and join our community of businesses and enthusiasts." />
+        <meta name="keywords" content="Drunken Bytes, register, create account, Product NFT, community, Document NFT, grow your business, enthusiasts." />
       </Head>
       <RegisterModal/>
       <FirstFold />

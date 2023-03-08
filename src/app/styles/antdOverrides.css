@@ -90,6 +90,32 @@
 }
 
 
+/* @/app/components/templates/createNft/CreateNft.js*/
+.addMoneyModal {
+  width: 500px !important;
+  max-width: 90vw !important;
+  border-radius: 4px !important;
+}
+.addMoneyModal .ant-modal-header {
+  text-align: center !important;
+}
+.addMoneyModal .ant-modal-title {
+  font-size: 1.5rem !important;
+  font-weight: 400;
+  letter-spacing: normal !important;
+  line-height: 2rem;
+  padding-left: 18px !important;
+}
+.addMoneyModal .ant-modal-body {
+  padding: 30px 20px 40px 20px;
+}
+@media only screen and (max-width: 768px){
+  .addMoneyModal .ant-modal-body {
+    padding: 30px 0px 40px 0px;
+  }
+}
+
+
 .ant-collapse-header{
   box-shadow: 0px 24px 3px -24px rgba(0,0,0,0.3);
 }
@@ -114,4 +140,14 @@
 .profile-tabs{
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2), 0 -5px 5px rgba(0, 0, 0, 0.1) !important;
   border-radius: 16px;
+}
+.profile-tabs .ant-tabs-tab-active{
+  border: 1px solid var(--purple) !important;
+  color: var(--purple);
+}
+.profile-tabs .ant-tabs-tab-btn{
+  color: var(--purple) !important;
+}
+.profile-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+  color: var(--purple) !important;
 }

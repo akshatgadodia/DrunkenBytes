@@ -2,7 +2,7 @@ import React from "react";
 import DefaultLayout from "@/app/components/layouts/DefaultLayout";
 import PageNotFound from '@/app/components/templates/pageNotFound/PageNotFound';
 
-const Home = props => {
+const NotFound = props => {
   return (
     <DefaultLayout>
       <PageNotFound/>
@@ -10,4 +10,4 @@ const Home = props => {
   );
 };
 
-export default Home;
+export default NotFound;

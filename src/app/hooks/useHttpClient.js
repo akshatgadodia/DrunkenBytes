@@ -7,6 +7,11 @@ import NProgress from 'nprogress'
 export const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
+
+  const clearError = () => {
+    setError(null);
+  };
+
   const sendRequest = useCallback(
     async (
       url,
@@ -17,6 +22,7 @@ export const useHttpClient = () => {
         "Content-Type": "application/json"
       }
     ) => {
+      clearError();
       setIsLoading(true);
       NProgress.start()
       try {
@@ -53,10 +59,6 @@ export const useHttpClient = () => {
     },
     []
   );
-
-  const clearError = () => {
-    setError(null);
-  };
 
   return { isLoading, error, sendRequest, clearError };
 };

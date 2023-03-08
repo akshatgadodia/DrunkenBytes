@@ -12,6 +12,8 @@ const AboutPage = (props) => {
     <>
     <Head>
         <title>About | Drunken Bytes</title>
+        <meta name="description" content="Learn about Drunken Bytes, a technology company that offers innovative solutions for businesses and individuals. Discover our mission, values, and team, and find out how we can help you achieve your goals in the digital world."/>
+        <meta name="keywords" content="Drunken Bytes, about, information, team, mission, values, services" />
       </Head>
       <FirstFold/>
       <SecondFold businessServed={props.businessServed} nftsCreated={props.nftsCreated} netTransactionValue={props.netTransactionValue}/>

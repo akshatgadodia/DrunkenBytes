@@ -2,7 +2,10 @@ import CustomButton from "@/app/components/elements/CustomButton";
 import React from "react";
 import styles from "../stylesheets/firstFold.module.css";
 import {Link} from "react-scroll";
+import { useWeb3Modal } from "@web3modal/react";
+
 const FirstFold = () => {
+  const { open } = useWeb3Modal();
   return (
     <div
       className={styles.firstFold}
@@ -20,7 +23,7 @@ const FirstFold = () => {
             In a rush or not interested in reading documentation? There is a
             short 3-Step Quickstart Guide you can use to started right away.
           </p>
-          <CustomButton type="Gradient" text="TRY NOW" />
+          <CustomButton type="Gradient" text="TRY NOW" onClickHandler={async()=>await open()}/>
         </div>
         <div className={styles.subDiv}>
           <h2 className={styles.heading}>Code Examples</h2>

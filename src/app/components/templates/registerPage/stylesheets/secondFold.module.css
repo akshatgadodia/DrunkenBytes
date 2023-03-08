@@ -55,11 +55,18 @@
 .input:hover{
     border-color: var(--purple) !important;
 }
+.buttonContainer{
+  display: flex;
+  gap: 30px;
+  width: 100% !important;
+  justify-content: center;
+}
 .button{
     margin-top: 20px;
     height: 50px !important;
     width: 100% !important;
     background-color: var(--purple);
+    padding: 0 40px;
     color: var(--white);
     font-size: 20px;
 }
@@ -108,5 +115,15 @@
   }
   .formItemContainer{
     gap: 10px;
+  }
+  .buttonContainer{
+    gap: 0px;
+    flex-direction: column;
+  }
+  .buttonCancel{
+    order:2;
+  }
+  .buttonRegister{
+    order:1;
   }
 }

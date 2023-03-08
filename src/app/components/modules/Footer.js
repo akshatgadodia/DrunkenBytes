@@ -53,6 +53,9 @@ const Footer = () => {
             <Link href="/contact-us" className={styles.containerLinks}>
               Contact Us
             </Link>
+            <Link href="/raise-issue" className={styles.containerLinks}>
+              Raise Issue
+            </Link>
           </div>
         </div>
       </div>

@@ -8,7 +8,9 @@ const CreateNftPage = () => {
   return (
     <div className={styles.createNftPage}> 
     <Head>
-        <title>Create Warranty Card NFT | Drunken Bytes</title>
+        <title>Create NFT | Drunken Bytes</title>
+        <meta name="description" content="Create your own unique NFTs on Drunken Bytes. Our user-friendly platform allows you to easily generate and manage your digital assets. Start minting now!" />
+        <meta name="keywords" content="Drunken Bytes, NFT, create NFT, digital assets, minting, blockchain, cryptocurrency, non-fungible tokens, crypto art, collectibles, tokenization." />
       </Head>
       <FirstFold />
       <SecondFold/>

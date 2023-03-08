@@ -6,15 +6,11 @@ export default async function middleware(req) {
   if (pathname.startsWith('/_next') || pathname.startsWith('/favicon.ico') || pathname.startsWith("/images")) {
     return NextResponse.next()
   }
-  const role = req.cookies.get("db_login");
-  if (role === undefined && authenticatedRoutes.includes(pathname)) {
-    return NextResponse.redirect(new URL('/hold', req.url))
-  }
-  if (role === 'true' && req.url.includes('/hold')) {
-    return NextResponse.redirect(new URL('/', req.url))
+  const isRegistering = req.cookies.get("db_register");
+  if(isRegistering?.value === 'true' && !req.url.includes('/register')){
+    return NextResponse.redirect(new URL('/register', req.url))
   }
   if( req.url.includes('/register') ){
-    const isRegistering = req.cookies.get("db_register");
     if(isRegistering?.value === 'true'){
       return NextResponse.next();
     }
@@ -22,5 +18,13 @@ export default async function middleware(req) {
       return NextResponse.redirect(new URL('/', req.url))
     }
   }
+  const role = req.cookies.get("db_login");
+  if (role === undefined && authenticatedRoutes.includes(pathname)) {
+    return NextResponse.redirect(new URL('/hold', req.url))
+  }
+  if (role === 'true' && req.url.includes('/hold')) {
+    return NextResponse.redirect(new URL('/', req.url))
+  }
+  
   return NextResponse.next()
 }

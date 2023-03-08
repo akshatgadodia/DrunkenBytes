@@ -11,6 +11,8 @@ const About = props => {
 };
 
 export default About;
+
+
 export async function getStaticProps(context) {
   const config = {
     method: "GET",

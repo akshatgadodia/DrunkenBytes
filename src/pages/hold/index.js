@@ -2,7 +2,7 @@ import React from "react";
 import DefaultLayout from "@/app/components/layouts/DefaultLayout";
 import HoldPage from '@/app/components/templates/holdPage/HoldPage';
 
-const Login = props => {
+const Hold = props => {
   return (
     <DefaultLayout>
       <HoldPage/>
@@ -10,4 +10,4 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default Hold;

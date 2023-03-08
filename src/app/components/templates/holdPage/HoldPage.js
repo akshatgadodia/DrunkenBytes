@@ -15,6 +15,8 @@ const HoldPage = () => {
     <div className={styles.hold}>
     <Head>
       <title>Hold Up | Drunken Bytes</title>
+      <meta name="description" content="Drunken Bytes Hold Page: Please Log in to Access Authenticated Pages. Our platform provides advanced security features to protect your information. Create an account or log in to continue browsing our website." />
+      <meta name="keywords" content="Drunken Bytes, hold page, authentication, login, account, website security" />
     </Head>
     <h1 className={styles.heading}>Hold Up!</h1>
     <div className={styles.imageContainer}>

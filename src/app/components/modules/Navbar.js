@@ -80,6 +80,7 @@ const Navbar = () => {
         try {
           Cookies.remove('db_login');
           Cookies.remove('db_login_address');
+          Cookies.remove('db_register');
           dispatch({
             type: "UserLogout",
           });
@@ -109,6 +110,7 @@ const Navbar = () => {
         if (error) {
           Cookies.remove('db_login');
           Cookies.remove('db_login_address');
+          Cookies.remove('db_register');
           dispatch({
             type: "UserLogout",
           });
@@ -136,6 +138,7 @@ const Navbar = () => {
       setAcceptModalOpen(false)
       Cookies.remove('db_login');
       Cookies.remove('db_login_address');
+      Cookies.remove('db_register');
       setModalLoading(false);
       disconnect();
     }
@@ -151,6 +154,7 @@ const Navbar = () => {
     setAcceptModalOpen(false)
     Cookies.remove('db_login');
     Cookies.remove('db_login_address');
+    Cookies.remove('db_register');
     disconnect();
   }
 
@@ -191,10 +195,10 @@ const Navbar = () => {
     {
       key: "3",
       label: (
-        <Link href="/profile/change-password">
+        <Link href="/add-product">
           <div className={styles.avatarItem}>
             <LockOutlined className={styles.avatarItemIcon} />
-            Change Password
+            Add a Product
           </div>
         </Link>
       )

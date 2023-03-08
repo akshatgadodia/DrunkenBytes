@@ -9,6 +9,8 @@ const DocumentationPage = () => {
     <div className={styles.documentationPage}>
       <Head>
         <title>Documentation | Drunken Bytes</title>
+        <meta name="description" content="Browse through our comprehensive documentation to learn more about Drunken Bytes platform, its features, and how to get started." />
+        <meta name="keywords" content="Drunken Bytes, documentation, platform, features, tutorials, guides." />
       </Head>
       <FirstFold />
       <SecondFold />

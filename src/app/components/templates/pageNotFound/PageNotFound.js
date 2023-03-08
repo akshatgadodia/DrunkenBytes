@@ -9,6 +9,8 @@ const PageNotFound = () => {
     <div className={styles.pageNotFound}>
       <Head>
         <title>Page Not Found | Support Drunken Bytes</title>
+        <meta name="description" content="Oops! The page you are looking for cannot be found. Please check the URL and try again." />
+        <meta name="keywords" content="Drunken Bytes, 404 error, page not found, URL not found, website error" />
       </Head>
       <div className={`${styles.container} ${styles.containerStar}`}>
         <div className={styles.star1} />

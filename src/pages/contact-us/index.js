@@ -2,7 +2,7 @@ import React from "react";
 import DefaultLayout from "@/app/components/layouts/DefaultLayout";
 import ContactUsPage from '@/app/components/templates/contactUsPage/ContactUsPage';
 
-const About = props => {
+const ContactUs = props => {
   return (
     <DefaultLayout>
       <ContactUsPage/>
@@ -10,4 +10,4 @@ const About = props => {
   );
 };
 
-export default About;
+export default ContactUs;
