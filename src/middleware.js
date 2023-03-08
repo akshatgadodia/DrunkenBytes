@@ -7,6 +7,7 @@ export default async function middleware(req) {
     return NextResponse.next()
   }
   const isRegistering = req.cookies.get("db_register");
+  const role = req.cookies.get("db_login");
   if(isRegistering?.value === 'true' && !req.url.includes('/register')){
     return NextResponse.redirect(new URL('/register', req.url))
   }
@@ -18,11 +19,10 @@ export default async function middleware(req) {
       return NextResponse.redirect(new URL('/', req.url))
     }
   }
-  const role = req.cookies.get("db_login");
   if (role === undefined && authenticatedRoutes.includes(pathname)) {
     return NextResponse.redirect(new URL('/hold', req.url))
   }
-  if (role === 'true' && req.url.includes('/hold')) {
+  if (role?.value === 'true' && req.url.includes('/hold')) {
     return NextResponse.redirect(new URL('/', req.url))
   }
   
