@@ -3,9 +3,9 @@ import authenticatedRoutes from "@/app/constants/authenticatedRoutes";
 
 export default async function middleware(req) {
   const { pathname } = req.nextUrl;
-  if (pathname.startsWith('/_next') || pathname.startsWith('/favicon.ico') || pathname.startsWith("/images")) {
-    return NextResponse.next()
-  }
+  // if (pathname.startsWith('/_next') || pathname.startsWith('/favicon.ico') || pathname.startsWith("/images")) {
+  //   return NextResponse.next()
+  // }
   const isRegistering = req.cookies.get("db_register");
   const role = req.cookies.get("db_login");
   if(isRegistering?.value === 'true' && !req.url.includes('/register')){
