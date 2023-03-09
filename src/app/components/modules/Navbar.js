@@ -14,6 +14,7 @@ import Cookies from "js-cookie";
 import AcceptAndSignModal from "./AcceptAndSignModal";
 import { useRouter } from "next/router";
 import RegisterModal from "./RegisterModal";
+import authenticatedRoutes from "@/app/constants/authenticatedRoutes";
 
 const Navbar = () => {
   const { loggedInDetails } = useContext(AppContext);
@@ -29,6 +30,7 @@ const Navbar = () => {
   const [acceptModalOpen, setAcceptModalOpen] = useState(false);
   const [modalLoading, setModalLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  
   const sendInitialLoginRequest = async (accountAddress) => {
     try {
       const result = await sendRequest(
@@ -51,13 +53,6 @@ const Navbar = () => {
       if (result.message === "Business Not Found") {
         console.log("Business Not Found")
         setOpenModal(true);
-        // dispatch({
-        //   type: "UserLogin",
-        //   payload: { address: accountAddress }
-        // });
-        // Cookies.set('db_login', 'true');
-        // Cookies.set('db_login_address', accountAddress);
-        // router.push('/register');
         return null;
       }
       if (!error) {
@@ -77,7 +72,7 @@ const Navbar = () => {
       }
     },
     onDisconnect() {
-      if (pathname === "/register") router.push('/');
+      if (authenticatedRoutes.includes(pathname)) router.push('/');
       const sendLogoutRequest = async () => {
         try {
           Cookies.remove('db_login');
