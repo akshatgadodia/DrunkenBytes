@@ -1,7 +1,7 @@
 import React, {useLayoutEffect} from "react";
 import styles from "./registerPage.module.css";
 import Head from "next/head";
-import RegisterModal from './components/RegisterModal';
+import RegisterModal from '../../modules/RegisterModal';
 import FirstFold from "./components/FirstFold";
 import SecondFold from './components/SecondFold';
 

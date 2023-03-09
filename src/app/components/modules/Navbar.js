@@ -13,6 +13,7 @@ import { useSignMessage } from 'wagmi'
 import Cookies from "js-cookie";
 import AcceptAndSignModal from "./AcceptAndSignModal";
 import { useRouter } from "next/router";
+import RegisterModal from "./RegisterModal";
 
 const Navbar = () => {
   const { loggedInDetails } = useContext(AppContext);
@@ -27,7 +28,7 @@ const Navbar = () => {
   const [message, setMessage] = useState();
   const [acceptModalOpen, setAcceptModalOpen] = useState(false);
   const [modalLoading, setModalLoading] = useState(false);
-
+  const [openModal, setOpenModal] = useState(false);
   const sendInitialLoginRequest = async (accountAddress) => {
     try {
       const result = await sendRequest(
@@ -48,14 +49,15 @@ const Navbar = () => {
         return null;
       }
       if (result.message === "Business Not Found") {
-        dispatch({
-          type: "UserLogin",
-          payload: { address: accountAddress }
-        });
-        Cookies.set('db_login', 'true');
-        Cookies.set('db_login_address', accountAddress);
-        Cookies.set('db_register', 'true');
-        router.push('/register');
+        console.log("Business Not Found")
+        setOpenModal(true);
+        // dispatch({
+        //   type: "UserLogin",
+        //   payload: { address: accountAddress }
+        // });
+        // Cookies.set('db_login', 'true');
+        // Cookies.set('db_login_address', accountAddress);
+        // router.push('/register');
         return null;
       }
       if (!error) {
@@ -80,7 +82,6 @@ const Navbar = () => {
         try {
           Cookies.remove('db_login');
           Cookies.remove('db_login_address');
-          Cookies.remove('db_register');
           dispatch({
             type: "UserLogout",
           });
@@ -110,7 +111,6 @@ const Navbar = () => {
         if (error) {
           Cookies.remove('db_login');
           Cookies.remove('db_login_address');
-          Cookies.remove('db_register');
           dispatch({
             type: "UserLogout",
           });
@@ -138,7 +138,6 @@ const Navbar = () => {
       setAcceptModalOpen(false)
       Cookies.remove('db_login');
       Cookies.remove('db_login_address');
-      Cookies.remove('db_register');
       setModalLoading(false);
       disconnect();
     }
@@ -154,7 +153,6 @@ const Navbar = () => {
     setAcceptModalOpen(false)
     Cookies.remove('db_login');
     Cookies.remove('db_login_address');
-    Cookies.remove('db_register');
     disconnect();
   }
 
@@ -218,7 +216,8 @@ const Navbar = () => {
   return (
     <div
       className={`${styles.navbar} ${isNavBarFixed ? styles.fixedNavbar : ""}`}
-    >
+    > 
+      <RegisterModal openModal={openModal} setOpenModal={setOpenModal} address={address}/>
       <AcceptAndSignModal acceptModalOpen={acceptModalOpen} modalLoading={modalLoading} onModalClose={onModalClose} onAcceptHandler={onAcceptHandler} />
       <div className={styles.logoContainer}>
         <Link href="/">
