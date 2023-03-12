@@ -226,9 +226,13 @@ const Navbar = () => {
       <div className={styles.buttonsContainer}>
         <div className={styles.linksContainer}>
           {isConnected &&
-            <Link href="/create" className={styles.link}>
+            <div href="/create" className={styles.link} style={{cursor: 'pointer'}}
+            onClick={()=>{
+                router.push("/create");
+            }}
+            >
               Create
-            </Link>}
+            </div>}
           <Link href="/pricing" className={styles.link}>
             Pricing
           </Link>

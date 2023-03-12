@@ -7,14 +7,11 @@ export default async function middleware(req) {
     return NextResponse.next()
   }
   const role = req.cookies.get("db_login");
-  console.log(role?.value)
-  if (role?.value === 'true' && req.url.includes('/hold')) {
-    return NextResponse.redirect(new URL('/', req.url))
-  }
-  if (role?.value === undefined && authenticatedRoutes.includes(pathname)) {
+  if (role?.value !== "true" && authenticatedRoutes.includes(pathname)) {
     return NextResponse.redirect(new URL('/hold', req.url))
   }
-  
-  
-  return NextResponse.next()
+  if (role?.value === "true" && pathname === '/hold') {
+    return NextResponse.redirect(new URL('/', req.url))
+  }
+  return NextResponse.next();
 }
