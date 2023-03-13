@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useContext } from "react";
 import { Button, Form, Input, Spin, Upload, Modal, notification } from "antd";
 import styles from "./stylesheets/registerModal.module.css";
 import CustomButton from "@/app/components/elements/CustomButton";
 import { useDisconnect } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
-import AppContext from "@/app/context/AppContext";
 import { uploadImage, deleteImage } from "@/app/utils/uploadImage"
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import { PlusOutlined } from "@ant-design/icons"
 
 const RegisterModal = (props) => {
-    const { loggedInDetails } = useContext(AppContext);
     const { open } = useWeb3Modal();
     const { disconnect } = useDisconnect();
     const [informationRead, setInformationRead] = useState(false);
@@ -27,6 +24,7 @@ const RegisterModal = (props) => {
         if (props.address !== undefined) {
             form.setFieldsValue({ accountAddress: props.address });
             setIsConnected(true);
+            setFileList([]);
         }
     }, [props])
 
@@ -42,7 +40,7 @@ const RegisterModal = (props) => {
     const uploadMainImage = async options => {
         const { onSuccess, onError, file, onProgress } = options;
         try {
-            const res = await uploadImage(file, loggedInDetails.address, "users")
+            const res = await uploadImage(file, props.address, "users")
             onSuccess("Ok");
             setFileList([{
                 uid: file.uid,
@@ -196,7 +194,6 @@ const RegisterModal = (props) => {
                                 <Input
                                     placeholder="Enter Receiver Wallet Address"
                                     className={styles.input} disabled
-                                    value={loggedInDetails.address}
                                 />
                             </Form.Item>
 

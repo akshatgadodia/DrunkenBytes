@@ -40,10 +40,11 @@
   font-weight: 400 !important;
 }
 .input{
-    height: 50px;
+    height: 50px !important;
     width: 100% !important;
     background-color: #f9f8fa !important;
-    border: 0.6px solid #cacbdf;
+    border: 0.6px solid #cacbdf !important;
+    border-radius: 4px;
 }
 .input:hover{
     border-color: var(--purple) !important;

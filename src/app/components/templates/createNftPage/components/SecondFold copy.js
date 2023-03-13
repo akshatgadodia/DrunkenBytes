@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "../stylesheets/secondFold.module.css";
-import { Button, Form, Input, Spin, Switch, Upload, Modal, Select, DatePicker, notification } from "antd";
+import { Button, Form, Input, Spin, Switch, Upload, Modal, Select } from "antd";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import CreateNftModal from "@/app/components/modules/CreateNFTModal"
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons"
+import { uploadImage } from "@/app/utils/uploadImage"
 
 const SecondFold = props => {
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -17,30 +18,50 @@ const SecondFold = props => {
   const [traits, setTraits] = useState([{ key: '', value: '' }]);
   const [nftType, setNftType] = useState('product');
   const [transferable, setTransferable] = useState(true);
-  const [burnable, setBurnable] = useState(false);
   const [useCustomImage, setUseCustomImage] = useState(false);
-
-  const getBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
 
   const handleCancel = () => setPreviewOpen(false);
 
-  const handlePreview = async (file) => {
+  // const handlePreview = async (file) => {
+  //   setPreviewImage(file.url);
+  //   setPreviewOpen(true);
+  //   setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+  // };
+  // const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+
+  // const uploadMainImage = async options => {
+  //   const { onSuccess, onError, file, onProgress } = options;
+  //   try {
+  //     const res = await uploadImage(file)
+  //     onSuccess("Ok");
+  //     setFileList([{
+  //       uid: file.uid,
+  //       name: file.name,
+  //       status: 'done',
+  //       url: res.file.url
+  //     }])
+  //   } catch (err) {
+  //     console.log(err);
+  //     onError({ err });
+  //   }
+  // };
+  // const removeMainImage = async (file) => {
+  //   console.log(file)
+  // }
+  const handleCancel = () => setPreviewOpen(false);
+
+  const handlePreview = async (file: UploadFile) => {
     if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
+      file.preview = await getBase64(file.originFileObj as RcFile);
     }
-    setPreviewImage(file.url || file.preview);
+
+    setPreviewImage(file.url || (file.preview as string));
     setPreviewOpen(true);
-    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+    setPreviewTitle(file.name || file.url!.substring(file.url!.lastIndexOf('/') + 1));
   };
 
-  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
-
+  const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
+    setFileList(newFileList);
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -77,54 +98,32 @@ const SecondFold = props => {
   };
 
   const onFinish = async values => {
-    if(customImage && fileList.length == 0){
-      notification.error({
-        message: "Image Not Uploaded",
-        description: "You have opted for custom Image Option. But it seems you have not uploaded the image. Either Upload Image or select use auto-generated Image",
-        placement: "top",
-        // duration: null,
-        className: "error-notification"
-      });
-    }
-    try {
-      const result = await sendRequest(
-        "/nft/mint-nft",
-        "POST",
-        JSON.stringify({
-          receiverName: values.receiverName,
-          receiverEmail: values.receiverEmail,
-          receiverWalletAddress: values.receiverWalletAddress,
-          nftType,
-          nftName: values.nftName,
-          useCustomImage,
-          imageBase64: useCustomImage ? await getBase64(fileList[0].originFileObj) : null,
-          isTransferable: transferable,
-          isBurnable: burnable,
-          burnAfter: burnable ? values.burnAfter.$d : null,
-          traits
-        })
-      );
-      if (!error) {
-        setTransactionID(result.txId);
-        setOpenModal(true);
-        form.resetFields();
-        setTraits([{ key: '', value: '' }]);
-        setBurnable(false);
-        setFileList([]);
-        setNftType('product');
-        setTransferable(true);
-        setUseCustomImage(false);
-      }
-      clearError();
-    } catch (err) { notification.error({
-      message: "Error",
-      description: err.message,
-      placement: "top",
-      // duration: null,
-      className: "error-notification"
-    }); }
+    console.log(values)
+    console.log({
+      receiverName: values.receiverName,
+      receiverEmail: values.receiverEmail,
+      receiverWalletAddress: values.receiverWalletAddress,
+      traits
+    })
+    // try {
+    //   const result = await sendRequest(
+    //     "/nft/mint-nft",
+    //     "POST",
+    //     JSON.stringify({
+    //       receiverName: values.receiverName,
+    //       receiverEmail: values.receiverEmail,
+    //       receiverWalletAddress: values.receiverWalletAddress,
+    //       traits
+    //     })
+    //   );
+    //   if (!error) {
+    //     setTransactionID(result.txId);
+    //     setOpenModal(true);
+    //     form.resetFields();
+    //   }
+    //   clearError();
+    // } catch (err) { }
   };
-
   return (
     <div className={styles.createNft}
       style={{
@@ -145,7 +144,6 @@ const SecondFold = props => {
             style={{ maxWidth: "100%" }}
             onFinish={onFinish}
             autoComplete="on"
-            className="create-nft-form"
           >
             <Form.Item
               label="Receiver Name" required
@@ -245,14 +243,16 @@ const SecondFold = props => {
               ]}
               className={styles.formItem}>
               <Switch onChange={() => setUseCustomImage(!useCustomImage)} checked={useCustomImage} /> &nbsp;
-              {(useCustomImage) ? 'I want to provide my own NFT Image' : 'Use auto-generated NFT Image'}<br />
+              {(useCustomImage) ? 'I want to provide my own NFT Image' : 'Use auto-generated NFT Image'}<br /><br />
               {useCustomImage &&
-                <><br /><Upload
+                <><Upload
                   accept="image/*"
                   listType="picture-card"
                   fileList={fileList}
                   onPreview={handlePreview}
                   onChange={handleChange}
+                  customRequest={uploadMainImage}
+                  onRemove={removeMainImage}
                   disabled={!useCustomImage}
                 >
                   {fileList.length >= 1 ? null : uploadButton}
@@ -267,27 +267,7 @@ const SecondFold = props => {
                     />
                   </Modal></>}
             </Form.Item>
-            <Form.Item valuePropName="transferableChecked">
-              <Switch onChange={() => setTransferable(!transferable)} checked={transferable} /> &nbsp;
-              NFT is {(transferable) ? 'transferable' : 'not transferable'}
-            </Form.Item>
-            <Form.Item valuePropName="burnableChecked">
-              <Switch onChange={() => setBurnable(!burnable)} checked={burnable} /> &nbsp;
-              NFT is {(burnable) ? 'not permanent' : 'is permanent'}
-            </Form.Item>
-            {burnable &&
-              <Form.Item label="Burn After" required={burnable}
-                name="burnAfter"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter Date To Burn NFT After"
-                  }
-                ]}
-                className={styles.formItem}>
-                <DatePicker className={styles.input} defaultValue={undefined} disabledDate={(current) => { return current && current < Date.now() }} />
-              </Form.Item>
-            }
+
             <div className={styles.traitContainer}>
               <div className={styles.titleContainer}>
                 <h2>Traits</h2>
@@ -337,8 +317,12 @@ const SecondFold = props => {
                 })
               }
             </div>
-
             <Form.Item>
+              <Form.Item valuePropName="checked">
+                <Switch onChange={() => setTransferable(!transferable)} checked={transferable} /> &nbsp;
+                NFT is {(transferable) ? 'transferable' : 'not transferable'}
+
+              </Form.Item>
               <Button type="primary" htmlType="submit" className={styles.button}>
                 CREATE WARRANTY CARD NFT
               </Button>

@@ -24,6 +24,22 @@
   align-items: center !important;
 }
 
+.ant-select-selector{
+  background-color: #f9f8fa !important;
+  width: 100%;
+  height: 48px !important;
+  border: none !important;
+  outline: none !important;
+  font-size: 16px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ant-select-selector:hover{
+  background-color: #f9f8fa !important;
+  border: none !important;
+}
+
 /* @/app/components/modules/AcceptAndSignModal.js */
 .acceptandSignModal {
   width: 600px !important;

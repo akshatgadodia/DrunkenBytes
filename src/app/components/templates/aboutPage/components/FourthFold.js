@@ -32,7 +32,7 @@ const FourthFold = () => {
         },
         {
           src: "/images/profile/sushil-kumar-sadhnani.jpg",
-          name: "sushil Kumar Sahdnani",
+          name: "Sushil Kumar Sadhnani",
           title: "Co-Founder",
           linkedin: "https://in.linkedin.com/in/sushil-kumar-sadhnani-1788a0226",
           email: "mailto:sadhnani.sushil@gmail.com",
