@@ -146,6 +146,10 @@ const SecondFold = props => {
             onFinish={onFinish}
             autoComplete="on"
             className="create-nft-form"
+            initialValues={{
+              burnAfter: undefined,
+              nftType: nftType
+            }}
           >
             <Form.Item
               label="Receiver Name" required
@@ -204,7 +208,7 @@ const SecondFold = props => {
               className={styles.formItem}
             >
               <Select
-                defaultValue={nftType}
+                // defaultValue={nftType}
                 className={styles.input}
                 onChange={(value) => setNftType(value)}
                 options={[
@@ -253,6 +257,8 @@ const SecondFold = props => {
                   fileList={fileList}
                   onPreview={handlePreview}
                   onChange={handleChange}
+                  // customRequest={({ onSuccess }) => onSuccess("ok")}
+                  beforeUpload={()=> {return false }}
                   disabled={!useCustomImage}
                 >
                   {fileList.length >= 1 ? null : uploadButton}
@@ -285,7 +291,7 @@ const SecondFold = props => {
                   }
                 ]}
                 className={styles.formItem}>
-                <DatePicker className={styles.input} defaultValue={undefined} disabledDate={(current) => { return current && current < Date.now() }} />
+                <DatePicker className={styles.input} disabledDate={(current) => { return current && current < Date.now() }} />
               </Form.Item>
             }
             <div className={styles.traitContainer}>
@@ -297,9 +303,10 @@ const SecondFold = props => {
               </div>
               {
                 traits.map((field, index) => {
-                  return <div className={styles.formItemContainer}>
+                  return <div className={styles.formItemContainer} key={index}>
                     <Form.Item
                       label="Trait Type" required
+                      key={`key-${index}`}
                       name={`key-${index}`}
                       rules={[
                         {
@@ -309,12 +316,13 @@ const SecondFold = props => {
                       ]}
                     >
                       <Input placeholder="Enter Trait Type" className={styles.input} id={`key-${index}`}
-                        name="key"
+                        name="key" key={`input-key-${index}`}
                         value={field.key} onChange={(e) => handleInputChange(e, index)} />
                     </Form.Item>
                     <Form.Item
                       label="Trait Value" required
                       name={`value-${index}`}
+                      key={`value-${index}`}
                       rules={[
                         {
                           required: true,
@@ -324,7 +332,7 @@ const SecondFold = props => {
                       className={styles.formItem}
                     >
                       <Input placeholder="Enter Trait Value" className={styles.input} id={`value-${index}`}
-                        name="value"
+                        name="value" key={`input-value-${index}`}
                         value={field.value}
                         onChange={(e) => handleInputChange(e, index)} />
                     </Form.Item>

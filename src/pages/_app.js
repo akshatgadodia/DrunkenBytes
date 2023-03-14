@@ -55,6 +55,7 @@ export default function MyApp({ Component, pageProps }) {
         <meta charSet="UTF-8" />
         <meta name="author" content="Akshat Gadodia" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-VYMRDDLQCS" />
       <Script
