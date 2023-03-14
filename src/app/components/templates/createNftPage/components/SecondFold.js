@@ -77,7 +77,7 @@ const SecondFold = props => {
   };
 
   const onFinish = async values => {
-    if(customImage && fileList.length == 0){
+    if(useCustomImage && fileList.length == 0){
       notification.error({
         message: "Image Not Uploaded",
         description: "You have opted for custom Image Option. But it seems you have not uploaded the image. Either Upload Image or select use auto-generated Image",
