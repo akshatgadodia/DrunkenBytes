@@ -20,7 +20,7 @@ const DocumentationText = props => {
       </p>
       <p className={styles.paragraph}>
         The following API documentation can be applied for any major programming
-        langauge and will present general integration guides and explanations
+        language and will present general integration guides and explanations
         around API endpoints, request parameters and response objects. If any
         questions remain unanswered for you, simply reach out to the drunken
         bytes support team for assistance.
@@ -43,27 +43,50 @@ const DocumentationText = props => {
 
       <pre>
         <code className="language-javascript">
-{`fetch(
-  'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY', {
-    method: "POST",
-    body: JSON.stringify({
-      buyerName: buyerName,
-      buyerEmail: buyerEmail,
-      brandName: brandName,
-      productName: productName,
-      productId: productId,
-      warrantyExpireDate: warrantyExpireDate,
-      buyerMetamaskAddress: buyerMetamaskAddress,
-      methodType: 0
+{`// Set the URL for the API endpoint
+const url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft';
+
+// Set the options for the HTTP request
+const options = {
+  method: 'POST', // Use the POST method
+  headers: { // Set the request headers
+    'Content-Type': 'application/json' // Set the request content type to JSON
+  },
+  body: JSON.stringify({ // Set the request body
+    // Set the values for each of the request parameters
+    // Replace the placeholders with the actual values
+    receiverName: 'John Smith', // The name of the NFT recipient
+    receiverEmail: 'john.smith@example.com', // The email of the NFT recipient
+    receiverWalletAddress: '0x1234567890123456789012345678901234567890', // The wallet address of the NFT recipient
+    nftType: 'document', // The type of NFT (document, product, or other)
+    nftName: 'My NFT', // The name of the NFT
+    useCustomImage: true, // A boolean flag indicating if a custom image is being used (default is false)
+    imageBase64: 'base64-encoded-image-data', // The base64-encoded image data, if useCustomImage is true
+    isTransferable: true, // A boolean flag indicating if the NFT is transferable
+    isBurnable: false, // A boolean flag indicating if the NFT is burnable (default is false)
+    burnAfter: null, // The date after which the NFT can be burned, if isBurnable is true
+    traits: [
+      { key: 'color', value: 'blue' }, // The key-value pairs describing the traits of the NFT
+      { key: 'size', value: 'medium' },
+      { key: 'shape', value: 'circle' }
+    ]
   })
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': "Bearer " + YOUR_API_SECRET
+};
+
+// Send the HTTP request and handle the response
+fetch(url, options)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
   })
-})
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));`}
+  .then(data => {
+    console.log(data); // Handle the response data
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });`}
         </code>
       </pre>
       <div className={styles.warning}>
@@ -198,85 +221,53 @@ const DocumentationText = props => {
       </p>
       <pre>
         <code className="language-javascript">
-        {`fetch(
-  'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY', {
-    method: "POST",
-    body: JSON.stringify({
-      buyerName: buyerName,
-      buyerEmail: buyerEmail,
-      brandName: brandName,
-      productName: productName,
-      productId: productId,
-      warrantyExpireDate: warrantyExpireDate,
-      buyerMetamaskAddress: buyerMetamaskAddress,
-      methodType: 0
+        {`// Set the URL for the API endpoint
+const url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft';
+
+// Set the options for the HTTP request
+const options = {
+  method: 'POST', // Use the POST method
+  headers: { // Set the request headers
+    'Content-Type': 'application/json' // Set the request content type to JSON
+  },
+  body: JSON.stringify({ // Set the request body
+    // Set the values for each of the request parameters
+    // Replace the placeholders with the actual values
+    receiverName: 'John Smith', // The name of the NFT recipient
+    receiverEmail: 'john.smith@example.com', // The email of the NFT recipient
+    receiverWalletAddress: '0x1234567890123456789012345678901234567890', // The wallet address of the NFT recipient
+    nftType: 'document', // The type of NFT (document, product, or other)
+    nftName: 'My NFT', // The name of the NFT
+    useCustomImage: true, // A boolean flag indicating if a custom image is being used (default is false)
+    imageBase64: 'base64-encoded-image-data', // The base64-encoded image data, if useCustomImage is true
+    isTransferable: true, // A boolean flag indicating if the NFT is transferable
+    isBurnable: false, // A boolean flag indicating if the NFT is burnable (default is false)
+    burnAfter: null, // The date after which the NFT can be burned, if isBurnable is true
+    traits: [
+      { key: 'color', value: 'blue' }, // The key-value pairs describing the traits of the NFT
+      { key: 'size', value: 'medium' },
+      { key: 'shape', value: 'circle' }
+    ]
   })
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': "Bearer " + YOUR_API_SECRET
+};
+
+// Send the HTTP request and handle the response
+fetch(url, options)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
   })
-})
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));`}
+  .then(data => {
+    console.log(data); // Handle the response data
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });`}
         </code>
       </pre>
       
-      <p className={styles.paragraph}>
-        <strong className={styles.subTitle}>Example API Response:</strong>
-      </p>
-      <pre>
-        <code className="language-javascript">
-{`{
-  success: true ,
-  data: {
-    txid: TRANSACTION_HASH
-  }
-}`}
-        </code>
-      </pre>
-      <div className={styles.info}>
-        This Transaction Hash can be viewed at https://goerli.etherscan.io/tx/TRANACTION_HASH. It is just a initial code of a 
-        process and you can view the status at Etherscan and we will also send you an email when the generation of your NFT is 
-        complete.
-      </div>
-
-      <h3 className={styles.subHeading} id="transfer-nft">Transfer NFT</h3>
-      <hr className={styles.hr} />
-      <p className={styles.paragraph}>
-        The API is capable of tracking flights and retrieving flight status
-        information in real-time. In order to look up real-time information
-        about one or multiple flights, you can use the API's flights endpoint
-        together with optional parameters to filter your result set.
-      </p>
-      <p className={styles.paragraph}>
-        <strong className={styles.subTitle}>Example API Request:</strong>
-      </p>
-      <pre>
-        <code className="language-javascript">
-        {`fetch(
-  'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY', {
-    method: "POST",
-    body: JSON.stringify({
-      buyerName: buyerName,
-      buyerEmail: buyerEmail,
-      brandName: brandName,
-      productName: productName,
-      productId: productId,
-      warrantyExpireDate: warrantyExpireDate,
-      buyerMetamaskAddress: buyerMetamaskAddress,
-      methodType: 0
-  })
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': "Bearer " + YOUR_API_SECRET
-  })
-})
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));`}
-        </code>
-      </pre>
       <p className={styles.paragraph}>
         <strong className={styles.subTitle}>Example API Response:</strong>
       </p>
@@ -308,26 +299,55 @@ const DocumentationText = props => {
       <hr className={styles.hr} />
       <pre>
         <code className="language-javascript">
-{`$url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY'; 
-$data = array('name' => 'John Doe', 'email' => 'john@example.com');
-// For the list of arguments refer to the API Endpoint Section
-$token = 'your_token_here';
-$curl = curl_init();
-curl_setopt($curl, CURLOPT_URL, $url);
-curl_setopt($curl, CURLOPT_POST, 1);
-curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-  'Authorization: Bearer ' . $token,
-));
-$response = curl_exec($curl);
-if ($response === false) {
-  $error = curl_error($curl);
-  echo 'Error: ' . $error;
-} else {
-  echo 'API response: ' . $response;
+{`require 'uri'
+require 'net/http'
+
+# Set the URL for the API endpoint
+url = URI('https://api-drunkenbytes.onrender.com/v1/nft/mint-nft')
+
+# Set the request headers
+headers = {
+  'Content-Type' => 'application/json'
 }
-curl_close($curl);`}
+
+# Set the request body
+body = {
+  # Set the values for each of the request parameters
+  # Replace the placeholders with the actual values
+  receiverName: 'John Smith',
+  receiverEmail: 'john.smith@example.com',
+  receiverWalletAddress: '0x1234567890123456789012345678901234567890',
+  nftType: 'document', # Only document, product, or other are allowed
+  nftName: 'My NFT',
+  useCustomImage: true, #default false, if not required can be omitted
+  imageBase64: 'base64-encoded-image-data', #Only required if useCustomImage is true
+  isTransferable: true,
+  isBurnable: false, #default false, if not required can be omitted
+  burnAfter: nil, #Only required if isBurnable is true
+  traits: [
+    { key: 'color', value: 'blue' },
+    { key: 'size', value: 'medium' },
+    { key: 'shape', value: 'circle' }
+  ]
+}.to_json
+
+# Set the options for the HTTP request
+options = {
+  method: 'POST', # Use the POST method
+  headers: headers,
+  body: body
+}
+
+# Send the HTTP request and handle the response
+response = Net::HTTP.start(url.host, url.port, use_ssl: true) do |http|
+  http.request(Net::HTTP::Post.new(url, options))
+end
+
+if response.code.to_i >= 200 && response.code.to_i < 300
+  puts response.body
+else
+  puts "There was an error with the request. HTTP Status Code: #{response.code}"
+end`}
         </code>
       </pre>
       <span className={styles.space} />
@@ -338,23 +358,41 @@ curl_close($curl);`}
         <code className="language-javascript">
 {`import requests
 import json
-url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY'
-headers = {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer <token>'
-}
+
+# Set the URL for the API endpoint
+url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft'
+
+# Set the values for each of the request parameters
+# Replace the placeholders with the actual values
 data = {
-    'key1': 'value1',
-    'key2': 'value2'
+    'receiverName': 'John Smith',
+    'receiverEmail': 'john.smith@example.com',
+    'receiverWalletAddress': '0x1234567890123456789012345678901234567890',
+    'nftType': 'document', # Only document, product, or other are allowed
+    'nftName': 'My NFT',
+    'useCustomImage': True, #default false, if not required can be omitted
+    'imageBase64': 'base64-encoded-image-data', #Only required if useCustomImage is true
+    'isTransferable': True,
+    'isBurnable': False, #default false, if not required can be omitted
+    'burnAfter': None, #Only required if isBurnable is true
+    'traits': [
+        {'key': 'color', 'value': 'blue'},
+        {'key': 'size', 'value': 'medium'},
+        {'key': 'shape', 'value': 'circle'}
+    ]
 }
-# For the list of arguments refer to the API Endpoint Section
+
+# Set the request headers
+headers = {'Content-Type': 'application/json'}
+
+# Send the HTTP request and handle the response
 response = requests.post(url, headers=headers, data=json.dumps(data))
-if response.status_code == 200:
+
+if response.ok:
     response_data = response.json()
-    print(response_data)
+    print(response_data) # Handle the response data
 else:
-    error_message = f"API call failed with status code {response.status_code}"
-    print(error_message)`}
+    print('Network response was not ok')`}
         </code>
       </pre>
       <span className={styles.space} />
@@ -363,27 +401,50 @@ else:
       <hr className={styles.hr} />
       <pre>
         <code className="language-javascript">
-        {`fetch(
-  'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY', {
-    method: "POST",
-    body: JSON.stringify({
-      buyerName: buyerName,
-      buyerEmail: buyerEmail,
-      brandName: brandName,
-      productName: productName,
-      productId: productId,
-      warrantyExpireDate: warrantyExpireDate,
-      buyerMetamaskAddress: buyerMetamaskAddress,
-      methodType: 0
+        {`// Set the URL for the API endpoint
+const url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft';
+
+// Set the options for the HTTP request
+const options = {
+  method: 'POST', // Use the POST method
+  headers: { // Set the request headers
+    'Content-Type': 'application/json' // Set the request content type to JSON
+  },
+  body: JSON.stringify({ // Set the request body
+    // Set the values for each of the request parameters
+    // Replace the placeholders with the actual values
+    receiverName: 'John Smith', // The name of the NFT recipient
+    receiverEmail: 'john.smith@example.com', // The email of the NFT recipient
+    receiverWalletAddress: '0x1234567890123456789012345678901234567890', // The wallet address of the NFT recipient
+    nftType: 'document', // The type of NFT (document, product, or other)
+    nftName: 'My NFT', // The name of the NFT
+    useCustomImage: true, // A boolean flag indicating if a custom image is being used (default is false)
+    imageBase64: 'base64-encoded-image-data', // The base64-encoded image data, if useCustomImage is true
+    isTransferable: true, // A boolean flag indicating if the NFT is transferable
+    isBurnable: false, // A boolean flag indicating if the NFT is burnable (default is false)
+    burnAfter: null, // The date after which the NFT can be burned, if isBurnable is true
+    traits: [
+      { key: 'color', value: 'blue' }, // The key-value pairs describing the traits of the NFT
+      { key: 'size', value: 'medium' },
+      { key: 'shape', value: 'circle' }
+    ]
   })
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': "Bearer " + YOUR_API_SECRET
+};
+
+// Send the HTTP request and handle the response
+fetch(url, options)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
   })
-})
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));`}
+  .then(data => {
+    console.log(data); // Handle the response data
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });`}
         </code>
       </pre>
       <span className={styles.space} />
@@ -392,24 +453,39 @@ else:
       <hr className={styles.hr} />
       <pre>
         <code className="language-javascript">
-{`$.ajax({
-  url: 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY',
+{`// Set the URL for the API endpoint
+const url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft';
+
+// Set the values for each of the request parameters
+// Replace the placeholders with the actual values
+const data = {
+  receiverName: 'John Smith',
+  receiverEmail: 'john.smith@example.com',
+  receiverWalletAddress: '0x1234567890123456789012345678901234567890',
+  nftType: 'document',
+  nftName: 'My NFT',
+  useCustomImage: true, //default false, if not required can be omitted
+  imageBase64: 'base64-encoded-image-data', //Only required if useCustomImage is true
+  isTransferable: true,
+  isBurnable: false, //default false, if not required can be omitted
+  burnAfter: null, //Only required if isBurnable is true
+  traits: [
+    { key: 'color', value: 'blue' },
+    { key: 'size', value: 'medium' },
+    { key: 'shape', value: 'circle' }
+  ]
+};
+
+// Send the HTTP request and handle the response
+$.ajax({
+  url: url,
   type: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer <token>'
-  },
-  data: JSON.stringify({
-    key1: 'value1',
-    key2: 'value2'
-  }),
-  // For the list of arguments refer to the API Endpoint Section
-  success: function(response) {
-    console.log(response);
-  },
-  error: function(xhr, status, error) {
-    console.error(error);
-  }
+  contentType: 'application/json',
+  data: JSON.stringify(data)
+}).done(function(data) {
+  console.log(data); // Handle the response data
+}).fail(function(jqXHR, textStatus, errorThrown) {
+  console.error('There was a problem with the fetch operation:', errorThrown);
 });`}
         </code>
       </pre>
@@ -420,43 +496,90 @@ else:
       <pre>
         <code className="language-javascript">
 {`package main
+
 import (
-  "bytes"
-  "encoding/json"
-  "fmt"
-  "net/http"
+    "bytes"
+    "encoding/json"
+    "fmt"
+    "net/http"
 )
+
 func main() {
-  url := "https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY"
-  requestData := map[string]string{"key1": "value1", "key2": "value2"}
-  // For the list of arguments refer to the API Endpoint Section
-  jsonPayload, _ := json.Marshal(requestData)
-  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonPayload))
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-  req.Header.Set("Content-Type", "application/json")
-  req.Header.Set("Authorization", "Bearer <token>")
-  client := &http.Client{}
-  resp, err := client.Do(req)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-  defer resp.Body.Close()
-  if resp.StatusCode == http.StatusOK {
-    var response map[string]interface{}
-    err = json.NewDecoder(resp.Body).Decode(&response)
-    if err != nil {
-      fmt.Println(err)
-      return
+    // Set the URL for the API endpoint
+    url := "https://api-drunkenbytes.onrender.com/v1/nft/mint-nft"
+
+    // Define the request parameters
+    params := struct {
+        receiverName           string      ${'`'}json:"receiverName"${'`'}
+        receiverEmail          string      ${'`'}json:"receiverEmail"${'`'}
+        receiverWalletAddress  string      ${'`'}json:"receiverWalletAddress"${'`'}
+        nftType                string      ${'`'}json:"nftType"${'`'}
+        nftName                string      ${'`'}json:"nftName"${'`'}
+        useCustomImage         bool        ${'`'}json:"useCustomImage,omitempty"${'`'}
+        imageBase64            string      ${'`'}json:"imageBase64,omitempty"${'`'}
+        isTransferable         bool        ${'`'}json:"isTransferable"${'`'}
+        isBurnable             bool        ${'`'}json:"isBurnable,omitempty"${'`'}
+        burnAfter              interface{} ${'`'}json:"burnAfter,omitempty"${'`'}
+        traits                 []struct {
+            Key   string ${'`'}json:"key"${'`'}
+            Value string ${'`'}json:"value"${'`'}
+        } ${'`'}json:"traits"${'`'}
+    }{
+        receiverName:           "John Smith",
+        receiverEmail:          "john.smith@example.com",
+        receiverWalletAddress:  "0x1234567890123456789012345678901234567890",
+        nftType:                "document", // Only document, product, or other are allowed
+        nftName:                "My NFT",
+        useCustomImage:         true,       // default false, if not required can be omitted
+        imageBase64:            "base64-encoded-image-data", // Only required if UseCustomImage is true
+        isTransferable:         true,
+        isBurnable:             false, // default false, if not required can be omitted
+        burnAfter:              nil,   // Only required if IsBurnable is true
+        traits: []struct {
+            Key   string ${'`'}json:"key"${'`'}
+            Value string ${'`'}json:"value"${'`'}
+        }{
+            {Key: "color", Value: "blue"},
+            {Key: "size", Value: "medium"},
+            {Key: "shape", Value: "circle"},
+        },
     }
-    fmt.Println(response)
-  } else {
-    fmt.Printf("API call failed with status code %d", resp.StatusCode)
-  }
-}`}
+
+    // Encode the request body as JSON
+    body, err := json.Marshal(params)
+    if err != nil {
+        panic(err)
+    }
+
+    // Create a new HTTP request with the specified URL and request body
+    req, err := http.NewRequest("POST", url, bytes.NewBuffer(body))
+    if err != nil {
+        panic(err)
+    }
+    req.Header.Set("Content-Type", "application/json")
+
+    // Send the HTTP request and handle the response
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        panic(err)
+    }
+    defer resp.Body.Close()
+
+    if resp.StatusCode != http.StatusOK {
+        fmt.Printf("Error: %v", resp.Status)
+        return
+    }
+
+    var result map[string]interface{}
+    if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+        fmt.Printf("Error: %v", err)
+        return
+    }
+
+    fmt.Println(result)
+}
+`}
         </code>
       </pre>
       <span className={styles.space} />
@@ -466,24 +589,53 @@ func main() {
       <pre>
         <code className="language-javascript">
 {`require 'net/http'
+require 'uri'
 require 'json'
-uri = URI.parse('https://api-drunkenbytes.onrender.com/v1/nft/mint-nft?api_key=YOUR_API_KEY')
-data = { 'key1' => 'value1', 'key2' => 'value2' }
-# For the list of arguments refer to the API Endpoint Section
-payload = JSON.generate(data)
-request = Net::HTTP::Post.new(uri)
-request.content_type = 'application/json'
-request['Authorization'] = 'Bearer <token>'
-request.body = payload
-response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+
+# Set the URL for the API endpoint
+url = URI('https://api-drunkenbytes.onrender.com/v1/nft/mint-nft')
+
+# Set the options for the HTTP request
+options = {
+  method: 'POST', # Use the POST method
+  headers: { # Set the request headers
+    'Content-Type': 'application/json' # Set the request content type to JSON
+  },
+  body: {
+    # Set the values for each of the request parameters
+    # Replace the placeholders with the actual values
+    receiverName: 'John Smith',
+    receiverEmail: 'john.smith@example.com',
+    receiverWalletAddress: '0x1234567890123456789012345678901234567890',
+    nftType: 'document', # Only document, product, or other are allowed
+    nftName: 'My NFT',
+    useCustomImage: true, #default false, if not required can be omitted
+    imageBase64: 'base64-encoded-image-data', #Only required if useCustomImage is true
+    isTransferable: true,
+    isBurnable: false, #default false, if not required can be omitted
+    burnAfter: nil, #Only required if isBurnable is true
+    traits: [
+      { key: 'color', value: 'blue' },
+      { key: 'size', value: 'medium' },
+      { key: 'shape', value: 'circle' }
+    ]
+  }.to_json
+}
+
+# Send the HTTP request and handle the response
+response = Net::HTTP.start(url.hostname, url.port, use_ssl: true) do |http|
+  request = Net::HTTP::Post.new(url)
+  options.each { |key, value| request[key] = value }
   http.request(request)
 end
-if response.code == '200'
-  result = JSON.parse(response.body)
-  puts result
+
+if response.is_a?(Net::HTTPSuccess)
+  data = JSON.parse(response.body)
+  puts data # Handle the response data
 else
   puts "Error: #{response.code} - #{response.message}"
-end`}
+end
+`}
         </code>
       </pre>
       <span className={styles.space} />

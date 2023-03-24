@@ -7,7 +7,15 @@
 .ant-btn::after {
   all: unset !important;
 }
-
+.ant-btn:focus:not(:active) {
+  outline: none;
+}
+.ant-btn:focus, .ant-btn:hover {
+  box-shadow: none;
+}
+.ant-btn-clicked:after {
+  display: none !important;
+}
 .error-notification {
   border-radius: 4px !important;
 }
@@ -82,7 +90,7 @@
 
 /* @/app/components/templates/createNft/CreateNft.js*/
 .displayResultModal {
-  width: 400px !important;
+  width: 500px !important;
   max-width: 90vw !important;
   border-radius: 4px !important;
 }
@@ -132,6 +140,36 @@
 }
 
 
+/* @/app/components/templates/manageAPIKeyPage/ManageAPIKeyPage.js*/
+.createAPIModal {
+  width: 500px !important;
+  max-width: 90vw !important;
+  border-radius: 4px !important;
+}
+.createAPIModal .ant-modal-header {
+  text-align: center !important;
+}
+.createAPIModal .ant-modal-title {
+  font-size: 1.5rem !important;
+  font-weight: 400;
+  letter-spacing: normal !important;
+  line-height: 2rem;
+  padding-left: 18px !important;
+}
+.createAPIModal .ant-modal-body {
+  padding: 30px 20px 40px 20px;
+}
+.createApiModalForm label{
+  width: 100% !important;
+  max-width: 100% !important;
+}
+@media only screen and (max-width: 768px){
+  .createAPIModal .ant-modal-body {
+    padding: 30px 0px 40px 0px;
+  }
+}
+
+
 .ant-collapse-header{
   box-shadow: 0px 24px 3px -24px rgba(0,0,0,0.3);
 }
@@ -166,4 +204,77 @@
 }
 .profile-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
   color: var(--purple) !important;
+}
+
+/* @/app/components/templates/transactionPage/TransactionPage.js*/
+.tab-pane .ant-table {
+  border-radius: 4px;
+}
+
+.tab-pane .ant-table-thead > tr > th:first-child {
+  border-radius: 4px 0 0 0 !important;
+}
+
+.tab-pane .ant-table-thead > tr > th:last-child {
+  border-radius: 0 4px 0 0 !important;
+}
+
+.tab-pane .ant-table-tbody > tr:last-child > td:first-child {
+  border-radius: 0 0 0 4px !important;
+}
+
+.tab-pane .ant-table-tbody > tr:last-child > td:last-child {
+  border-radius: 0 0 4px 0 !important;
+}
+
+.tab-pane .ant-table-filter-trigger {
+  color: var(--white) !important;
+}
+.tab-pane .ant-table-column-sorter {
+  color: var(--white) !important;
+}
+.tab-pane .ant-table-pagination-right {
+  /* margin: 15px 0 0 0 !important; */
+  justify-content: center;
+}
+
+.tab-pane .ant-table-thead > tr > th {
+  background: linear-gradient(360deg, var(--purple), var(--purple));
+  /* background: var(--purple) !important; */
+  color: var(--white) !important;
+  text-align: center;
+}
+.tab-pane .ant-table-thead > tr > .ant-table-column-has-sorters:active,
+.tab-pane .ant-table-thead > tr > .ant-table-column-has-sorters:focus,
+.tab-pane .ant-table-thead > tr > .ant-table-column-has-sorters:hover {
+  background: linear-gradient(360deg, var(--purple), var(--purple)) !important;
+  opacity: 0.9;
+}
+.tab-pane .ant-table-thead > tr > .ant-table-column-sort {
+  background: linear-gradient(360deg, var(--purple), var(--purple)) !important;
+}
+.ant-table-column-sort {
+  background: transparent !important;
+}
+.tab-pane .ant-table-tbody > tr > td {
+  text-align: center;
+}
+
+.tab-pane .ant-table-wrapper {
+  margin: 0;
+  padding: 0;
+}
+
+.tab-pane .ant-pagination-item-link,
+.tab-pane .ant-pagination-item {
+  border-radius: 100% !important;
+}
+.tab-pane .ant-pagination-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-tabs-nav{
+  margin-bottom: 0 !important;
 }

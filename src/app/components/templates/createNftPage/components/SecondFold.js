@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../stylesheets/secondFold.module.css";
 import { Button, Form, Input, Spin, Switch, Upload, Modal, Select, DatePicker, notification } from "antd";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
-import CreateNftModal from "@/app/components/modules/CreateNFTModal"
+import CreateNftModal from "./CreateNFTModal";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons"
 
 const SecondFold = props => {
@@ -14,11 +14,104 @@ const SecondFold = props => {
   const [openModal, setOpenModal] = useState(false);
   const [transactionID, setTransactionID] = useState("");
   const [form] = Form.useForm();
-  const [traits, setTraits] = useState([{ key: '', value: '' }]);
+  const [traits, setTraits] = useState([]);
   const [nftType, setNftType] = useState('product');
+  const [templateType, setTemplateType] = useState('db_defaultTemplate');
   const [transferable, setTransferable] = useState(true);
   const [burnable, setBurnable] = useState(false);
   const [useCustomImage, setUseCustomImage] = useState(false);
+  const [userTemplates, setUserTemplates] = useState([]);
+  const [templateOptions, setTemplateOptions] = useState([
+    {
+      value: 'db_defaultTemplate',
+      label: 'Default Template',
+    },
+    {
+      value: 'db_customTemplate',
+      label: 'Custom Template'
+    }
+  ]);
+  useEffect(() => {
+    const getTemplates = async () => {
+      try {
+        const result = await sendRequest("/product/");
+        if (!error) {
+          setUserTemplates(result.products);
+          result.products.map((data, idx) => {
+            setTemplateOptions(prevArray => {
+              if (prevArray.some(obj => obj.value === data._id)) {
+                return prevArray;
+              }
+              else {
+                return [...prevArray, {
+                  value: data._id,
+                  label: data.name
+                }];
+              }
+            })
+          })
+        }
+      } catch (err) { }
+    }
+    getTemplates();
+  }, [])
+
+  const resetTraitsFields = async () => {
+    const fields = await form.getFieldsValue();
+    const keys = Object.keys(fields).filter((name) => name.startsWith("key"));
+    form.resetFields(keys);
+    const values = Object.keys(fields).filter((name) => name.startsWith("value"));
+    form.resetFields(values);
+  };
+
+  useEffect(() => {
+    const changeTraitsAccordingToTemplate = async () => {
+      if (templateType === "db_customTemplate") {
+        return null;
+      }
+      else if (templateType === "db_defaultTemplate") {
+        await resetTraitsFields();
+        if (nftType === 'product') {
+          const traits = [{ key: 'Product Id', value: '' }, { key: 'Brand Name', value: '' }]
+          setTraits(traits);
+          traits.map((data, idx) => {
+            form.setFieldsValue({ [`key-${idx}`]: data.key });
+            form.setFieldsValue({ [`value-${idx}`]: data.value });
+          })
+        }
+        else if (nftType === 'document') {
+          const traits = [{ key: 'Document ID', value: '' }, { key: 'Document Type', value: '' }];
+          setTraits(traits);
+          traits.map((data, idx) => {
+            form.setFieldsValue({ [`key-${idx}`]: data.key });
+            form.setFieldsValue({ [`value-${idx}`]: data.value });
+          })
+        }
+        else if (nftType === 'other') {
+          const traits = [{ key: '', value: '' }]
+          setTraits(traits);
+          traits.map((data, idx) => {
+            form.setFieldsValue({ [`key-${idx}`]: data.key });
+            form.setFieldsValue({ [`value-${idx}`]: data.value });
+          })
+        }
+      }
+      else {
+        await resetTraitsFields();
+        const data = userTemplates.find((item) => item._id === templateType);
+        console.log(data);
+        form.setFieldsValue({ templateType: data.name });
+        form.setFieldsValue({ nftType: data.nftType });
+        setTraits(data.traits);
+        data.traits.map((data, idx) => {
+          form.setFieldsValue({ [`key-${idx}`]: data.key });
+          form.setFieldsValue({ [`value-${idx}`]: data.value });
+        })
+      }
+      console.log(await form.getFieldsValue())
+    }
+    changeTraitsAccordingToTemplate();
+  }, [templateType, nftType])
 
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -66,6 +159,8 @@ const SecondFold = props => {
   const handleAddField = () => {
     // Add new empty key-value pair to form data state
     setTraits([...traits, { key: '', value: '' }]);
+    form.setFieldsValue({ templateType: 'db_customTemplate' });
+    setTemplateType('db_customTemplate');
   };
 
   // Handle remove button click
@@ -74,15 +169,16 @@ const SecondFold = props => {
     const list = [...traits];
     list.splice(index, 1);
     setTraits(list);
+    form.setFieldsValue({ templateType: 'db_customTemplate' });
+    setTemplateType('db_customTemplate');
   };
 
   const onFinish = async values => {
-    if(useCustomImage && fileList.length == 0){
+    if (useCustomImage && fileList.length == 0) {
       notification.error({
         message: "Image Not Uploaded",
         description: "You have opted for custom Image Option. But it seems you have not uploaded the image. Either Upload Image or select use auto-generated Image",
         placement: "top",
-        // duration: null,
         className: "error-notification"
       });
     }
@@ -112,17 +208,13 @@ const SecondFold = props => {
         setBurnable(false);
         setFileList([]);
         setNftType('product');
+        setTemplateType('db_defaultTemplate')
         setTransferable(true);
         setUseCustomImage(false);
+        form.setFieldsValue({templateType: 'db_defaultTemplate'});
+        form.setFieldsValue({nftype: 'product'});
       }
-      clearError();
-    } catch (err) { notification.error({
-      message: "Error",
-      description: err.message,
-      placement: "top",
-      // duration: null,
-      className: "error-notification"
-    }); }
+    } catch (err) { }
   };
 
   return (
@@ -148,7 +240,8 @@ const SecondFold = props => {
             className="create-nft-form"
             initialValues={{
               burnAfter: undefined,
-              nftType: nftType
+              nftType,
+              templateType
             }}
           >
             <Form.Item
@@ -202,13 +295,25 @@ const SecondFold = props => {
                 className={styles.input}
               />
             </Form.Item>
+
+            <Form.Item
+              label="Template Type" required
+              name="templateType"
+              className={styles.formItem}
+            >
+              <Select
+                className={styles.input}
+                onChange={(value) => setTemplateType(value)}
+                options={templateOptions}
+              />
+            </Form.Item>
+
             <Form.Item
               label="NFT Type" required
               name="nftType"
               className={styles.formItem}
             >
               <Select
-                // defaultValue={nftType}
                 className={styles.input}
                 onChange={(value) => setNftType(value)}
                 options={[
@@ -258,7 +363,7 @@ const SecondFold = props => {
                   onPreview={handlePreview}
                   onChange={handleChange}
                   // customRequest={({ onSuccess }) => onSuccess("ok")}
-                  beforeUpload={()=> {return false }}
+                  beforeUpload={() => { return false }}
                   disabled={!useCustomImage}
                 >
                   {fileList.length >= 1 ? null : uploadButton}
@@ -279,7 +384,7 @@ const SecondFold = props => {
             </Form.Item>
             <Form.Item valuePropName="burnableChecked">
               <Switch onChange={() => setBurnable(!burnable)} checked={burnable} /> &nbsp;
-              NFT is {(burnable) ? 'not permanent' : 'is permanent'}
+              NFT is {(burnable) ? 'not permanent' : 'permanent'}
             </Form.Item>
             {burnable &&
               <Form.Item label="Burn After" required={burnable}
@@ -308,6 +413,7 @@ const SecondFold = props => {
                       label="Trait Type" required
                       key={`key-${index}`}
                       name={`key-${index}`}
+                      // initialValue={field.key}
                       rules={[
                         {
                           required: true,
@@ -317,12 +423,13 @@ const SecondFold = props => {
                     >
                       <Input placeholder="Enter Trait Type" className={styles.input} id={`key-${index}`}
                         name="key" key={`input-key-${index}`}
-                        value={field.key} onChange={(e) => handleInputChange(e, index)} />
+                        onChange={(e) => handleInputChange(e, index)} />
                     </Form.Item>
                     <Form.Item
                       label="Trait Value" required
                       name={`value-${index}`}
                       key={`value-${index}`}
+                      initialValue={field.value}
                       rules={[
                         {
                           required: true,
@@ -333,7 +440,6 @@ const SecondFold = props => {
                     >
                       <Input placeholder="Enter Trait Value" className={styles.input} id={`value-${index}`}
                         name="value" key={`input-value-${index}`}
-                        value={field.value}
                         onChange={(e) => handleInputChange(e, index)} />
                     </Form.Item>
                     <Form.Item>
@@ -345,7 +451,6 @@ const SecondFold = props => {
                 })
               }
             </div>
-
             <Form.Item>
               <Button type="primary" htmlType="submit" className={styles.button}>
                 CREATE WARRANTY CARD NFT

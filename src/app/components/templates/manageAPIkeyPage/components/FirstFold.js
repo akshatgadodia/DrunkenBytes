@@ -11,9 +11,9 @@ const FirstFold = () => {
           ")"
       }}
     >
-      <h1 className={styles.heading}>Add a Product</h1>
+      <h1 className={styles.heading}>Manage API Keys</h1>
       <p className={styles.subParagraph}>
-        Tired of entering same details every time you create a NFT. Add a Product Template to make NFT generation easier.
+      Manage API keys to access the platform's features and services with control and security.
       </p>
     </div>
   );

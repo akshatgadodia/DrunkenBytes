@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import AppContext from "@/app/context/AppContext";
 import Link from "next/link";
-import { UserOutlined, LockOutlined, LogoutOutlined, WalletOutlined } from "@ant-design/icons";
+import { UserOutlined, HighlightOutlined, LogoutOutlined, WalletOutlined, KeyOutlined  } from "@ant-design/icons";
 import { Dropdown, Avatar, notification } from "antd";
 import SideDrawer from "./SideDrawer";
 import { useWeb3Modal } from "@web3modal/react";
@@ -188,16 +188,27 @@ const Navbar = () => {
     {
       key: "3",
       label: (
-        <Link href="/add-product">
+        <Link href="/create-template">
           <div className={styles.avatarItem}>
-            <LockOutlined className={styles.avatarItemIcon} />
-            Add a Product
+            <HighlightOutlined className={styles.avatarItemIcon} />
+            Create a Template
           </div>
         </Link>
       )
     },
     {
       key: "4",
+      label: (
+        <Link href="/api-keys">
+          <div className={styles.avatarItem}>
+            <KeyOutlined className={styles.avatarItemIcon} />
+            Manage API Keys
+          </div>
+        </Link>
+      )
+    },
+    {
+      key: "5",
       label: (
         <button className={styles.avatarItemButton} onClick={() => disconnect()}>
           <div className={styles.avatarItem}>

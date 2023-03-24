@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "../stylesheets/secondFold.module.css";
-import { Button, Form, Input, Spin, notification } from "antd";
+import { Button, Form, Input, Spin, Select, notification } from "antd";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons"
 
@@ -8,6 +8,7 @@ const SecondFold = props => {
   const { error, sendRequest, clearError, isLoading } = useHttpClient();
   const [form] = Form.useForm();
   const [traits, setTraits] = useState([{ key: '', value: '' }]);
+  const [nftType, setNftType] = useState('product');
 
   // Handle form input change
   const handleInputChange = (event, index) => {
@@ -41,6 +42,7 @@ const SecondFold = props => {
         "POST",
         JSON.stringify({
           name: values.productName,
+          nftType,
           traits
         })
       );
@@ -48,11 +50,12 @@ const SecondFold = props => {
       if (!error) {
         notification.success({
           message: "Success",
-          description: "Product Added Successfully",
+          description: "Template Created Successfully",
           placement: "top",
           // duration: null,
           className: "error-notification"
         });
+        setTraits([{ key: '', value: '' }]);
         form.resetFields();
       }
     } catch (err) { }
@@ -74,23 +77,51 @@ const SecondFold = props => {
             name="basic"
             form={form}
             style={{ maxWidth: "100%" }}
+            className="create-nft-form"
             onFinish={onFinish}
             autoComplete="on"
+            initialValues={{
+              nftType: nftType
+            }}
           >
             <Form.Item
-              label="Product Name" required
+              label="Template Name" required
               name="productName"
               rules={[
                 {
                   required: true,
-                  message: "Please input Product Name!"
+                  message: "Please input Template Name!"
                 }
               ]}
               className={styles.formItem}
             >
-              <Input placeholder="Enter Receiver Name" className={styles.input} />
+              <Input placeholder="Enter Template Name" className={styles.input} />
             </Form.Item>
-
+            <Form.Item
+              label="NFT Type" required
+              name="nftType"
+              className={styles.formItem}
+            >
+              <Select
+                // defaultValue={nftType}
+                className={styles.input}
+                onChange={(value) => setNftType(value)}
+                options={[
+                  {
+                    value: 'product',
+                    label: 'Product NFT',
+                  },
+                  {
+                    value: 'document',
+                    label: 'Document NFT',
+                  },
+                  {
+                    value: 'other',
+                    label: 'Other',
+                  },
+                ]}
+              />
+            </Form.Item>
             <div className={styles.traitContainer}>
               <div className={styles.titleContainer}>
                 <h2>Traits</h2>
@@ -137,7 +168,7 @@ const SecondFold = props => {
             </div>
             <Form.Item>
               <Button type="primary" htmlType="submit" className={styles.button}>
-                Add Product
+                Create Template
               </Button>
             </Form.Item>
           </Form>

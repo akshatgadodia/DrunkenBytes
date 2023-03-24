@@ -5,6 +5,7 @@ import { Tabs } from 'antd';
 import CustomButton from "@/app/components/elements/CustomButton";
 import AddMoneyModal from "./components/AddMoneyModal";
 import Head from 'next/head'
+import WalletRechargeTable from './components/WalletRechargeTable';
 
 const WalletPage = () => {
   const { error, sendRequest, clearError, isLoading } = useHttpClient();
@@ -35,7 +36,10 @@ const WalletPage = () => {
           </div>
           <CustomButton type="Gradient" text="+ &nbsp; Add Money to Wallet" onClick={()=> setModalOpen(true)}/>
         </div>
-      <Tabs
+        <div className="profile-tabs tab-pane">
+          <WalletRechargeTable/>
+        </div>
+      {/* <Tabs
         defaultActiveKey="1"
         className="profile-tabs"     
         size="middle"   
@@ -48,7 +52,7 @@ const WalletPage = () => {
         <Tabs.TabPane tab="Wallet Transactions" key="2">
           HAHA
         </Tabs.TabPane>
-      </Tabs>
+      </Tabs> */}
     </div>
   );
 };

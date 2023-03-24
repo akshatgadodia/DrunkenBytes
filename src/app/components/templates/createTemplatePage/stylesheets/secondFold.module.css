@@ -43,6 +43,7 @@
     width: 100% !important;
     background-color: #f9f8fa !important;
     border: 0.6px solid #cacbdf;
+    border-radius: 4px;
 }
 .input:hover{
     border-color: var(--purple) !important;

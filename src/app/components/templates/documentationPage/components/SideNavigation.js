@@ -19,9 +19,6 @@ const SecondFold = props => {
           <Link to="create-nft" spy={true} smooth={true} offset={-100} duration={500} className={styles.menuItem}>
             Create NFT <CaretRightOutlined className={styles.icon}/>
           </Link>
-          <Link to="transfer-nft" spy={true} smooth={true} offset={-100} duration={500} className={styles.menuItem}>
-            Transfer NFT <CaretRightOutlined className={styles.icon}/>
-          </Link>
         </div>
         <div className={styles.menuDiv}>
           <h2 className={styles.menuHeading}>Code Examples</h2>

@@ -3,6 +3,8 @@ import styles from "./profilePage.module.css";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import { Image, Tabs } from 'antd';
 import Head from 'next/head'
+import NftTable from "./components/NftTable";
+import WalletRechargeTable from "./components/WalletRechargeTable";
 
 const ProfilePage = () => {
   const { error, sendRequest, clearError, isLoading } = useHttpClient();
@@ -66,14 +68,13 @@ const ProfilePage = () => {
         type="card"
         animated
         >
-        <Tabs.TabPane tab="NFT Transactions" key="1">
-          HAHA
+        <Tabs.TabPane tab="NFT Transactions" key="1" className="tab-pane">
+          <NftTable/>
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Wallet Transactions" key="2">
-          HAHA
-
+        <Tabs.TabPane tab="Wallet Transactions" key="2" className="tab-pane">
+          <WalletRechargeTable/>
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Products" key="3">
+        <Tabs.TabPane tab="Products" key="3" className="tab-pane">
           HAHA
 
         </Tabs.TabPane>

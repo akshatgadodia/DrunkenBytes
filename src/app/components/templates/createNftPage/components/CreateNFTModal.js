@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./stylesheets/createNFTModal.module.css";
+import styles from "../stylesheets/createNFTModal.module.css";
 import { Modal, Spin  } from "antd";
 const SecondFold = props => {
   return (
