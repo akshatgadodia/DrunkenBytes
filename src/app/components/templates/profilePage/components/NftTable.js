@@ -197,40 +197,51 @@ const NftTable = props => {
       dataIndex: "useCustomImage",
       key: "useCustomImage",
       ...getColumnSearchProps('useCustomImage'),
+      render: (_, { useCustomImage }) =>
+      <div>
+        {useCustomImage.toString()}
+      </div>
     },
     {
       title: "Soulbound",
       dataIndex: "isTransferable",
       key: "isTransferable",
       ...getColumnSearchProps('isTransferable'),
+      render: (_, { isTransferable }) =>
+      <div>
+        {isTransferable.toString()}
+      </div>
     },
     {
       title: "Permanent",
       dataIndex: "isBurnable",
       key: "isBurnable",
       ...getColumnSearchProps('isBurnable'),
+      render: (_, { isBurnable }) =>
+      <div>
+        {isBurnable.toString()}
+      </div>
     },
-    /*{
-      title: "Date Created",
-      dataIndex: "dateCreated",
-      key: "dateCreated",
-      sorter: (a, b) => new Date(a.dateCreated) > new Date(b.dateCreated),
-      sortDirections: ["descend", "ascend"],
-      render: (_, { dateCreated }) =>
+    {
+      title: "Burn After",
+      dataIndex: "burnAfter",
+      key: "burnAfter",
+      render: (_, { burnAfter }) =>
+      burnAfter===null ? <div> Permanent </div> :
         <div>
-          {new Date(dateCreated).getDate() +
+          {new Date(burnAfter).getDate() +
             "/" +
-            (new Date(dateCreated).getMonth() + 1) +
+            (new Date(burnAfter).getMonth() + 1) +
             "/" +
-            new Date(dateCreated).getFullYear() +
+            new Date(burnAfter).getFullYear() +
             " " +
-            new Date(dateCreated).getHours() +
+            new Date(burnAfter).getHours() +
             ":" +
-            new Date(dateCreated).getMinutes() +
+            new Date(burnAfter).getMinutes() +
             ":" +
-            new Date(dateCreated).getSeconds()}
+            new Date(burnAfter).getSeconds()}
         </div>
-    },*/
+    },
     {
       title: "Status",
       dataIndex: "status",

@@ -50,7 +50,8 @@ const url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft';
 const options = {
   method: 'POST', // Use the POST method
   headers: { // Set the request headers
-    'Content-Type': 'application/json' // Set the request content type to JSON
+    'Content-Type': 'application/json', // Set the request content type to JSON
+    'Authorization': 'Bearer <API SECRET>' // Set the authorization header
   },
   body: JSON.stringify({ // Set the request body
     // Set the values for each of the request parameters
@@ -228,7 +229,8 @@ const url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft';
 const options = {
   method: 'POST', // Use the POST method
   headers: { // Set the request headers
-    'Content-Type': 'application/json' // Set the request content type to JSON
+    'Content-Type': 'application/json', // Set the request content type to JSON
+    'Authorization': 'Bearer <API SECRET>' // Set the authorization header
   },
   body: JSON.stringify({ // Set the request body
     // Set the values for each of the request parameters
@@ -307,7 +309,8 @@ url = URI('https://api-drunkenbytes.onrender.com/v1/nft/mint-nft')
 
 # Set the request headers
 headers = {
-  'Content-Type' => 'application/json'
+  'Content-Type' => 'application/json',
+  'Authorization' => 'Bearer <API SECRET>' 
 }
 
 # Set the request body
@@ -384,6 +387,8 @@ data = {
 
 # Set the request headers
 headers = {'Content-Type': 'application/json'}
+api_secret = 'your-api-secret'
+headers['Authorization'] = f'Bearer {api_secret}'
 
 # Send the HTTP request and handle the response
 response = requests.post(url, headers=headers, data=json.dumps(data))
@@ -408,7 +413,8 @@ const url = 'https://api-drunkenbytes.onrender.com/v1/nft/mint-nft';
 const options = {
   method: 'POST', // Use the POST method
   headers: { // Set the request headers
-    'Content-Type': 'application/json' // Set the request content type to JSON
+    'Content-Type': 'application/json', // Set the request content type to JSON
+    'Authorization': 'Bearer <API SECRET>' // Set the authorization header
   },
   body: JSON.stringify({ // Set the request body
     // Set the values for each of the request parameters
@@ -476,9 +482,14 @@ const data = {
   ]
 };
 
+var headers = {'Content-Type': 'application/json'};
+var apiSecret = 'your-api-secret';
+headers['Authorization'] = 'Bearer ' + apiSecret;
+
 // Send the HTTP request and handle the response
 $.ajax({
   url: url,
+  headers: headers,
   type: 'POST',
   contentType: 'application/json',
   data: JSON.stringify(data)
@@ -557,6 +568,7 @@ func main() {
         panic(err)
     }
     req.Header.Set("Content-Type", "application/json")
+    req.Header.Set("Authorization", "Bearer <YOUR API SECRET>")
 
     // Send the HTTP request and handle the response
     client := &http.Client{}
@@ -600,6 +612,7 @@ options = {
   method: 'POST', # Use the POST method
   headers: { # Set the request headers
     'Content-Type': 'application/json' # Set the request content type to JSON
+    'Authorization': 'Bearer <API SECRET>' # Set the authorization header
   },
   body: {
     # Set the values for each of the request parameters

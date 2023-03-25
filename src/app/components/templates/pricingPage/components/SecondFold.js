@@ -6,7 +6,7 @@ import Pricing from "./Pricing"
 const SecondFold = props => {
   return (
     <div className={styles.secondFold}>
-      <Pricing/>
+      <Pricing price={props.price}/>
       <PricingText/>
     </div>
   );

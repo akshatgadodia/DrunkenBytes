@@ -5,7 +5,7 @@ import FirstFold from "./components/FirstFold";
 import SecondFold from './components/SecondFold';
 import ThirdHalfFold from './components/ThirdHalfFold';
 
-const PricingPage = () => {
+const PricingPage = (props) => {
   return (
     <div className={styles.pricingPage}> 
     <Head>
@@ -14,7 +14,7 @@ const PricingPage = () => {
         <meta name="keywords" content="wallet-based pricing, commission, pricing page, Drunken Bytes." />
       </Head>
       <FirstFold />
-      <SecondFold/>
+      <SecondFold price={props.price}/>
       <ThirdHalfFold/>
     </div>
   )

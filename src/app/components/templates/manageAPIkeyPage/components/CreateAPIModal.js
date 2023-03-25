@@ -91,7 +91,7 @@ const CreateAPIModal = (props) => {
             <Form.Item
               label={
                 <div className={styles.label}>
-                  Access Token
+                  API Secret
                   <Button className={styles.copyButton} onClick={() => {
                     navigator.clipboard.writeText(accessToken)
                       .then(() => {

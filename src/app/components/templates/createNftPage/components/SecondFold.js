@@ -194,7 +194,7 @@ const SecondFold = props => {
           nftName: values.nftName,
           useCustomImage,
           imageBase64: useCustomImage ? await getBase64(fileList[0].originFileObj) : null,
-          isTransferable: transferable,
+          isTransferable: !transferable,
           isBurnable: burnable,
           burnAfter: burnable ? values.burnAfter.$d : null,
           traits

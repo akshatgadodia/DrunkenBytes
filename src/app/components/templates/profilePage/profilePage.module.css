@@ -57,10 +57,9 @@
     padding:0 !important;
     margin:0 !important;
 }
-.logo{
-    border-radius: 50% !important;
+.logoSkeleton{
+    transform: translateY(-80px) !important;
 }
-
 @media only screen and (max-width: 768px) {
     .profile {
       padding: 40px 5vw;
@@ -77,6 +76,6 @@
     .informationContent p{
         display: block;
         width: 100%;
-    overflow-wrap: break-word !important ;
+        overflow-wrap: break-word !important ;
 }
   }

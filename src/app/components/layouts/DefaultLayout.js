@@ -9,7 +9,7 @@ import {
 } from "@web3modal/ethereum";
 import { Web3Modal, useWeb3ModalTheme  } from "@web3modal/react";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { goerli } from "wagmi/chains";
+import { goerli, polygonMumbai, sepolia } from "wagmi/chains";
 
 const projectId = "5eb3b4632acfeff4d00404640ce75685";
 const chains = [goerli];

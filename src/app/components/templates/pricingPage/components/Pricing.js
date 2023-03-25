@@ -1,24 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styles from "../stylesheets/pricing.module.css";
-import { useHttpClient } from "@/app/hooks/useHttpClient";
 
 const Pricing = props => {
-  const { error, sendRequest, isLoading } = useHttpClient();
-  const [transactionCost, setTransactionCost] = useState(0);
-  useEffect(()=>{
-    const getTransactionCost = async () => {
-      const result = await sendRequest('/nft/get-nft-generation-cost');
-      if (!error) setTransactionCost(result.transactionCost)
-    }
-    getTransactionCost();
-  },[])
   return (
       <div className={styles.menu}>
         <h2 className={styles.heading}>Transaction Cost + 5%</h2>
         <p className={styles.subParagraph}>per transaction</p>
         <hr className={styles.hr}/>
         <p className={styles.costHead}>Current Estimated Transaction Cost</p>
-        <h2 className={styles.heading}>{transactionCost} ETH</h2>
+        <h2 className={styles.heading}>{props.price} ETH</h2>
         <p className={styles.subParagraph}>per transaction</p>
         <hr className={styles.hr}/>
         <div className={styles.container}>
