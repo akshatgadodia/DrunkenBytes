@@ -72,7 +72,10 @@ const Navbar = () => {
       }
     },
     onDisconnect() {
-      if (authenticatedRoutes.includes(pathname)) router.push('/');
+      if (authenticatedRoutes.includes(pathname)){
+        // console.log("Logging Out...");
+        router.push('/');
+      }
       const sendLogoutRequest = async () => {
         try {
           Cookies.remove('db_login');
@@ -188,7 +191,7 @@ const Navbar = () => {
     {
       key: "3",
       label: (
-        <Link href="/create-template">
+        <Link href="/template/create">
           <div className={styles.avatarItem}>
             <HighlightOutlined className={styles.avatarItemIcon} />
             Create a Template

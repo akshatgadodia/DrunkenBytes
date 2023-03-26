@@ -5,6 +5,7 @@ import { Image, Tabs, Skeleton } from 'antd';
 import Head from 'next/head'
 import NftTable from "./components/NftTable";
 import WalletRechargeTable from "./components/WalletRechargeTable";
+import TemplateTable from "./components/TemplateTable";
 
 const ProfilePage = () => {
   const { error, sendRequest, clearError, isLoading } = useHttpClient();
@@ -84,9 +85,8 @@ const ProfilePage = () => {
         <Tabs.TabPane tab="Wallet Transactions" key="2" className="tab-pane">
           <WalletRechargeTable />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Template" key="3" className="tab-pane">
-          HAHA
-
+        <Tabs.TabPane tab="Templates" key="3" className="tab-pane">
+          <TemplateTable/>
         </Tabs.TabPane>
       </Tabs>
     </div>

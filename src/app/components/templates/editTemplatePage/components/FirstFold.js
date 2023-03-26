@@ -4,16 +4,16 @@ import styles from "../stylesheets/firstFold.module.css";
 const FirstFold = () => {
   return (
     <div className={styles.firstFold}
-      style={{
+     style={{
         backgroundImage:
           "url(" +
           "/images/background/gradient-bottom-2000x1113.jpeg" +
           ")"
       }}
     >
-      <h1 className={styles.heading}>Register</h1>
+      <h1 className={styles.heading}>Edit a Template</h1>
       <p className={styles.subParagraph}>
-        Unlock the Power of NFTs for Your Business - Register with Drunken Bytes Today!
+        Made a mistake while creating template. Don't worry you can edit it here.
       </p>
     </div>
   );

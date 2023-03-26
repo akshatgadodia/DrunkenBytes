@@ -2,6 +2,9 @@ import React, {useEffect, useState} from "react";
 import Navbar from "../modules/Navbar";
 import Footer from "../modules/Footer";
 import ScrollToTop from "../modules/ScrollToTop";
+import CookiePreferencesButton from "../modules/CookiePreferencesButton";
+import CookieBar from "../modules/CookieBar";
+
 import {
   EthereumClient,
   modalConnectors,
@@ -44,10 +47,12 @@ const DefaultLayout = ({ children }) => {
     <div>
       <WagmiConfig client={wagmiClient}>
         <Navbar />
+        <CookiePreferencesButton />
         <ScrollToTop />
         <main>
           {children}
         </main>
+        <CookieBar/>
         <Footer />
       </WagmiConfig>
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} className="default-layout-web3modal"/>

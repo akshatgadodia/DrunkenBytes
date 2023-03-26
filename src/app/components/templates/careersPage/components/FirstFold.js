@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../stylesheets/firstFold.module.css";
 import CustomButton from "@/app/components/elements/CustomButton";
+import { notification } from "antd";
 
 const FirstFold = () => {
   return (
@@ -19,7 +20,13 @@ const FirstFold = () => {
             <p className={styles.subParagraph}>
         Not only are we passionate about our work, we enjoy the people we surround ourselves with. At Drunken Bytes, we build trust, embrace feedback, grow rapidly, and love our work.
             </p>
-            <CustomButton type="Gradient" text="View our open positions" onClick={() => {console.log("CLICKED")}} />
+            <CustomButton type="Gradient" text="View our open positions" onClick={() => {notification.info({
+          message: "Sorry",
+          description: "Drunken Bytes is current not hiring",
+          placement: "top",
+          // duration: null,
+          className: "error-notification"
+        });}} />
 
 
       </div>

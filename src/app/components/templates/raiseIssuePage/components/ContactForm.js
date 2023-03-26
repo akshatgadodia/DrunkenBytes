@@ -2,30 +2,35 @@ import React, {useState, useEffect} from "react";
 import styles from "../stylesheets/contactForm.module.css";
 import { Button, Form, Input, Spin, Select, notification  } from "antd";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
-import { useAccount } from "wagmi";
 
 const ContactForm = props => {
-  const { isConnected } = useAccount();
-  const { Option } = Select;
   const { TextArea } = Input;
+  const [loading, setLoading] = useState(true);
   const { error, sendRequest, isLoading } = useHttpClient();
-  const [topic, setTopic] = useState(null);
   const [form] = Form.useForm();
 
   useEffect(()=>{
-    console.log("Connection ",isConnected)
-  },[isConnected])
+    const fetchData = async () => {
+      const result = await sendRequest(`/nft-transaction/get-transaction-details?tokenId=${props.tokenId}`)
+      form.setFieldValue({tokenId: props.tokenId, name: result.transaction.receiverName, email: result.transaction.receiverEmail })
+      console.log(result);
+      setLoading(false);
+    }
+    if(props.hasTokenId){
+      fetchData();
+    } 
+  },[])
 
   const onFinish = async values => {
     try {
       const result = await sendRequest(
-        (isConnected) ? '/message/save-message' : '/message/save-contact-message',
+        '/issue/save-issue',
         "POST",
         JSON.stringify({
+          tokenId: values.tokenId,
           name: values.name,
           email: values.email,
           subject: values.subject,
-          type: topic ?? 'sales',
           message: values.message,
         })
       );
@@ -42,25 +47,9 @@ const ContactForm = props => {
     } catch (err) { }
   };
 
-  const onTopicChange = (value) => {
-    switch (value) {
-      case 'sales':
-        setTopic('sales');
-        break;
-      case 'support':
-        setTopic('support');
-        break;
-      case 'other':
-        setTopic('other');
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
     <div className={styles.contactForm}>
-      <Spin size="large" spinning={isLoading}>
+      <Spin size="large" spinning={isLoading || loading}>
       <Form
         name="basic"
         form={form}
@@ -68,7 +57,18 @@ const ContactForm = props => {
         onFinish={onFinish}
         autoComplete="on"
       >
-        {!isConnected && 
+        <Form.Item
+          name="tokenId"
+          rules={[
+            {
+              required: true,
+              message: "Please input Token Id"
+            }
+          ]}
+          className={styles.formItem}
+        >
+          <Input placeholder="Token ID" className={styles.input} />
+        </Form.Item>
         <Form.Item
           name="name"
           rules={[
@@ -81,8 +81,6 @@ const ContactForm = props => {
         >
           <Input placeholder="Name" className={styles.input} />
         </Form.Item>
-        }
-        {!isConnected &&
         <Form.Item
           name="email"
           rules={[
@@ -99,7 +97,6 @@ const ContactForm = props => {
         >
           <Input placeholder="Email" className={styles.input} />
         </Form.Item>
-        }
         <Form.Item
           name="subject"
           rules={[
@@ -112,29 +109,6 @@ const ContactForm = props => {
         >
           <Input placeholder="Subject" className={styles.input} />
         </Form.Item>
-        {isConnected && 
-        
-        <Form.Item
-        name="topic"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-        className={styles.formItem}
-      >
-        <Select
-          placeholder="Please select a Topic"
-          onChange={onTopicChange}
-          allowClear
-          className={styles.input} 
-        >
-          <Option value="sales">Sales</Option>
-          <Option value="support">Support</Option>
-          <Option value="other">Other</Option>
-        </Select>
-      </Form.Item>
-        }
       <Form.Item
           name="message"
           rules={[
@@ -149,7 +123,7 @@ const ContactForm = props => {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" className={styles.button}>
-            SUBMIT
+            Raise Issue
           </Button>
         </Form.Item>
       </Form>
