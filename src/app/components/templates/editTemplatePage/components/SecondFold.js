@@ -16,7 +16,6 @@ const SecondFold = props => {
       const id = props.templateId;
       const result = await sendRequest(`/product/${id}`);
       form.setFieldsValue({ productName: result.template.name, nftType: result.template.nftType });
-      console.log(result.template.traits)
       setTraits(result.template.traits);
       setLoading(false);
     }
@@ -57,13 +56,11 @@ const SecondFold = props => {
           traits
         })
       );
-      console.log(result);
       if (!error) {
         notification.success({
           message: "Success",
           description: "Template Updated Successfully",
           placement: "top",
-          // duration: null,
           className: "error-notification"
         });
       }

@@ -3,6 +3,9 @@ const authenticatedRoutes = [
     '/create',
     '/api-keys',
     '/template',
-    '/wallet'
+    '/wallet',
+    '/api-keys',
+    '/issues',
+    '/transactions'
 ]
 export default authenticatedRoutes;

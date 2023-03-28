@@ -9,8 +9,15 @@ const CreateTemplatePage = () => {
     <div className={styles.addProductPage}> 
     <Head>
         <title>Transactions | Drunken Bytes</title>
-        <meta name="description" content="Create a template for your products on Drunken Bytes so you don't have to enter the same information every time you generate an NFT. Our user-friendly interface allows you to easily set up fields for product name, traits, and other details. Save time and streamline your NFT creation process with Drunken Bytes."></meta>
-        <meta name="keywords" content="Drunken Bytes, add product, create template, NFT generation, product information, product template"></meta>
+        <meta name="description" content="Explore your NFT transactions or wallet recharge transactions with Drunken Bytes Transactions page. Choose which transaction you want to view and manage easily."></meta>
+        <meta name="keywords" content="Explore your NFT transactions or wallet recharge transactions with Drunken Bytes Transactions page. Choose which transaction you want to view and manage easily."></meta>
+        <meta property="og:title" content="Transactions | Drunken Bytes" />
+        <meta property="og:description" content="Explore your NFT transactions or wallet recharge transactions with Drunken Bytes Transactions page. Choose which transaction you want to view and manage easily." />
+        <meta property="og:image" content="" />
+        <meta name="twitter:title" content="Transactions | Drunken Bytes" />
+        <meta name="twitter:description" content="Explore your NFT transactions or wallet recharge transactions with Drunken Bytes Transactions page. Choose which transaction you want to view and manage easily." />
+        <meta name="twitter:image" content=""/>
+        <link rel="canonical" href="https://drunkenbytes.vercel.app/transactions" />
       </Head>
       <FirstFold />
       <SecondFold/>

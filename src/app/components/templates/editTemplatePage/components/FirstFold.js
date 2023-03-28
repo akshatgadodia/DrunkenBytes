@@ -4,7 +4,7 @@ import styles from "../stylesheets/firstFold.module.css";
 const FirstFold = () => {
   return (
     <div className={styles.firstFold}
-     style={{
+      style={{
         backgroundImage:
           "url(" +
           "/images/background/gradient-bottom-2000x1113.jpeg" +

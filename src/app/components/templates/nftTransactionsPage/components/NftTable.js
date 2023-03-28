@@ -285,6 +285,7 @@ const NftTable = props => {
         x: "max-content"
       }}
       loading={isLoading}
+      rowKey="_id"
     />
   );
 };

@@ -192,8 +192,6 @@ const WalletRechargeTable = props => {
     }
   ];
 
-
-
   return (
     <Table
       size="small"
@@ -205,7 +203,7 @@ const WalletRechargeTable = props => {
         x: "max-content"
       }}
       loading={isLoading}
-      rowKey="id"
+      rowKey="_id"
     />
   );
 };

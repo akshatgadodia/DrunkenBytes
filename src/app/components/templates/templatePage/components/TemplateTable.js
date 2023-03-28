@@ -221,6 +221,7 @@ const TemplateTable = props => {
         x: "max-content"
       }}
       loading={isLoading}
+      rowKey="_id"
     />
     <DisplayTraitsModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} modalData={modalData} setModalData={setModalData}/>
     </>

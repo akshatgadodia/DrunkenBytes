@@ -1,6 +1,6 @@
 import React from "react";
 import { SearchOutlined, CheckOutlined } from "@ant-design/icons";
-import { Button, Input, Space, Table, notification  } from "antd";
+import { Button, Input, Space, Table, notification } from "antd";
 import { useRef, useState, useEffect } from "react";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import Link from "next/link";
@@ -16,10 +16,10 @@ const IssuesTable = props => {
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    const getData = async() => {
+    const getData = async () => {
       let queryParams = []
       for (const key in filters) {
-        queryParams.push(JSON.stringify({[key]: filters[key]}))
+        queryParams.push(JSON.stringify({ [key]: filters[key] }))
       }
       const issuesData = await sendRequest(`/issue/get-issues?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
       setTableData(issuesData.issues);
@@ -29,17 +29,17 @@ const IssuesTable = props => {
   }, []);
 
   useEffect(() => {
-    const getData = async() => {
+    const getData = async () => {
       let queryParams = []
       for (const key in filters) {
-        queryParams.push(JSON.stringify({[key]: filters[key]}))
+        queryParams.push(JSON.stringify({ [key]: filters[key] }))
       }
       const issuesData = await sendRequest(`/issue/get-issues?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
       setTableData(issuesData.issues)
       setTotalIssues(issuesData.totalIssues)
     }
     getData()
-  },[currentPage, pageSize, filters, refresh])
+  }, [currentPage, pageSize, filters, refresh])
 
   const solveIssue = async id => {
     try {
@@ -52,7 +52,6 @@ const IssuesTable = props => {
           message: "Success",
           description: "Issue Solved Successfully",
           placement: "top",
-          // duration: null,
           className: "error-notification"
         });
         setRefresh(!refresh);
@@ -148,7 +147,7 @@ const IssuesTable = props => {
       }
     },
     render: (text) =>
-        text
+      text
   });
   const columns = [
     {
@@ -218,29 +217,28 @@ const IssuesTable = props => {
       key: "_id",
       render: (_, { _id, isSolved }) =>
         isSolved ? <div>Already Solved</div> :
-        <Button
-          type="text"
-          onClick={() => {
-            solveIssue(_id)
-          }}
-        >
-          <CheckOutlined />
-        </Button>
+          <Button
+            type="text"
+            onClick={() => {
+              solveIssue(_id)
+            }}
+          >
+            <CheckOutlined />
+          </Button>
     },
   ];
-
-
 
   return (
     <Table
       size="small"
       columns={columns}
       dataSource={tableData}
-      pagination={{ size: 'default', total: totalIssues, pageSize: pageSize, showSizeChanger: true, responsive: true, onChange:onPageChangeHandler}}
+      pagination={{ size: 'default', total: totalIssues, pageSize: pageSize, showSizeChanger: true, responsive: true, onChange: onPageChangeHandler }}
       bordered
       scroll={{
         x: "max-content"
       }}
+      rowKey="_id"
       loading={isLoading}
     />
   );
