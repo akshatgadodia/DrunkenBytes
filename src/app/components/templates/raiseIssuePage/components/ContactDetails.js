@@ -19,7 +19,6 @@ const ContactDetails = props => {
             message: "Success",
             description: "Your Issue is solved and closed",
             placement: "top",
-            // duration: null,
             className: "error-notification"
           });
         else
@@ -27,7 +26,6 @@ const ContactDetails = props => {
             message: "Processing...",
             description: "Your Issue is still in processing. For further information please contact your NFT creator.",
             placement: "top",
-            // duration: null,
             className: "error-notification"
           });
         form.resetFields();
@@ -63,14 +61,16 @@ const ContactDetails = props => {
       <h2 className={styles.heading}>Check Issue Status</h2>
       <Spin size="large" spinning={isLoading}>
       <Form
-        name="basic"
+        name="status-check-form"
+        id="status-check-form"
         form={form}
         style={{ maxWidth: "100%" }}
         onFinish={onFinish}
         autoComplete="on"
+        layout="vertical"
       >
         <Form.Item
-          name="tokenId"
+          name="tokenId" label="Token ID"
           rules={[
             {
               required: true,
@@ -79,7 +79,7 @@ const ContactDetails = props => {
           ]}
           className={styles.formItem}
         >
-          <Input placeholder="Token ID" className={styles.input} />
+          <Input placeholder="Enter NFT Token ID" className={styles.input} />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" className={styles.button}>

@@ -4,23 +4,25 @@ import Prism from "prismjs";
 import "../stylesheets/prism.css"
 
 const DocumentationText = props => {
+
   useEffect(() => {
     Prism.highlightAll();
   }, []);
+
   return (
     <div className={styles.documentationText}>
       <h1 className={styles.mainHeading}>API Documentation</h1>
       <p className={styles.paragraph}>
-      The Drunken Bytes API provides businesses with a user-friendly way of creating Product and Credential NFTs. Our REST API allows customers to make requests through a simple HTTP GET URL structure and receive responses in lightweight JSON format. With our platform, businesses can easily access the tools and resources they need to create and manage their own NFTs with ease.
+      The Drunken Bytes API provides businesses with a user-friendly way of creating Product and Credential NFTs. Our REST API 
+      allows customers to make requests through a simple HTTP GET URL structure and receive responses in lightweight JSON format. 
+      With our platform, businesses can easily access the tools and resources they need to create and manage their own NFTs with 
+      ease.
       </p>
       <p className={styles.paragraph}>
-        The following API documentation can be applied for any major programming
-        language and will present general integration guides and explanations
-        around API endpoints, request parameters and response objects. If any
-        questions remain unanswered for you, simply reach out to the drunken
-        bytes support team for assistance.
+        The following API documentation can be applied for any major programming language and will present general integration 
+        guides and explanations around API endpoints, request parameters and response objects. If any questions remain unanswered 
+        for you, simply reach out to the drunken bytes support team for assistance.
       </p>
-
       <h2 className={styles.heading}>Getting Started</h2>
       <h3 className={styles.subHeading} id="api-access-key">API Access Key & Authentication</h3>
       <hr className={styles.hr} />

@@ -7,13 +7,15 @@ const CookiePreferencesButton = () => {
 
   return (
     <>
-      <CookieBarPreferencesModal openPreferences={openPreferences} setOpenPreferences={setOpenPreferences} />
+      <CookieBarPreferencesModal openPreferences={openPreferences} setOpenPreferences={setOpenPreferences}/>
       <div
         type="button"
         className={styles.cookiePreferencesButton}
         onClick={() => {
           setOpenPreferences(true);
         }}
+        aria-label="cookie-prferences"
+        role="button"
       >
         <img src="/images/cookie-preferences-button.png" alt="cookie-prefrence-icon" className={styles.image} />
       </div>

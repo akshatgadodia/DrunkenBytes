@@ -4,10 +4,8 @@ export default function Document() {
     return (
         <Html lang="en">
             <Head>
-                <title>Drunken Bytes</title>
                 <meta charSet="UTF-8" />
                 <meta name="author" content="Akshat Gadodia" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png" />
                 <link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png" />

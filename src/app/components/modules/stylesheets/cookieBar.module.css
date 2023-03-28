@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   width: 100%;
-  background-color: var(--greyishWhite);
+  background-color: var(--white);
   display: flex !important;
   justify-content: space-between;
   align-items: center !important;
@@ -18,7 +18,7 @@
 }
 .cookieBarText {
   font-size: 16px;
-  color: var(--darkPurple);
+  color: var(--footerText);
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -30,7 +30,8 @@
   gap: 10px;
 }
 .link {
-  color: var(--purple);
+  color: var(--linkColor);
+  font-style: italic;
 }
 
 

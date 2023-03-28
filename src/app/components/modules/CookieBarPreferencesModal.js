@@ -77,6 +77,7 @@ const CookieBarPreferencesModal = (props) => {
                   onChange={() => {
                     setMarketingCookiesSelected(!marketingCookiesSelected);
                   }}
+                  aria-label="setMarketingCookiesSelected"
                 />
               </div>
               <div className={styles.modalCookieTypeContainerTwo}>
@@ -91,6 +92,7 @@ const CookieBarPreferencesModal = (props) => {
                   onChange={() => {
                     setPersonalizationCookiesSelected(!personalizationCookiesSelected);
                   }}
+                  aria-label="setPersonalizationCookiesSelected"
                 />
               </div>
               <div className={styles.modalCookieTypeContainerTwo}>
@@ -105,6 +107,7 @@ const CookieBarPreferencesModal = (props) => {
                   onChange={() => {
                     setAnalyticsCookiesSelected(!analyticsCookiesSelected);
                   }}
+                  aria-label="setAnalyticsCookiesSelected"
                 />
               </div>
               <div className={styles.modalCookieTypeContainerTwo}>

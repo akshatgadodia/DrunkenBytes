@@ -56,7 +56,8 @@ const DefaultLayout = ({ children }) => {
         <CookieBar/>
         <Footer />
       </WagmiConfig>
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} className="default-layout-web3modal"/>
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} className="default-layout-web3modal" 
+                />
     </div>
   );
 };

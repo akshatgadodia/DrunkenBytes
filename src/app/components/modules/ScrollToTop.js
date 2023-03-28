@@ -24,6 +24,7 @@ const ScrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }}
       aria-label="Scroll to Top"
+      role="button"
     >
         <CaretUpOutlined className={styles.icon}/>
     </div>

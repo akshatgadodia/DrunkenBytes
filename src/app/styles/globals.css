@@ -3,7 +3,9 @@
   --purple: #7260ca;
   --lightPurple: #b2a4ff;
   --darkPurple: #181925;
-  --white: #fefefe;
+  /* --white: #fefefe; */
+  --white: #ffffff;
+  --linkColor: #1a73e8;
   --black: #0c0c0d;
   --lightBlack: #4d4d4d;
   --darkWhite: #e9ebef;

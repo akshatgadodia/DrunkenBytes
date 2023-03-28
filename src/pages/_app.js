@@ -51,7 +51,7 @@ export default function MyApp({ Component, pageProps }) {
   );
   return (
     <AppContext.Provider value={{ loggedInDetails, dispatch }}>
-      {/* <Head>
+      <Head>
         <title>Drunken Bytes</title>
         <meta charSet="UTF-8" />
         <meta name="author" content="Akshat Gadodia" />
@@ -65,7 +65,7 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
-      </Head> */}
+      </Head>
       <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-VYMRDDLQCS" />
       <Script
         id='google-analytics'

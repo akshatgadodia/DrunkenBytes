@@ -244,7 +244,7 @@ const Navbar = () => {
     }
   ];
   return (
-    <div
+    <header
       className={`${styles.navbar} ${isNavBarFixed ? styles.fixedNavbar : ""}`}
     > 
       <RegisterModal openModal={openModal} setOpenModal={setOpenModal} address={address}/>
@@ -299,7 +299,7 @@ const Navbar = () => {
           </button>}
         <SideDrawer />
       </div>
-    </div>
+    </header>
   );
 };
 

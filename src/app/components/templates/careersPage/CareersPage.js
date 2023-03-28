@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from "./careersPage.module.css";
 import Head from 'next/head'
 import FirstFold from './components/FirstFold';
 import SecondFold from './components/SecondFold';

@@ -12,7 +12,6 @@ const ContactForm = props => {
   useEffect(()=>{
     const fetchData = async () => {
       const result = await sendRequest(`/nft-transaction/get-transaction-details?tokenId=${props.tokenId}`);
-      console.log(result);
       form.setFieldsValue({tokenId: props.tokenId, name: result.transaction.receiverName, email: result.transaction.receiverEmail })
       setLoading(false);
     }
@@ -39,7 +38,6 @@ const ContactForm = props => {
           message: "Success",
           description: result.message,
           placement: "top",
-          // duration: null,
           className: "error-notification"
         });
         form.resetFields();
@@ -51,14 +49,16 @@ const ContactForm = props => {
     <div className={styles.contactForm}>
       <Spin size="large" spinning={isLoading || loading}>
       <Form
-        name="basic"
+        name="contact-form"
+        id="contact-form"
         form={form}
         style={{ maxWidth: "100%" }}
         onFinish={onFinish}
         autoComplete="on"
+        layout="vertical"
       >
         <Form.Item
-          name="tokenId"
+          name="tokenId" label="Token ID"
           rules={[
             {
               required: true,
@@ -67,10 +67,10 @@ const ContactForm = props => {
           ]}
           className={styles.formItem}
         >
-          <Input placeholder="Token ID" className={styles.input} />
+          <Input placeholder="Enter NFT Token ID" className={styles.input} />
         </Form.Item>
         <Form.Item
-          name="name"
+          name="name" label="Name"
           rules={[
             {
               required: true,
@@ -79,10 +79,10 @@ const ContactForm = props => {
           ]}
           className={styles.formItem}
         >
-          <Input placeholder="Name" className={styles.input} />
+          <Input placeholder="Enter Your Name" className={styles.input} />
         </Form.Item>
         <Form.Item
-          name="email"
+          name="email" label="Email"
           rules={[
             {
               type: "email",
@@ -95,10 +95,10 @@ const ContactForm = props => {
           ]}
           className={styles.formItem}
         >
-          <Input placeholder="Email" className={styles.input} />
+          <Input placeholder="Enter Your Email" className={styles.input} />
         </Form.Item>
         <Form.Item
-          name="subject"
+          name="subject" label="Subject"
           rules={[
             {
               required: true,
@@ -107,10 +107,10 @@ const ContactForm = props => {
           ]}
           className={styles.formItem}
         >
-          <Input placeholder="Subject" className={styles.input} />
+          <Input placeholder="Enter Subject" className={styles.input} />
         </Form.Item>
       <Form.Item
-          name="message"
+          name="message" label="Message"
           rules={[
             {
               required: true,
@@ -119,7 +119,7 @@ const ContactForm = props => {
           ]}
           className={styles.formItem}
         >
-          <TextArea placeholder="Message" rows={4} className={styles.input} />
+          <TextArea placeholder="Enter Message" rows={4} className={styles.input} />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" className={styles.button}>

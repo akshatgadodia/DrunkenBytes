@@ -25,7 +25,7 @@ const CookieBar = () => {
   };
 
   return (
-    <div className={styles.cookieBar} style={{ transform: `translateY(${showCookieBar ? '0' : '100%'})` }}>
+    <div className={styles.cookieBar} style={{ transform: `translateY(${showCookieBar ? '0' : '100%'})` }} role="status">
     <CookieBarPreferencesModal openPreferences={openPreferences} setOpenPreferences={setOpenPreferences}/> 
     <p className={styles.cookieBarText}>By clicking <em>“Accept All Cookies”</em>, you agree to the storing of cookies on your device to enhance site navigation, analyze 
     site usage, and assist in our marketing efforts. View our <Link href="/privacy-policy" className={styles.link}>
