@@ -10,10 +10,10 @@ const FirstFold = (props) => {
           ")"
       }}
     >
-      <h1 className={styles.heading}>{`${props.transactionData.txId.slice(0, 2)}...${props.transactionData.txId.slice(-3)}`}{" "}
+      <h1 className={styles.heading}>{`${props?.transactionData?.txId.slice(0, 2)}...${props?.transactionData?.txId.slice(-3)}`}{" "}
           NFT Transaction</h1>
       <p className={styles.subParagraph}>
-        Details of NFT Transaction hashed {props.transactionData.txId}
+        Details of NFT Transaction hashed {props?.transactionData?.txId}
       </p>
     </div>
   );

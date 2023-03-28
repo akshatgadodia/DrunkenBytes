@@ -5,7 +5,7 @@ import SecondFold from './components/SecondFold';
 
 const PrivacyPolicyPage = () => {
   return (
-    <div className={styles.supportLogin}>
+    <>
     <Head>
         <title>Privacy Policy | Drunken Bytes</title>
         <meta name="description" content="Learn about Drunken Bytes' commitment to protecting your privacy and personal information. Read our comprehensive privacy policy to know how we collect, use, and disclose your data." />
@@ -20,7 +20,7 @@ const PrivacyPolicyPage = () => {
       </Head>
       <FirstFold/>
       <SecondFold/>
-    </div>
+    </>
   );
 };
 
