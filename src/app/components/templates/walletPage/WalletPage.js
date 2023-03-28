@@ -24,7 +24,7 @@ const WalletPage = () => {
   return (
     <div className={styles.profile}>
       <Head>
-        <title>Why Choose Drunken Bytes</title>
+        <title>Wallet | Drunken Bytes</title>
         <meta name="description" content="Manage your wallet securely on Drunken Bytes wallet page. Easily transfer your eth from your crypto wallet to Drunken Bytes Wallet. Keep your transactions safe with our state-of-the-art security features." />
         <meta name="keywords" content="Drunken Bytes wallet, cryptocurrency wallet, secure transactions" />
       </Head>

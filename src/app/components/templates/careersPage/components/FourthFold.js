@@ -6,16 +6,15 @@ import { notification } from "antd";
 const FourthFold = () => {
   return (
     <div className={styles.fourthFold}>
-        <div className={styles.heading}>Interested in joining us?</div>
+      <div className={styles.heading}>Interested in joining us?</div>
       <p className={styles.subParagraph}>
-      Hop aboard and view our open positions
+        Hop aboard and view our open positions
       </p>
       <CustomButton type="Gradient" text="See open roles" onClick={() => {
         notification.info({
           message: "Sorry",
           description: "Drunken Bytes is current not hiring",
           placement: "top",
-          // duration: null,
           className: "error-notification"
         });
       }} />

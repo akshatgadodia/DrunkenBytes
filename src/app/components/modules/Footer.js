@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer}>
       <div className={styles.mainDiv}>
         <div className={styles.companyContainer}>
           <img src="/images/drunken-bytes-logo-complete.png" alt="LOGO" />
@@ -71,7 +71,7 @@ const Footer = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

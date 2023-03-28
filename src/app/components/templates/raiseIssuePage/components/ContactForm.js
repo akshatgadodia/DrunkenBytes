@@ -5,15 +5,15 @@ import { useHttpClient } from "@/app/hooks/useHttpClient";
 
 const ContactForm = props => {
   const { TextArea } = Input;
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(props.hasTokenId);
   const { error, sendRequest, isLoading } = useHttpClient();
   const [form] = Form.useForm();
 
   useEffect(()=>{
     const fetchData = async () => {
-      const result = await sendRequest(`/nft-transaction/get-transaction-details?tokenId=${props.tokenId}`)
-      form.setFieldValue({tokenId: props.tokenId, name: result.transaction.receiverName, email: result.transaction.receiverEmail })
+      const result = await sendRequest(`/nft-transaction/get-transaction-details?tokenId=${props.tokenId}`);
       console.log(result);
+      form.setFieldsValue({tokenId: props.tokenId, name: result.transaction.receiverName, email: result.transaction.receiverEmail })
       setLoading(false);
     }
     if(props.hasTokenId){

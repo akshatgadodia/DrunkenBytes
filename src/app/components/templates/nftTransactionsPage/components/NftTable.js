@@ -267,7 +267,7 @@ const NftTable = props => {
       sortDirections: ["descend", "ascend"],
       render: (_, { value }) =>
         <div>
-          {`${(Number(value) * 1000000000).toFixed(2)} gwei`}
+          {`${value} ETH`}
         </div>
     },
   ];

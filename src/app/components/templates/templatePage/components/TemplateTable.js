@@ -1,10 +1,12 @@
 import React from "react";
-import { SearchOutlined, RedoOutlined, EditOutlined, DeleteOutlined  } from "@ant-design/icons";
+import { SearchOutlined, EditOutlined, DeleteOutlined  } from "@ant-design/icons";
 import { Button, Input, Space, Table, notification  } from "antd";
 import { useRef, useState, useEffect } from "react";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import Link from "next/link";
 import {useRouter} from 'next/router'
+import DisplayTraitsModal from "./DisplayTraitsModal";
+import CustomButton from "@/app/components/elements/CustomButton";
 
 const TemplateTable = props => {
   const router = useRouter();
@@ -16,7 +18,9 @@ const TemplateTable = props => {
   const [filters, setFilters] = useState({});
   const searchInput = useRef(null);
   const [refresh, setRefresh] = useState(false);
-  
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalData, setModalData] = useState([]);
+
   useEffect(() => {
     const getData = async() => {
       let queryParams = []
@@ -169,23 +173,11 @@ const TemplateTable = props => {
       title: "Traits",
       dataIndex: "traits",
       key: "traits",
-      render: (text, record) => {
-        const nestedColumns = [
-          {
-            title: 'Key',
-            dataIndex: 'key',
-            key: 'key',
-            width: '50%',
-          },
-          {
-            title: 'Value',
-            dataIndex: 'value',
-            key: 'value',
-            width: '50%',
-          },
-        ];
-        return <Table columns={nestedColumns} dataSource={record.traits} pagination={false} className="nested-table" bordered/>;
-      },
+      render: (text, record) => 
+        <CustomButton type="Gradient" text="View Traits" onClickHandler={()=>{
+          setModalData(record.traits);
+          setIsModalVisible(true);
+        }} />
     },
     {
       title: "Edit",
@@ -218,6 +210,7 @@ const TemplateTable = props => {
 
 
   return (
+    <>
     <Table
       size="small"
       columns={columns}
@@ -229,6 +222,8 @@ const TemplateTable = props => {
       }}
       loading={isLoading}
     />
+    <DisplayTraitsModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} modalData={modalData} setModalData={setModalData}/>
+    </>
   );
 };
 

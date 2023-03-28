@@ -14,9 +14,8 @@ const CookiePreferencesButton = () => {
         onClick={() => {
           setOpenPreferences(true);
         }}
-        aria-label="cookie-preferences-button"
       >
-        <img src="/images/cookie-preferences-button.png" className={styles.image} />
+        <img src="/images/cookie-preferences-button.png" alt="cookie-prefrence-icon" className={styles.image} />
       </div>
     </>
   );

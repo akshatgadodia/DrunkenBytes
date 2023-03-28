@@ -283,6 +283,8 @@
 .tab-pane .ant-table-wrapper {
   margin: 0;
   padding: 0;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 .tab-pane .ant-pagination-item-link,
