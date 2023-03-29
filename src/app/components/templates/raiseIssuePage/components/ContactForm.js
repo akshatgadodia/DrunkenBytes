@@ -42,7 +42,7 @@ const ContactForm = props => {
         });
         form.resetFields();
       }
-    } catch (err) { }
+    } catch (err) { console.log(err); console.log(error); }
   };
 
   return (
