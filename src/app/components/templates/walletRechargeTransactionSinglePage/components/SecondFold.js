@@ -1,10 +1,8 @@
 import React from "react";
 import styles from "../stylesheets/secondFold.module.css";
-import { CONTRACT_ADDRESS } from "@/app/constants/constants";
-import { Button, Tag, Table } from "antd";
+import { Tag } from "antd";
 import CustomButton from "@/app/components/elements/CustomButton"
 const SecondFold = props => {
-  console.log(props)
   return (
     <div className={`${styles.secondFold}`}>
       <div className={styles.buttonDiv}>

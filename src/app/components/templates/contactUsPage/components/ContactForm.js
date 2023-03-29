@@ -56,12 +56,13 @@ const ContactForm = props => {
   return (
     <div className={styles.contactForm}>
       <Spin size="large" spinning={isLoading}>
-        <Form 
+        <Form
           name="basic"
           form={form}
           style={{ maxWidth: "100%" }}
           onFinish={onFinish}
           autoComplete="on"
+          layout="vertical"
         >
           {!loggedInDetails?.isConnected &&
             <Form.Item
