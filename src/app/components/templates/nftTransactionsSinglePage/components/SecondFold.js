@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "../stylesheets/secondFold.module.css";
-import { CONTRACT_ADDRESS } from "@/app/constants/constants";
-import { Button, Tag, Table } from "antd";
+import { CONTRACT_ADDRESS, BLOCK_EXPLORER_URL, OPENSEA_URL } from "@/app/constants/constants";
+import { Tag, Table } from "antd";
 import CustomButton from "@/app/components/elements/CustomButton"
 const SecondFold = props => {
   return (
     <div className={`${styles.secondFold}`}>
       <div className={styles.buttonDiv}>
-          <CustomButton type="Gradient" onClickHandler={()=>window.open(`https://sepolia.etherscan.io/tx/${props.transactionData.txId}`, '_blank')} text="View transaction on Etherscan" />
-          <CustomButton type="Gradient" onClickHandler={()=>window.open(`https://testnets.opensea.io/assets/goerli/${CONTRACT_ADDRESS}/${props.transactionData.tokenId}`, '_blank')} text="View NFT on OpenSea"/>
+          <CustomButton type="Gradient" onClickHandler={()=>window.open(`${BLOCK_EXPLORER_URL}/${props.transactionData.txId}`, '_blank')} text="View transaction on Etherscan" />
+          <CustomButton type="Gradient" onClickHandler={()=>window.open(`${OPENSEA_URL}/${CONTRACT_ADDRESS}/${props.transactionData.tokenId}`, '_blank')} text="View NFT on OpenSea"/>
       </div>
       <div className={styles.detailsDiv}>
         <div className={styles.detail}>

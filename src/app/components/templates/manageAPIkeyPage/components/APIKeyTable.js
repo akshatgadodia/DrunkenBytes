@@ -15,19 +15,18 @@ const APIKeyTable = props => {
   const [refresh, setRefresh] = useState(false);
   const searchInput = useRef(null);
 
-  useEffect(() => {
-    const getData = async () => {
-      let queryParams = []
-      for (const key in filters) {
-        queryParams.push(JSON.stringify({ [key]: filters[key] }))
-      }
-      const apiKeysData = await sendRequest(`/api-key/get-api-keys?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
-      console.log(apiKeysData);
-      setTableData(apiKeysData.apiKeys)
-      setTotalApiKeys(apiKeysData.totalApiKeys)
-    }
-    getData()
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     let queryParams = []
+  //     for (const key in filters) {
+  //       queryParams.push(JSON.stringify({ [key]: filters[key] }))
+  //     }
+  //     const apiKeysData = await sendRequest(`/api-key/get-api-keys?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
+  //     setTableData(apiKeysData.apiKeys)
+  //     setTotalApiKeys(apiKeysData.totalApiKeys)
+  //   }
+  //   getData()
+  // }, []);
 
   useEffect(() => {
     const getData = async () => {

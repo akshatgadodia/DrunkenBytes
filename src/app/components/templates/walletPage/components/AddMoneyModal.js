@@ -7,6 +7,7 @@ import { useSendTransaction, usePrepareSendTransaction, useWaitForTransaction  }
 import { BigNumber } from "ethers";
 import { ethers } from "ethers";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
+import { BLOCK_EXPLORER_URL } from "@/app/constants/constants";
 
 const AddMoneyModal = (props) => {
     const { error, sendRequest } = useHttpClient();
@@ -84,6 +85,16 @@ const AddMoneyModal = (props) => {
             },
     })
     const addAmount = async () => {
+        if(amount === null || amount === undefined || amount === ""){
+            notification.error({
+                message: "Error",
+                description: "Amount cannot be empty",
+                placement: "top",
+                // duration: null,
+                className: "error-notification"
+              });
+            return null;
+        }
         setLoading(true);
             sendTransaction({
                 recklesslySetUnpreparedRequest: {
@@ -105,8 +116,11 @@ const AddMoneyModal = (props) => {
             footer={null}
         >
             <div className={styles.modalText}>
-                <Input type="number" size="large" placeholder="Enter Amount in ETH" prefix={<MoneyCollectOutlined />} value={amount} onChange={(e) => setAmount(e.target.value)} />
-                {(loading || isLoading) && <p>Please Wait. While we are processing your transaction.</p>}
+                <Input type="number" size="large" placeholder="Enter Amount in ETH" prefix={<MoneyCollectOutlined />} value={amount} onChange={(e) => setAmount(e.target.value)} required min="0.000001"/>
+                {(loading || isLoading) &&<div>
+                    <p>Please Wait. While we are processing your transaction.</p>
+                    {(isLoading) && <p><a href={`${BLOCK_EXPLORER_URL}/${hash}`} target="_blank">View on Block Explorer</a></p>}
+                </div>}
                 <div className={styles.buttonsContainer}>
                     <CustomButton type="OnlyBorder" text="Cancel" onClickHandler={() => props.setOpen(false)} disabled={loading || isLoading} />
                     <CustomButton type="Gradient" text="Add" onClickHandler={addAmount} loading={loading || isLoading} />

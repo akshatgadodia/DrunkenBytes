@@ -3,8 +3,10 @@ import styles from "../stylesheets/secondFold.module.css";
 import { Button, Form, Input, Spin, Select, notification } from "antd";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons"
+import { useRouter } from 'next/router'
 
 const SecondFold = props => {
+  const router = useRouter()
   const { error, sendRequest, clearError, isLoading } = useHttpClient();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(true);
@@ -63,6 +65,9 @@ const SecondFold = props => {
           placement: "top",
           className: "error-notification"
         });
+      // form.resetFields();
+      // setTraits([{ key: '', value: '' }]);
+      setInterval(await router.push("/template"),2000);
       }
     } catch (err) { }
   };

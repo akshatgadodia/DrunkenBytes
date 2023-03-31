@@ -59,13 +59,13 @@ const SecondFold = (props) => {
     <li>data relating to your use of our Services; and</li>
     <li>the number of times you visit or use any of our Services and the amount of time you spend using the Services.</li>
   </ul>
-  <p>We will sometimes use third party advertising companies to help us collect this personal information. Further information is provided below in section 5 ( <a href="https://Drunken Bytes.io/legal/privacy-policy#5">Third party advertising companies</a>) below. </p>
+  <p>We will sometimes use third party advertising companies to help us collect this personal information. </p>
   <p>‍</p>
   <h6>3 - WHAT DOES DRUNKEN BYTES DO WITH THIS PERSONAL INFORMATION AND WHAT IS OUR LEGAL BASIS FOR PROCESSING IT?</h6>
   <h6>3.1 - USE OF PERSONAL INFORMATION WHICH IS NECESSARY TO PERFORM A CONTRACT</h6>
   <p>The personal information you provide is collected, stored and used to enable us to provide you with the Services in the best way possible. This includes:</p>
   <ul role="list">
-    <li>providing you with a consistent and personalised service across different devices and platforms and parts of our Services, for example, we may keep track of your preferences (such as your language selection, preferred settings etc.) and past activities on our Services so that we may provide you with the correct versions of our Services;</li>
+    <li>providing you with a consistent and personalized service across different devices and platforms and parts of our Services, for example, we may keep track of your preferences (such as your language selection, preferred settings etc.) and past activities on our Services so that we may provide you with the correct versions of our Services;</li>
     <li>restricting customers from attempting to use our Services from a restricted territory or who are under-age and attempting to access inappropriate content in breach of our Terms of Service;</li>
     <li>ensuring that you are complying with our <a href="https://Drunken Bytes.io/legal/terms-of-service">Terms of Service</a> when you use our Services and taking any necessary action if you are not complying with our Terms of Service; and </li>
     <li>providing you with any customer support you have requested.</li>

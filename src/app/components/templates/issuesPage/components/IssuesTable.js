@@ -15,18 +15,18 @@ const IssuesTable = props => {
   const searchInput = useRef(null);
   const [refresh, setRefresh] = useState(false);
 
-  useEffect(() => {
-    const getData = async () => {
-      let queryParams = []
-      for (const key in filters) {
-        queryParams.push(JSON.stringify({ [key]: filters[key] }))
-      }
-      const issuesData = await sendRequest(`/issue/get-issues?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
-      setTableData(issuesData.issues);
-      setTotalIssues(issuesData.totalIssues)
-    }
-    getData()
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     let queryParams = []
+  //     for (const key in filters) {
+  //       queryParams.push(JSON.stringify({ [key]: filters[key] }))
+  //     }
+  //     const issuesData = await sendRequest(`/issue/get-issues?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
+  //     setTableData(issuesData.issues);
+  //     setTotalIssues(issuesData.totalIssues)
+  //   }
+  //   getData()
+  // }, []);
 
   useEffect(() => {
     const getData = async () => {
@@ -97,11 +97,9 @@ const IssuesTable = props => {
           }}
         />
         <Space>
-          <Button
+        <Button
             type="primary"
-            onClick={() => {
-              clearFilters && handleReset(close, dataIndex, setSelectedKeys);
-            }}
+            onClick={() => handleSearch(close, selectedKeys, dataIndex)}
             icon={<SearchOutlined />}
             size="small"
             style={{
@@ -112,7 +110,9 @@ const IssuesTable = props => {
             Search
           </Button>
           <Button
-            onClick={() => clearFilters && handleReset(clearFilters, selectedKeys, confirm, dataIndex)}
+          onClick={() => {
+              clearFilters && handleReset(close, dataIndex, setSelectedKeys);
+            }}
             size="small"
             style={{
               width: 90,

@@ -46,7 +46,7 @@ const WalletPage = () => {
         <CustomButton type="Gradient" text="+ &nbsp; Add Money to Wallet" onClick={() => setModalOpen(true)} />
       </div>
       <div className="profile-tabs tab-pane">
-        <WalletRechargeTable />
+        <WalletRechargeTable open={modalOpen}/>
       </div>
     </div>
   );

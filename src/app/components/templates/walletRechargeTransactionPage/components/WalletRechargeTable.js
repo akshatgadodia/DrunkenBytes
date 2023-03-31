@@ -21,7 +21,6 @@ const WalletRechargeTable = props => {
         queryParams.push(JSON.stringify({[key]: filters[key]}))
       }
       const transactionsData = await sendRequest(`/wallet-transaction/get-transactions?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
-      console.log(transactionsData);
       setTableData(transactionsData.transactions)
       setTotalTransactions(transactionsData.totalTransactions)
     }

@@ -21,18 +21,18 @@ const TemplateTable = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalData, setModalData] = useState([]);
 
-  useEffect(() => {
-    const getData = async() => {
-      let queryParams = []
-      for (const key in filters) {
-        queryParams.push(JSON.stringify({[key]: filters[key]}))
-      }
-      const templatesData = await sendRequest(`/product?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
-      setTableData(templatesData.templates);
-      setTotalTemplates(templatesData.totalTemplates)
-    }
-    getData()
-  }, []);
+  // useEffect(() => {
+  //   const getData = async() => {
+  //     let queryParams = []
+  //     for (const key in filters) {
+  //       queryParams.push(JSON.stringify({[key]: filters[key]}))
+  //     }
+  //     const templatesData = await sendRequest(`/product?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
+  //     setTableData(templatesData.templates);
+  //     setTotalTemplates(templatesData.totalTemplates)
+  //   }
+  //   getData()
+  // }, []);
 
   useEffect(() => {
     const getData = async() => {
@@ -104,11 +104,9 @@ const TemplateTable = props => {
           }}
         />
         <Space>
-          <Button
+        <Button
             type="primary"
-            onClick={() => {
-              clearFilters && handleReset(close, dataIndex, setSelectedKeys);
-            }}
+            onClick={() => handleSearch(close, selectedKeys, dataIndex)}
             icon={<SearchOutlined />}
             size="small"
             style={{
@@ -119,7 +117,9 @@ const TemplateTable = props => {
             Search
           </Button>
           <Button
-            onClick={() => clearFilters && handleReset(clearFilters, selectedKeys, confirm, dataIndex)}
+          onClick={() => {
+              clearFilters && handleReset(close, dataIndex, setSelectedKeys);
+            }}
             size="small"
             style={{
               width: 90,

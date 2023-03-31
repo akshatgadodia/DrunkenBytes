@@ -14,19 +14,18 @@ const WalletRechargeTable = props => {
   const [filters, setFilters] = useState({});
   const searchInput = useRef(null);
   
-  useEffect(() => {
-    const getData = async() => {
-      let queryParams = []
-      for (const key in filters) {
-        queryParams.push(JSON.stringify({[key]: filters[key]}))
-      }
-      const transactionsData = await sendRequest(`/wallet-transaction/get-transactions?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
-      console.log(transactionsData);
-      setTableData(transactionsData.transactions)
-      setTotalTransactions(transactionsData.totalTransactions)
-    }
-    getData()
-  }, []);
+  // useEffect(() => {
+  //   const getData = async() => {
+  //     let queryParams = []
+  //     for (const key in filters) {
+  //       queryParams.push(JSON.stringify({[key]: filters[key]}))
+  //     }
+  //     const transactionsData = await sendRequest(`/wallet-transaction/get-transactions?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
+  //     setTableData(transactionsData.transactions)
+  //     setTotalTransactions(transactionsData.totalTransactions)
+  //   }
+  //   getData()
+  // }, []);
 
   useEffect(() => {
     const getData = async() => {
@@ -39,7 +38,7 @@ const WalletRechargeTable = props => {
       setTotalTransactions(transactionsData.totalTransactions)
     }
     getData()
-  },[currentPage, pageSize, filters])
+  },[currentPage, pageSize, filters, props.open])
 
   const handleSearch = async (close, selectedKeys, dataIndex) => {
     close();

@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import styles from "../stylesheets/documentationText.module.css";
 import Prism from "prismjs";
 import "../stylesheets/prism.css"
+import { BLOCK_EXPLORER_URL } from "@/app/constants/constants";
 
 const DocumentationText = props => {
 
@@ -278,7 +279,7 @@ fetch(url, options)
         </code>
       </pre>
       <div className={styles.info}>
-        This Transaction Hash can be viewed at https://goerli.etherscan.io/tx/TRANACTION_HASH. It is just a initial code of a 
+        This Transaction Hash can be viewed at {BLOCK_EXPLORER_URL}/TRANACTION_HASH. It is just a initial code of a 
         process and you can view the status at Etherscan and we will also send you an email when the generation of your NFT is 
         complete.
       </div>

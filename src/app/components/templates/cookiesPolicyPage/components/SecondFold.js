@@ -28,17 +28,15 @@ const SecondFold = (props) => {
         <p>If you opt out and do not consent, we have a special script in place which ensures that no cookies that collect your data are being used. You can also choose not to allow some types of cookies. However, blocking some types of cookies may impact your experience of the Sites and the Services we are able to offer.</p>
         <p>All browser technologies enable you to manage the cookies in the cookie folder of your web browser. This means that you can either delete cookies from your cookie folder once you have finished your visit to our Sites or you can set your preferences with regard to the use of cookies before you begin browsing our Sites. Please note, as stated above, that deleting or rejecting cookies may adversely affect your user experience of our Sites.</p>
         <p>You can find out further information at:</p>
-        <p>- <a className={styles.link} href="https://www.google.com/intl/en/chrome/privacy/">Google</a>
+        <p>- <a className={styles.link} href="https://www.google.com/intl/en/chrome/privacy/" target="_blank">Google</a>
         </p>
         <p>
-          <a className={styles.link} href="https://www.google.com/intl/en/chrome/privacy/">- </a>
-          <a className={styles.link} href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer?redirectlocale=en-US&amp;redirectslug=Cookies#w_cookie-settings">Firefox</a>
+          - <a className={styles.link} href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer?redirectlocale=en-US&amp;redirectslug=Cookies#w_cookie-settings" target="_blank">Firefox</a>
         </p>
-        <p>- <a className={styles.link} href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies">Windows</a>
+        <p>- <a className={styles.link} href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies" target="_blank">Windows</a>
         </p>
         <p>
-          <a className={styles.link} href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies">- </a>
-          <a className={styles.link} href="https://www.apple.com/safari/#security">Safari</a>
+          - <a className={styles.link} href="https://www.apple.com/safari/#security" target="_blank">Safari</a>
         </p>
         <p>‍</p>
         <h6>CHANGES TO THIS COOKIES POLICY</h6>

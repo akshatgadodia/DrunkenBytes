@@ -20,7 +20,6 @@ const CreateAPIModal = (props) => {
           name: values.apiKeyName,
         })
       );
-      console.log(result);
       if (!error) {
         setResult(true);
         setApiKey(result.apiKey)

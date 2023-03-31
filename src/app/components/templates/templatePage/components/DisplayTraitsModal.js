@@ -35,8 +35,7 @@ const DisplayTraitsModal = (props) => {
             footer={null}
         >
             <div className={`${styles.modalText} tab-pane`}>
-                <Table columns={nestedColumns} dataSource={props.modalData} pagination={false} className="nested-table" bordered/>;
-
+                <Table columns={nestedColumns} dataSource={props.modalData} pagination={false} className="nested-table" bordered key="key"/>;
             </div>
         </Modal>
     )

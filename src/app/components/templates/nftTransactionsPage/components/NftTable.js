@@ -1,12 +1,12 @@
 import React from "react";
-import { SearchOutlined, RedoOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Space, Table, Tag  } from "antd";
 import { useRef, useState, useEffect } from "react";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import Link from "next/link";
 
 const NftTable = props => {
-  const { sendRequest, isLoading } = useHttpClient();
+  const { sendRequest, isLoading, error } = useHttpClient();
   const [tableData, setTableData] = useState(props.data);
   const [totalTransactions, setTotalTransactions] = useState(props.totalTransactions)
   const [currentPage, setCurrentPage] = useState(1)
@@ -14,21 +14,22 @@ const NftTable = props => {
   const [filters, setFilters] = useState({});
   const searchInput = useRef(null);
   
-  useEffect(() => {
-    const getData = async() => {
-      let queryParams = []
-      for (const key in filters) {
-        queryParams.push(JSON.stringify({[key]: filters[key]}))
-      }
-      const transactionsData = await sendRequest(`/nft-transaction/get-transactions?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
-      setTableData(transactionsData.transactions);
-      setTotalTransactions(transactionsData.totalTransactions)
-    }
-    getData()
-  }, []);
+  // useEffect(() => {
+  //   const getData = async() => {
+  //     let queryParams = []
+  //     for (const key in filters) {
+  //       queryParams.push(JSON.stringify({[key]: filters[key]}))
+  //     }
+  //     const transactionsData = await sendRequest(`/nft-transaction/get-transactions?q=${queryParams}&page=${currentPage}&size=${pageSize}`);
+  //     setTableData(transactionsData.transactions);
+  //     setTotalTransactions(transactionsData.totalTransactions)
+  //   }
+  //   getData()
+  // }, []);
 
   useEffect(() => {
     const getData = async() => {
+      console.log(filters);
       let queryParams = []
       for (const key in filters) {
         queryParams.push(JSON.stringify({[key]: filters[key]}))
@@ -51,6 +52,7 @@ const NftTable = props => {
     setSelectedKeys([]);
     close();
     const { [dataIndex]: tmp, ...rest } = filters;
+    console.log(rest);
     setFilters(rest);
   };
   const onPageChangeHandler = async (current, size) => {
@@ -78,11 +80,9 @@ const NftTable = props => {
           }}
         />
         <Space>
-          <Button
+        <Button
             type="primary"
-            onClick={() => {
-              clearFilters && handleReset(close, dataIndex, setSelectedKeys);
-            }}
+            onClick={() => handleSearch(close, selectedKeys, dataIndex)}
             icon={<SearchOutlined />}
             size="small"
             style={{
@@ -93,7 +93,9 @@ const NftTable = props => {
             Search
           </Button>
           <Button
-            onClick={() => clearFilters && handleReset(clearFilters, selectedKeys, confirm, dataIndex)}
+          onClick={() => {
+              clearFilters && handleReset(close, dataIndex, setSelectedKeys);
+            }}
             size="small"
             style={{
               width: 90,

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../stylesheets/createNFTModal.module.css";
 import { Modal } from "antd";
+import { BLOCK_EXPLORER_URL } from "@/app/constants/constants";
 
 const SecondFold = props => {
   return (
@@ -21,7 +22,7 @@ const SecondFold = props => {
         </p>
         <div className={styles.modalInsideDiv}>
           <p>TRANSACTION ID</p>
-          <a href={`https://sepolia.etherscan.io/tx/${props.transactionID}`} target="_blank">
+          <a href={`${BLOCK_EXPLORER_URL}/${props.transactionID}`} target="_blank">
             {`${props.transactionID.slice(0, 6)}...${props.transactionID.slice(-4)}`}
           </a>
         </div>

@@ -34,7 +34,6 @@ const SecondFold = props => {
   };
 
   const onFinish = async values => {
-    console.log(values)
     try {
       const result = await sendRequest(
         "/product/",

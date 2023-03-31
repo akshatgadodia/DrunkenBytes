@@ -14,7 +14,7 @@ const FirstFold = () => {
         Privacy Policy
         </div>
             <p className={styles.subParagraph}>
-            Last Revised - March 4, 2023
+            Last Revised - March 31, 2023
             </p>
     </div>
   );
