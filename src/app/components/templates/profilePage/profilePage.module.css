@@ -2,14 +2,6 @@
     width: 100%;
   padding: 50px 10vw;
 }
-.skeletonDiv{
-    min-height: calc(100vh - 80px);
-    width: 100%;
-  padding: 50px 10vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .heading{
     color: var(--purple);
 }

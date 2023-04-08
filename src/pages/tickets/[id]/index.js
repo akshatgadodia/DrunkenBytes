@@ -1,23 +1,23 @@
 import React from "react";
 import DefaultLayout from "@/app/components/layouts/DefaultLayout";
-import WalletRechargeTransactionSinglePage from "@/app/components/templates/walletRechargeTransactionSinglePage/WalletRechargeTransactionSinglePage";
+import TicketsSinglePage from "@/app/components/templates/ticketsSinglePage/TicketsSinglePage";
 
-const WalletTransaction = (props) => {
+const Ticket = (props) => {
   return (
     <DefaultLayout>
-      <WalletRechargeTransactionSinglePage txId={props.txId} />
+      <TicketsSinglePage id={props.id} />
     </DefaultLayout>
   );
 };
 
-export default WalletTransaction;
+export default Ticket;
 
 export async function getStaticPaths() {
   return {
     paths: [
       {
         params: {
-          txId: "0xa046091545e6daaa542e80e86fe7798a2e349da98628706e42ccd56259eca762",
+          id: "6431729c8d9414fa62f08d7e",
         },
       },
     ],
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   return {
     props: {
-      txId: params.txId,
+      id: params.id,
     },
   };
 }

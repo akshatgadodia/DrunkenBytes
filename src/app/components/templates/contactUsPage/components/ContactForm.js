@@ -4,7 +4,7 @@ import { Button, Form, Input, Spin, Select, notification } from "antd";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import AppContext from "@/app/context/AppContext";
 
-const ContactForm = props => {
+const ContactForm = (props) => {
   const { loggedInDetails } = useContext(AppContext);
   const { Option } = Select;
   const { TextArea } = Input;
@@ -12,16 +12,18 @@ const ContactForm = props => {
   const [topic, setTopic] = useState(null);
   const [form] = Form.useForm();
 
-  const onFinish = async values => {
+  const onFinish = async (values) => {
     try {
       const result = await sendRequest(
-        (loggedInDetails?.isConnected) ? '/message/save-message' : '/message/save-contact-message',
+        loggedInDetails?.isConnected
+          ? "/ticket/create-ticket"
+          : "/ticket/create-contact-ticket",
         "POST",
         JSON.stringify({
           name: values.name,
           email: values.email,
           subject: values.subject,
-          type: topic ?? 'sales',
+          type: topic ?? "sales",
           message: values.message,
         })
       );
@@ -30,23 +32,20 @@ const ContactForm = props => {
           message: "Success",
           description: result.message,
           placement: "top",
-          className: "error-notification"
+          className: "error-notification",
         });
         form.resetFields();
       }
-    } catch (err) { }
+    } catch (err) {}
   };
 
   const onTopicChange = (value) => {
     switch (value) {
-      case 'sales':
-        setTopic('sales');
+      case "sales":
+        setTopic("sales");
         break;
-      case 'support':
-        setTopic('support');
-        break;
-      case 'other':
-        setTopic('other');
+      case "support":
+        setTopic("support");
         break;
       default:
         break;
@@ -64,53 +63,66 @@ const ContactForm = props => {
           autoComplete="on"
           layout="vertical"
         >
-          {!loggedInDetails?.isConnected &&
+          {!loggedInDetails?.isConnected && (
             <Form.Item
-              name="name" label="Name"
+              name="name"
+              label="Name"
               rules={[
                 {
                   required: true,
-                  message: "Please input Name"
-                }
+                  message: "Please input Name",
+                },
               ]}
               className={styles.formItem}
             >
-              <Input placeholder="Please Enter Your Name" className={styles.input} />
+              <Input
+                placeholder="Please Enter Your Name"
+                className={styles.input}
+              />
             </Form.Item>
-          }
-          {!loggedInDetails?.isConnected &&
+          )}
+          {!loggedInDetails?.isConnected && (
             <Form.Item
-              name="email" label="Email"
+              name="email"
+              label="Email"
               rules={[
                 {
                   type: "email",
-                  message: "Entered email is not a valid Email!"
+                  message: "Entered email is not a valid Email!",
                 },
                 {
                   required: true,
-                  message: "Please enter email!"
-                }
+                  message: "Please enter email!",
+                },
               ]}
               className={styles.formItem}
             >
-              <Input placeholder="Please Enter Your Email" className={styles.input} />
+              <Input
+                placeholder="Please Enter Your Email"
+                className={styles.input}
+              />
             </Form.Item>
-          }
+          )}
           <Form.Item
-            name="subject" label="Subject"
+            name="subject"
+            label="Subject"
             rules={[
               {
                 required: true,
-                message: "Please input Subject!"
-              }
+                message: "Please input Subject!",
+              },
             ]}
             className={styles.formItem}
           >
-            <Input placeholder="Please Enter Subject" className={styles.input} />
+            <Input
+              placeholder="Please Enter Subject"
+              className={styles.input}
+            />
           </Form.Item>
-          {loggedInDetails?.isConnected &&
+          {loggedInDetails?.isConnected && (
             <Form.Item
-              name="topic" label="Topic"
+              name="topic"
+              label="Concerned Department"
               rules={[
                 {
                   required: true,
@@ -119,32 +131,36 @@ const ContactForm = props => {
               className={styles.formItem}
             >
               <Select
-                placeholder="Please select a Topic"
+                placeholder="Please select Concerned Department"
                 onChange={onTopicChange}
                 allowClear
                 className={styles.input}
               >
                 <Option value="sales">Sales</Option>
                 <Option value="support">Support</Option>
-                <Option value="other">Other</Option>
               </Select>
             </Form.Item>
-          }
+          )}
           <Form.Item
-            name="message" label="Message"
+            name="message"
+            label="Message"
             rules={[
               {
                 required: true,
-                message: "Please input Message!"
-              }
+                message: "Please input Message!",
+              },
             ]}
             className={styles.formItem}
           >
-            <TextArea placeholder="Please Enter Message" rows={4} className={styles.input} />
+            <TextArea
+              placeholder="Please Enter Message"
+              rows={4}
+              className={styles.input}
+            />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" className={styles.button}>
-              SUBMIT
+              {loggedInDetails?.isConnected ? "CREATE TICKET" : "SUBMIT"}
             </Button>
           </Form.Item>
         </Form>

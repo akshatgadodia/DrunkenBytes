@@ -1,26 +1,27 @@
 import React from "react";
-import { SearchOutlined, FilterFilled } from "@ant-design/icons";
-import { Button, Input, Space, Table, Tag, DatePicker, Radio } from "antd";
+import { SearchOutlined, CloseOutlined, FilterFilled } from "@ant-design/icons";
+import { Button, Input, Space, Table, DatePicker, Radio, notification } from "antd";
 import { useRef, useState, useEffect } from "react";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import Link from "next/link";
 import moment from "moment";
 
-const WalletRechargeTable = (props) => {
+const TicketTable = (props) => {
   const { sendRequest, isLoading, error } = useHttpClient();
   const [tableData, setTableData] = useState([]);
-  const [totalTransactions, setTotalTransactions] = useState(0);
+  const [totalTickets, setTotalTickets] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [filters, setFilters] = useState();
   const searchInput = useRef(null);
   const [refreshKey, setRefreshKey] = useState(0);
   const [sort, setSort] = useState({});
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     setFilters();
-    setRefreshKey(refreshKey + 1);
     setSort({});
+    setRefreshKey(refreshKey + 1);
   }, [props.clearFilters]);
 
   useEffect(() => {
@@ -29,16 +30,32 @@ const WalletRechargeTable = (props) => {
       for (const key in filters) {
         filterParams.push(JSON.stringify({ [key]: filters[key] }));
       }
-      const transactionsData = await sendRequest(
-        `/wallet-transaction/get-transactions?filters=${filterParams}&sort=${JSON.stringify(
+      const ticketsData = await sendRequest(
+        `/ticket/get-tickets?filters=${filterParams}&sort=${JSON.stringify(
           sort
         )}&page=${currentPage}&size=${pageSize}`
       );
-      setTableData(transactionsData.transactions);
-      setTotalTransactions(transactionsData.totalTransactions);
+      console.log(ticketsData);
+      setTableData(ticketsData.tickets);
+      setTotalTickets(ticketsData.totalTickets);
     };
     getData();
-  }, [currentPage, pageSize, filters, sort, props.open]);
+  }, [currentPage, pageSize, filters, sort, refresh]);
+
+  const closeTicket = async (id) => {
+    try {
+      await sendRequest(`/ticket/${id}/close/`, "PUT");
+      if (!error) {
+        notification.success({
+          message: "Success",
+          description: "Ticket Closed Successfully",
+          placement: "top",
+          className: "error-notification",
+        });
+        setRefresh(!refresh);
+      }
+    } catch (err) {}
+  };
 
   const handleSearch = async (close, selectedKeys, dataIndex) => {
     close();
@@ -51,6 +68,7 @@ const WalletRechargeTable = (props) => {
     setSelectedKeys([]);
     close();
     const { [dataIndex]: tmp, ...rest } = filters;
+    console.log(rest);
     setFilters(rest);
   };
   const onPageChangeHandler = async (current, size) => {
@@ -279,15 +297,23 @@ const WalletRechargeTable = (props) => {
 
   const columns = [
     {
-      title: "Transaction Hash",
-      dataIndex: "txId",
-      key: "txId",
-      ...getColumnSearchProps("txId"),
-      render: (_, { txId }) => (
-        <Link href={`/transactions/wallet-recharge/${txId}`}>
-          {`${txId.slice(0, 4)}...${txId.slice(-6)}`}
-        </Link>
-      ),
+      title: "Ticket ID",
+      dataIndex: "_id",
+      key: "_id",
+      ...getColumnSearchProps("_id"),
+      render: (_, { _id }) => <Link href={`/tickets/${_id}`}>{_id}</Link>,
+    },
+    {
+      title: "Subject",
+      dataIndex: "subject",
+      key: "subject",
+      ...getColumnSearchProps("subject"),
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      ...getColumnSearchProps("status"),
     },
     {
       title: "Date Created",
@@ -312,35 +338,59 @@ const WalletRechargeTable = (props) => {
       ),
     },
     {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      ...getColumnRadioProps("status", [
-        { title: "Success", value: "Success" },
-        { title: "Pending", value: "Pending" },
-        { title: "Failed", value: "Failed" },
-      ]),
-      render: (_, { status }) => (
-        <Tag
-          color={
-            status === "Success"
-              ? "green"
-              : status === "Pending"
-              ? "geekblue"
-              : "volcano"
-          }
-          key={status}
-        >
-          {status.toUpperCase()}
-        </Tag>
+      title: "Last Updated",
+      dataIndex: "lastUpdated",
+      key: "lastUpdated",
+      ...getColumnDateProps("lastUpdated"),
+      sorter: true,
+      render: (_, { lastUpdated }) => (
+        <div>
+          {new Date(lastUpdated).getDate() +
+            "/" +
+            (new Date(lastUpdated).getMonth() + 1) +
+            "/" +
+            new Date(lastUpdated).getFullYear() +
+            " " +
+            new Date(lastUpdated).getHours() +
+            ":" +
+            new Date(lastUpdated).getMinutes() +
+            ":" +
+            new Date(lastUpdated).getSeconds()}
+        </div>
       ),
     },
     {
-      title: "Value",
-      dataIndex: "value",
-      key: "value",
-      sorter: true,
-      render: (_, { value }) => <div>{`${value} ETH`}</div>,
+      title: "Concerned Department",
+      dataIndex: "type",
+      key: "type",
+      ...getColumnRadioProps("type", [
+        { title: "Sales", value: "sales" },
+        { title: "Support", value: "support" },
+      ]),
+      render: (_, { type }) =>
+        type === "support" ? <div>Support</div> : <div>Sales</div>,
+    },
+    {
+      title: "Close Ticket",
+      dataIndex: "_id",
+      key: "_id",
+      ...getColumnRadioProps("isSolved", [
+        { title: "Closed", value: true },
+        { title: "Open", value: false },
+      ]),
+      render: (_, { _id, isSolved }) =>
+        isSolved ? (
+          <div>Already Closed</div>
+        ) : (
+          <Button
+            type="text"
+            onClick={() => {
+              closeTicket(_id);
+            }}
+          >
+            <CloseOutlined />
+          </Button>
+        ),
     },
   ];
 
@@ -352,7 +402,7 @@ const WalletRechargeTable = (props) => {
       dataSource={tableData}
       pagination={{
         size: "default",
-        total: totalTransactions,
+        total: totalTickets,
         pageSize: pageSize,
         showSizeChanger: true,
         responsive: true,
@@ -371,4 +421,4 @@ const WalletRechargeTable = (props) => {
   );
 };
 
-export default WalletRechargeTable;
+export default TicketTable;

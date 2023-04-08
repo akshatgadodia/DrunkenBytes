@@ -16,7 +16,7 @@ const SecondFold = props => {
   useEffect(()=>{
     const fetchData = async () => {
       const id = props.templateId;
-      const result = await sendRequest(`/product/${id}`);
+      const result = await sendRequest(`/template/get-template/${id}`);
       form.setFieldsValue({ productName: result.template.name, nftType: result.template.nftType });
       setTraits(result.template.traits);
       setLoading(false);
@@ -50,7 +50,7 @@ const SecondFold = props => {
   const onFinish = async values => {
     try {
       const result = await sendRequest(
-        `/product/${props.templateId}`,
+        `/template/${props.templateId}`,
         "PUT",
         JSON.stringify({
           name: values.productName,

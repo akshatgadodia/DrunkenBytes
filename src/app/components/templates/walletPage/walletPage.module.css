@@ -33,7 +33,13 @@
     margin: 0 !important;
     padding: 0 !important;
 }
-
+.clearFilterButton{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
 @media only screen and (max-width: 768px) {
     .profile {
       padding: 40px 5vw;

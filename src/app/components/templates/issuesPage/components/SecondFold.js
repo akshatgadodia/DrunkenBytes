@@ -1,11 +1,23 @@
-import React from "react";
 import styles from "../stylesheets/secondFold.module.css";
 import IssuesTable from "./IssuesTable";
+import React, { useState } from "react";
+import CustomButton from "@/app/components/elements/CustomButton";
 
 const SecondFold = props => {
+  const [clearFilters, setClearFilter] = useState(false);
+
   return (
     <div className={`${styles.secondFold} tab-pane`}>
-      <IssuesTable />
+    <div className={styles.clearFilterButton}>
+        <CustomButton
+          type="Gradient"
+          text="Clear All Filter"
+          onClickHandler={() => {
+            setClearFilter(!clearFilters);
+          }}
+        />
+      </div>
+      <IssuesTable clearFilters={clearFilters}/>
     </div>
   );
 };

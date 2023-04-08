@@ -3,13 +3,22 @@ import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import AppContext from "@/app/context/AppContext";
 import Link from "next/link";
-import { UserOutlined, FileTextOutlined , LogoutOutlined, WalletOutlined, KeyOutlined, ExclamationCircleOutlined, LineChartOutlined  } from "@ant-design/icons";
+import {
+  UserOutlined,
+  FileTextOutlined,
+  BulbOutlined,
+  LogoutOutlined,
+  WalletOutlined,
+  KeyOutlined,
+  ExclamationCircleOutlined,
+  LineChartOutlined,
+} from "@ant-design/icons";
 import { Dropdown, Avatar, notification } from "antd";
 import SideDrawer from "./SideDrawer";
 import { useWeb3Modal } from "@web3modal/react";
 import { useAccount, useDisconnect } from "wagmi";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
-import { useSignMessage } from 'wagmi'
+import { useSignMessage } from "wagmi";
 import Cookies from "js-cookie";
 import AcceptAndSignModal from "./AcceptAndSignModal";
 import { useRouter } from "next/router";
@@ -30,22 +39,23 @@ const Navbar = () => {
   const [acceptModalOpen, setAcceptModalOpen] = useState(false);
   const [modalLoading, setModalLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  
+
   const sendInitialLoginRequest = async (accountAddress) => {
     try {
       const result = await sendRequest(
         "/user/initial-login",
         "POST",
         JSON.stringify({
-          accountAddress
+          accountAddress,
         })
       );
-      if(result.message === "User Not Verified"){
+      if (result.message === "User Not Verified") {
         notification.warning({
           message: "Not Verified",
-          description: "Your account has not been verified yet and is still is process. Please Wait and if you have any issue contact to our customer support",
+          description:
+            "Your account has not been verified yet and is still is process. Please Wait and if you have any issue contact to our customer support",
           placement: "top",
-          className: "error-notification"
+          className: "error-notification",
         });
         disconnect();
         return null;
@@ -61,8 +71,8 @@ const Navbar = () => {
       if (error) {
         clearError();
       }
-    } catch (err) { }
-  }
+    } catch (err) {}
+  };
 
   useAccount({
     onConnect({ address }) {
@@ -71,26 +81,22 @@ const Navbar = () => {
       }
     },
     onDisconnect() {
-      if (authenticatedRoutes.includes(pathname)){
-        router.push('/');
+      if (authenticatedRoutes.includes(pathname)) {
+        router.push("/");
       }
       const sendLogoutRequest = async () => {
         try {
-          Cookies.remove('db_login');
-          Cookies.remove('db_login_address');
+          Cookies.remove("db_login");
+          Cookies.remove("db_login_address");
           dispatch({
             type: "UserLogout",
           });
-          await sendRequest(
-            "/user/logout",
-            "POST"
-          );
-        } catch (err) { }
-      }
+          await sendRequest("/user/logout", "POST");
+        } catch (err) {}
+      };
       sendLogoutRequest();
     },
-  })
-
+  });
 
   const { signMessage } = useSignMessage({
     onSuccess(data, variables) {
@@ -105,8 +111,8 @@ const Navbar = () => {
           })
         );
         if (error) {
-          Cookies.remove('db_login');
-          Cookies.remove('db_login_address');
+          Cookies.remove("db_login");
+          Cookies.remove("db_login_address");
           dispatch({
             type: "UserLogout",
           });
@@ -114,14 +120,14 @@ const Navbar = () => {
         }
         setAcceptModalOpen(false);
         setModalLoading(false);
-        Cookies.set('db_login', 'true');
-        Cookies.set('db_login_address', address);
+        Cookies.set("db_login", "true");
+        Cookies.set("db_login_address", address);
         dispatch({
           type: "UserLogin",
-          payload: { address: address }
+          payload: { address: address },
         });
-        if (pathname === '/hold') router.back();
-      }
+        if (pathname === "/hold") router.back();
+      };
       sendLoginRequest();
     },
     onError(error) {
@@ -129,28 +135,28 @@ const Navbar = () => {
         message: "Error",
         description: error.message,
         placement: "top",
-        className: "error-notification"
+        className: "error-notification",
       });
-      setAcceptModalOpen(false)
-      Cookies.remove('db_login');
-      Cookies.remove('db_login_address');
+      setAcceptModalOpen(false);
+      Cookies.remove("db_login");
+      Cookies.remove("db_login_address");
       setModalLoading(false);
       disconnect();
-    }
-  })
+    },
+  });
 
   const onAcceptHandler = () => {
     setModalLoading(true);
-    signMessage({ message })
-  }
+    signMessage({ message });
+  };
 
   const onModalClose = () => {
     setModalLoading(false);
-    setAcceptModalOpen(false)
-    Cookies.remove('db_login');
-    Cookies.remove('db_login_address');
+    setAcceptModalOpen(false);
+    Cookies.remove("db_login");
+    Cookies.remove("db_login_address");
     disconnect();
-  }
+  };
 
   const handleScroll = () => {
     if (window.pageYOffset >= 30) {
@@ -171,21 +177,23 @@ const Navbar = () => {
       label: (
         <Link href="/profile">
           <div className={styles.avatarItem}>
-            <UserOutlined className={styles.avatarItemIcon} />Profile
+            <UserOutlined className={styles.avatarItemIcon} />
+            Profile
           </div>
         </Link>
-      )
+      ),
     },
     {
       key: "2",
       label: (
         <Link href="/wallet">
           <div className={styles.avatarItem}>
-            <WalletOutlined className={styles.avatarItemIcon} />Wallet
+            <WalletOutlined className={styles.avatarItemIcon} />
+            Wallet
           </div>
         </Link>
-      )
-    }, 
+      ),
+    },
     {
       key: "3",
       label: (
@@ -195,7 +203,7 @@ const Navbar = () => {
             Manage API Keys
           </div>
         </Link>
-      )
+      ),
     },
     {
       key: "4",
@@ -206,7 +214,7 @@ const Navbar = () => {
             View Transactions
           </div>
         </Link>
-      )
+      ),
     },
     {
       key: "5",
@@ -217,38 +225,60 @@ const Navbar = () => {
             View Issues
           </div>
         </Link>
-      )
+      ),
     },
     {
       key: "6",
       label: (
         <Link href="/template">
           <div className={styles.avatarItem}>
-            <FileTextOutlined  className={styles.avatarItemIcon} />
+            <FileTextOutlined className={styles.avatarItemIcon} />
             Manage Templates
           </div>
         </Link>
-      )
+      ),
     },
-
     {
       key: "7",
       label: (
-        <button className={styles.avatarItemButton} onClick={() => disconnect()}>
+        <Link href="/tickets">
+          <div className={styles.avatarItem}>
+            <BulbOutlined className={styles.avatarItemIcon} />
+            View Tickets
+          </div>
+        </Link>
+      ),
+    },
+    {
+      key: "8",
+      label: (
+        <button
+          className={styles.avatarItemButton}
+          onClick={() => disconnect()}
+        >
           <div className={styles.avatarItem}>
             <LogoutOutlined className={styles.avatarItemIcon} />
             Logout
           </div>
         </button>
-      )
-    }
+      ),
+    },
   ];
   return (
     <header
       className={`${styles.navbar} ${isNavBarFixed ? styles.fixedNavbar : ""}`}
-    > 
-      <RegisterModal openModal={openModal} setOpenModal={setOpenModal} address={address}/>
-      <AcceptAndSignModal acceptModalOpen={acceptModalOpen} modalLoading={modalLoading} onModalClose={onModalClose} onAcceptHandler={onAcceptHandler} />
+    >
+      <RegisterModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        address={address}
+      />
+      <AcceptAndSignModal
+        acceptModalOpen={acceptModalOpen}
+        modalLoading={modalLoading}
+        onModalClose={onModalClose}
+        onAcceptHandler={onAcceptHandler}
+      />
       <div className={styles.logoContainer}>
         <Link href="/">
           <img
@@ -260,14 +290,18 @@ const Navbar = () => {
       </div>
       <div className={styles.buttonsContainer}>
         <div className={styles.linksContainer}>
-          {isConnected &&
-            <div href="/create" className={styles.link} style={{cursor: 'pointer'}}
-            onClick={()=>{
+          {isConnected && (
+            <div
+              href="/create"
+              className={styles.link}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
                 router.push("/create");
-            }}
+              }}
             >
               Create
-            </div>}
+            </div>
+          )}
           <Link href="/pricing" className={styles.link}>
             Pricing
           </Link>
@@ -275,10 +309,10 @@ const Navbar = () => {
             Documentation
           </Link>
         </div>
-        {isConnected
-          ? <Dropdown
+        {isConnected ? (
+          <Dropdown
             menu={{
-              items
+              items,
             }}
             placement="bottom"
           >
@@ -289,14 +323,16 @@ const Navbar = () => {
               className={styles.avatar}
             />
           </Dropdown>
-          : <button className={styles.button} onClick={async () => await open()}>
+        ) : (
+          <button className={styles.button} onClick={async () => await open()}>
             <Avatar
               type="button"
               size="large"
               icon={<UserOutlined />}
               className={styles.avatar}
             />
-          </button>}
+          </button>
+        )}
         <SideDrawer />
       </div>
     </header>

@@ -36,7 +36,7 @@ const SecondFold = props => {
   const onFinish = async values => {
     try {
       const result = await sendRequest(
-        "/product/",
+        "/template/",
         "POST",
         JSON.stringify({
           name: values.productName,

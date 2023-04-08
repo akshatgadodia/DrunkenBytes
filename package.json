@@ -17,6 +17,7 @@
     "eslint-config-next": "13.1.6",
     "ethers": "^5.7.2",
     "js-cookie": "^3.0.1",
+    "moment": "^2.29.4",
     "next": "13.1.6",
     "nprogress": "^0.2.0",
     "prismjs": "^1.29.0",

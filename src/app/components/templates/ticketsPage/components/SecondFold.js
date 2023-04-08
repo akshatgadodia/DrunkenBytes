@@ -1,5 +1,5 @@
 import styles from "../stylesheets/secondFold.module.css";
-import NftTable from "./NftTable";
+import TicketTable from "./TicketTable";
 import React, { useState } from "react";
 import CustomButton from "@/app/components/elements/CustomButton";
 
@@ -17,7 +17,7 @@ const SecondFold = (props) => {
           }}
         />
       </div>
-      <NftTable clearFilters={clearFilters} />
+      <TicketTable clearFilters={clearFilters} />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { useHttpClient } from "@/app/hooks/useHttpClient";
 import { Image, Skeleton, Spin } from 'antd';
 import Head from 'next/head'
 import InformationDiv from './components/InformationDiv';
+import SkeletonLoader from "../../modules/SkeletonLoader";
 
 const ProfilePage = () => {
   const { error, sendRequest, clearError, isLoading } = useHttpClient();
@@ -32,7 +33,7 @@ const ProfilePage = () => {
       </Head>
       {
         (profileData?.user?.logo === undefined) ?
-          <div className={styles.skeletonDiv}><Spin size="large" tip="Fetching your details..." /></div> :
+          <SkeletonLoader/> :
           <div className={styles.profile}>
             <h1 className={styles.heading}>Drunken Bytes Profile</h1>
             <p className={styles.paragraph}>Here you can find your profile information</p>
