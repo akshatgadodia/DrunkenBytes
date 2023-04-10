@@ -1,15 +1,15 @@
 import React, { useReducer, useLayoutEffect, useEffect } from "react";
 import Head from "next/head";
-import 'antd/dist/reset.css';
-import "../app/styles/globals.css"
-import "../app/styles/antdOverrides.css"
+import "antd/dist/reset.css";
+import "../app/styles/globals.css";
+import "../app/styles/antdOverrides.css";
 import { useRouter } from "next/router";
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 import AppContext from "@/app/context/AppContext";
 import { reducer, initialLoggedInDetails } from "@/app/context/Reducer";
 import Cookies from "js-cookie";
-import Script from 'next/script'
+import Script from "next/script";
 
 export default function MyApp({ Component, pageProps }) {
   const [loggedInDetails, dispatch] = useReducer(
@@ -20,10 +20,10 @@ export default function MyApp({ Component, pageProps }) {
     const setLoggedInDetails = async () => {
       const isConnected = Cookies.get("db_login");
       const address = Cookies.get("db_login_address");
-      if (isConnected === 'true') {
+      if (isConnected === "true") {
         dispatch({
           type: "UserLogin",
-          payload: { address: address ?? null }
+          payload: { address: address ?? null },
         });
       }
     };
@@ -31,8 +31,8 @@ export default function MyApp({ Component, pageProps }) {
   }, []);
   const router = useRouter();
   useEffect(() => {
-    const handleStart = url => {
-      NProgress.start()
+    const handleStart = (url) => {
+      NProgress.start();
     };
     const handleStop = () => {
       NProgress.done();
@@ -46,9 +46,7 @@ export default function MyApp({ Component, pageProps }) {
       router.events.off("routeChangeComplete", handleStop);
       router.events.off("routeChangeError", handleStop);
     };
-  },
-    [router]
-  );
+  }, [router]);
   return (
     <AppContext.Provider value={{ loggedInDetails, dispatch }}>
       <Head>
@@ -65,10 +63,17 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
         <link rel="icon" type="image/x-icon" href="favicon.ico" /> */}
+        <meta
+          name="google-site-verification"
+          content="PoMi28FhjxO_aIrwLNHaZNakmU1vRPrrDzP9GE_OB14"
+        />
       </Head>
-      <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-VYMRDDLQCS" />
       <Script
-        id='google-analytics'
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-VYMRDDLQCS"
+      />
+      <Script
+        id="google-analytics"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
