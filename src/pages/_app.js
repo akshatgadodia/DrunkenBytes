@@ -67,6 +67,7 @@ export default function MyApp({ Component, pageProps }) {
           name="google-site-verification"
           content="PoMi28FhjxO_aIrwLNHaZNakmU1vRPrrDzP9GE_OB14"
         />
+        <meta name="robots" content="index,follow" />
       </Head>
       <Script
         strategy="afterInteractive"

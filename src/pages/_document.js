@@ -56,6 +56,7 @@ export default function Document() {
           name="google-site-verification"
           content="PoMi28FhjxO_aIrwLNHaZNakmU1vRPrrDzP9GE_OB14"
         />
+        <meta name="robots" content="index,follow" />
         {/* <meta name="referrer" content="strict-origin-when-cross-origin"/> */}
       </Head>
       <body>
