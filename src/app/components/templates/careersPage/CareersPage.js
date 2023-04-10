@@ -15,11 +15,12 @@ const CareersPage = (props) => {
         <meta name="keywords" content="careers, job openings, employment, work, job opportunities, technology, collaboration, team, Drunken Bytes" />
         <meta property="og:title" content="Careers | Drunken Bytes" />
         <meta property="og:description" content="Discover exciting career opportunities with Drunken Bytes. Join our team and work with the latest technologies in a dynamic and collaborative environment." />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="https://drunkenbytes.vercel.app/images/page-shots/careers.png" />
         <meta name="twitter:title" content="Careers | Drunken Bytes" />
         <meta name="twitter:description" content="Discover exciting career opportunities with Drunken Bytes. Join our team and work with the latest technologies in a dynamic and collaborative environment." />
-        <meta name="twitter:image" content=""/>
+        <meta name="twitter:image" content="https://drunkenbytes.vercel.app/images/page-shots/careers.png"/>
         <link rel="canonical" href="https://drunkenbytes.vercel.app/careers" />
+        <meta property="og:url" content="https://drunkenbytes.vercel.app/careers"/>
       </Head>
       <FirstFold/>
       <SecondFold/>

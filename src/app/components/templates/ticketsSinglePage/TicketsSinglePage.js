@@ -50,28 +50,29 @@ const ProfilePage = (props) => {
   return (
     <>
       <Head>
-        <title>Profile | Drunken Bytes</title>
+        <title>Ticket | Drunken Bytes</title>
         <meta
           name="description"
-          content="Get access to your personalized profile page on Drunken Bytes. View your account information, update your profile, and manage your settings."
+          content="View information about your ticket, chat history with support, and reply to support inquiries. Get personalized assistance for your NFT-related issues at Drunken Bytes."
         />
         <meta
           name="keywords"
-          content="profile page, account information, user settings, personalization, manage account. Drunken Bytes"
+          content="Drunken Bytes tickets, NFT support, ticket information, chat history, support inquiries, personalized assistance, NFT issues, customer support, NFT queries, ticket management, support replies"
         />
-        <meta property="og:title" content="Profile | Drunken Bytes" />
+        <meta property="og:title" content="Ticket | Drunken Bytes" />
         <meta
           property="og:description"
-          content="Get access to your personalized profile page on Drunken Bytes. View your account information, update your profile, and manage your settings."
+          content="View information about your ticket, chat history with support, and reply to support inquiries. Get personalized assistance for your NFT-related issues at Drunken Bytes."
         />
-        <meta property="og:image" content="" />
-        <meta name="twitter:title" content="Profile | Drunken Bytes" />
+        <meta property="og:image" content="https://drunkenbytes.vercel.app/images/page-shots/ticket.png" />
+        <meta name="twitter:title" content="Ticket | Drunken Bytes" />
         <meta
           name="twitter:description"
-          content="Get access to your personalized profile page on Drunken Bytes. View your account information, update your profile, and manage your settings."
+          content="View information about your ticket, chat history with support, and reply to support inquiries. Get personalized assistance for your NFT-related issues at Drunken Bytes."
         />
-        <meta name="twitter:image" content="" />
-        <link rel="canonical" href="https://drunkenbytes.vercel.app/profile" />
+        <meta name="twitter:image" content="https://drunkenbytes.vercel.app/images/page-shots/ticket.png" />
+        <link rel="canonical" href="https://drunkenbytes.vercel.app/tickets" />
+        <link rel="og:url" href="https://drunkenbytes.vercel.app/tickets" />
       </Head>
       {ticketData?.status === undefined ? (
         <SkeletonLoader />

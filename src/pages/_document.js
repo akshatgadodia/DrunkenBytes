@@ -15,6 +15,10 @@ export default function Document() {
                 <link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png" />
                 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
                 <link rel="icon" type="image/x-icon" href="favicon.ico" />
+                <meta property="og:locale" content="en_GB" />
+                <meta name="language" content="en"/>
+                <meta name="twitter:card" content="summary"/>
+                {/* <meta name="referrer" content="strict-origin-when-cross-origin"/> */}
             </Head>
             <body>
                 <Main />

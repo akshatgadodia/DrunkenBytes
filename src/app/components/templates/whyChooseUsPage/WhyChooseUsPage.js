@@ -12,11 +12,12 @@ const WhyChooseUsPage = () => {
         <meta name="keywords" content="Drunken Bytes, NFTs, Non-fungible tokens, blockchain, marketplace, create NFTs, sell NFTs, manage NFTs, digital assets." />
         <meta property="og:title" content="Why Choose Drunken Bytes" />
         <meta property="og:description" content="Drunken Bytes, NFTs, Non-fungible tokens, blockchain, marketplace, create NFTs, sell NFTs, manage NFTs, digital assets." />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="https://drunkenbytes.vercel.app/images/page-shots/why-choose-us.png" />
         <meta name="twitter:title" content="Why Choose Drunken Bytes" />
         <meta name="twitter:description" content="Drunken Bytes, NFTs, Non-fungible tokens, blockchain, marketplace, create NFTs, sell NFTs, manage NFTs, digital assets." />
-        <meta name="twitter:image" content=""/>
+        <meta name="twitter:image" content="https://drunkenbytes.vercel.app/images/page-shots/why-choose-us.png"/>
         <link rel="canonical" href="https://drunkenbytes.vercel.app/why-choose-us" />
+        <link rel="og:url" href="https://drunkenbytes.vercel.app/why-choose-us" />
       </Head>
       <FirstFold/>
       <SecondFold/>

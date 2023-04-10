@@ -1,6 +1,6 @@
 import React from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import { Button, Input, Space, Table, notification } from "antd";
+import { Button, Input, Space, Table, notification, Modal } from "antd";
 import { useRef, useState, useEffect } from "react";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -40,19 +40,29 @@ const APIKeyTable = (props) => {
     getData();
   }, [currentPage, pageSize, filters, props.modalOpen, refresh, sort]);
 
-  const deleteApiKey = async (apiKey) => {
-    try {
-      await sendRequest(`/api-key/delete-api-key/${apiKey}`, "DELETE");
-      if (!error) {
-        notification.success({
-          message: "Success",
-          description: "API Key Deleted Successfully",
-          placement: "top",
-          className: "error-notification",
-        });
-        setRefresh(!refresh);
-      }
-    } catch (err) {}
+  const deleteApiKey = async (apiKey, name) => {
+    Modal.confirm({
+      title: "Confirm",
+      content: `Are you sure that you want to delete API key with name ${name}?`,
+      okText: "Yes",
+      cancelText: "No",
+      className: "confirm-modal",
+      async onOk() {
+        try {
+          await sendRequest(`/api-key/delete-api-key/${apiKey}`, "DELETE");
+          if (!error) {
+            notification.success({
+              message: "Success",
+              description: "API Key Deleted Successfully",
+              placement: "top",
+              className: "error-notification",
+            });
+            setRefresh(!refresh);
+          }
+        } catch (err) {}
+      },
+      onCancel() {},
+    });
   };
 
   const handleSearch = async (close, selectedKeys, dataIndex) => {
@@ -168,7 +178,7 @@ const APIKeyTable = (props) => {
       title: "Delete",
       dataIndex: "apiKey",
       key: "apiKey",
-      render: (_, { apiKey }) => (
+      render: (_, { apiKey, name }) => (
         <Button type="text" onClick={() => deleteApiKey(apiKey)}>
           <DeleteOutlined />
         </Button>

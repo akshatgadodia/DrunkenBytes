@@ -8,15 +8,16 @@ const TicketsPage = () => {
     <>
       <Head>
         <title>Tickets | Drunken Bytes</title>
-        <meta name="description" content="View all your NFT transactions in one place on the Drunken Bytes transaction page. Keep track of your NFT sales, purchases, and transfers effortlessly."></meta>
-        <meta name="keywords" content="Drunken Bytes, NFT transactions, transaction history, NFT sales, NFT purchases, NFT transfers."/>
+        <meta name="description" content="View and track your raised tickets and their status on the Drunken Bytes Tickets page. Stay updated on your NFT, wallet, and other inquiries with our efficient ticket management system."></meta>
+        <meta name="keywords" content="Drunken Bytes Tickets, NFT tickets, ticket management, ticket tracking, raised tickets, ticket status, NFT support, wallet inquiries, customer support, NFT issues, NFT queries"/>
         <meta property="og:title" content="NFT Transactions | Drunken Bytes" />
-        <meta property="og:description" content="View all your NFT transactions in one place on the Drunken Bytes transaction page. Keep track of your NFT sales, purchases, and transfers effortlessly." />
-        <meta property="og:image" content="" />
+        <meta property="og:description" content="View and track your raised tickets and their status on the Drunken Bytes Tickets page. Stay updated on your NFT, wallet, and other inquiries with our efficient ticket management system." />
+        <meta property="og:image" content="https://drunkenbytes.vercel.app/images/page-shots/tickets.png" />
         <meta name="twitter:title" content="NFT Transactions | Drunken Bytes" />
-        <meta name="twitter:description" content="View all your NFT transactions in one place on the Drunken Bytes transaction page. Keep track of your NFT sales, purchases, and transfers effortlessly." />
-        <meta name="twitter:image" content=""/>
-        <link rel="canonical" href="https://drunkenbytes.vercel.app/transactions/nft" />
+        <meta name="twitter:description" content="View and track your raised tickets and their status on the Drunken Bytes Tickets page. Stay updated on your NFT, wallet, and other inquiries with our efficient ticket management system." />
+        <meta name="twitter:image" content="https://drunkenbytes.vercel.app/images/page-shots/tickets.png"/>
+        <link rel="canonical" href="https://drunkenbytes.vercel.app/tickets" />
+        <link rel="og:url" href="https://drunkenbytes.vercel.app/tickets" />
       </Head>
       <FirstFold />
       <SecondFold />

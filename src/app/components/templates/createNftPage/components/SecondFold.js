@@ -35,7 +35,7 @@ const SecondFold = () => {
   useEffect(() => {
     const getTemplates = async () => {
       try {
-        const result = await sendRequest("/product/get-all-templates");
+        const result = await sendRequest("/template?filters={}&sort={}&page=1&size=1000");
         if (!error) {
           setUserTemplates(result.templates);
           result.templates.map((data, idx) => {

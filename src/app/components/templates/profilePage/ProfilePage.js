@@ -25,11 +25,12 @@ const ProfilePage = () => {
         <meta name="keywords" content="profile page, account information, user settings, personalization, manage account. Drunken Bytes" />
         <meta property="og:title" content="Profile | Drunken Bytes" />
         <meta property="og:description" content="Get access to your personalized profile page on Drunken Bytes. View your account information, update your profile, and manage your settings." />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="https://drunkenbytes.vercel.app/images/page-shots/profile.png" />
         <meta name="twitter:title" content="Profile | Drunken Bytes" />
         <meta name="twitter:description" content="Get access to your personalized profile page on Drunken Bytes. View your account information, update your profile, and manage your settings." />
-        <meta name="twitter:image" content=""/>
+        <meta name="twitter:image" content="https://drunkenbytes.vercel.app/images/page-shots/profile.png"/>
         <link rel="canonical" href="https://drunkenbytes.vercel.app/profile" />
+        <link rel="og:url" href="https://drunkenbytes.vercel.app/profile" />
       </Head>
       {
         (profileData?.user?.logo === undefined) ?

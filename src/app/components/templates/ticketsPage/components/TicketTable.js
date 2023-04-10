@@ -1,6 +1,6 @@
 import React from "react";
 import { SearchOutlined, CloseOutlined, FilterFilled } from "@ant-design/icons";
-import { Button, Input, Space, Table, DatePicker, Radio, notification } from "antd";
+import { Button, Input, Space, Table, DatePicker, Radio, notification, Modal } from "antd";
 import { useRef, useState, useEffect } from "react";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import Link from "next/link";
@@ -43,18 +43,29 @@ const TicketTable = (props) => {
   }, [currentPage, pageSize, filters, sort, refresh]);
 
   const closeTicket = async (id) => {
-    try {
-      await sendRequest(`/ticket/${id}/close/`, "PUT");
-      if (!error) {
-        notification.success({
-          message: "Success",
-          description: "Ticket Closed Successfully",
-          placement: "top",
-          className: "error-notification",
-        });
-        setRefresh(!refresh);
-      }
-    } catch (err) {}
+    Modal.confirm({
+      title: "Confirm",
+      content: `Are you sure that you want to close this ticket?`,
+      okText: "Yes",
+      cancelText: "No",
+      className: "confirm-modal",
+      async onOk() {
+        try {
+          await sendRequest(`/ticket/${id}/close/`, "PUT");
+          if (!error) {
+            notification.success({
+              message: "Success",
+              description: "Ticket Closed Successfully",
+              placement: "top",
+              className: "error-notification",
+            });
+            setRefresh(!refresh);
+          }
+        } catch (err) {}
+      },
+      onCancel() {},
+    });
+    
   };
 
   const handleSearch = async (close, selectedKeys, dataIndex) => {

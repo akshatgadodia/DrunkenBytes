@@ -21,10 +21,11 @@ const { provider } = configureChains(chains, [
   walletConnectProvider({ projectId })
 ]);
 
-
 const DefaultLayout = ({ children }) => {
   const [isReady, setIsReady] = useState(false);  
-  useEffect(() => setIsReady(true), []);
+  useEffect(() => {
+      setIsReady(true)
+  }, []);
 
   const wagmiClient = createClient({
     autoConnect: isReady,

@@ -12,11 +12,12 @@ const TemplatesPage = () => {
         <meta name="keywords" content="Drunken Bytes, NFT templates, manage templates, create templates, edit templates, product templates, credential templates."/>
         <meta property="og:title" content="Templates | Drunken Bytes" />
         <meta property="og:description" content="Explore and manage your NFT templates on the Drunken Bytes platform. Easily create and edit templates for your products and credentials." />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="https://drunkenbytes.vercel.app/images/page-shots/template.png" />
         <meta name="twitter:title" content="Templates | Drunken Bytes" />
         <meta name="twitter:description" content="Explore and manage your NFT templates on the Drunken Bytes platform. Easily create and edit templates for your products and credentials." />
-        <meta name="twitter:image" content=""/>
+        <meta name="twitter:image" content="https://drunkenbytes.vercel.app/images/page-shots/template.png"/>
         <link rel="canonical" href="https://drunkenbytes.vercel.app/template" />
+        <link rel="og:url" href="https://drunkenbytes.vercel.app/template" />
       </Head>
       <FirstFold />
       <SecondFold />

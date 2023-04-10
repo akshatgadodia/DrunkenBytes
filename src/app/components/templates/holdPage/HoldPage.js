@@ -19,11 +19,12 @@ const HoldPage = () => {
         <meta name="keywords" content="Drunken Bytes, hold page, authentication, login, account, website security" />
         <meta property="og:title" content="Hold Up | Drunken Bytes" />
         <meta property="og:description" content="Drunken Bytes Hold Page: Please Log in to Access Authenticated Pages. Our platform provides advanced security features to protect your information. Create an account or log in to continue browsing our website." />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="https://drunkenbytes.vercel.app/images/page-shots/hold.png" />
         <meta name="twitter:title" content="Hold Up | Drunken Bytes" />
         <meta name="twitter:description" content="Drunken Bytes Hold Page: Please Log in to Access Authenticated Pages. Our platform provides advanced security features to protect your information. Create an account or log in to continue browsing our website." />
-        <meta name="twitter:image" content=""/>
+        <meta name="twitter:image" content="https://drunkenbytes.vercel.app/images/page-shots/hold.png"/>
         <link rel="canonical" href="https://drunkenbytes.vercel.app/hold" />
+        <meta property="og:url" content="https://drunkenbytes.vercel.app/hold"/>
       </Head>
       <h1 className={styles.heading}>Hold Up!</h1>
       <div className={styles.imageContainer}>

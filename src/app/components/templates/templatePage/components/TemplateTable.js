@@ -5,7 +5,7 @@ import {
   DeleteOutlined,
   EditOutlined,
 } from "@ant-design/icons";
-import { Button, Input, Space, Table, notification, Radio } from "antd";
+import { Button, Input, Space, Table, notification, Radio, Modal } from "antd";
 import { useRef, useState, useEffect } from "react";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import DisplayTraitsModal from "./DisplayTraitsModal";
@@ -50,21 +50,31 @@ const TemplateTable = (props) => {
     getData();
   }, [currentPage, pageSize, filters, refresh, sort]);
 
-  const deleteTemplate = async (id) => {
-    try {
-      await sendRequest(`/template/${id}`, "DELETE");
-      if (!error) {
-        notification.success({
-          message: "Success",
-          description: "Template Deleted Successfully",
-          placement: "top",
-          className: "error-notification",
-        });
-        setRefresh(!refresh);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+  const deleteTemplate = async (id, name) => {
+    Modal.confirm({
+      title: "Confirm",
+      content: `Are you sure you want to delete the ${name} template?`,
+      okText: "Yes",
+      cancelText: "No",
+      className: "confirm-modal",
+      async onOk() {
+        try {
+          await sendRequest(`/template/${id}`, "DELETE");
+          if (!error) {
+            notification.success({
+              message: "Success",
+              description: "Template Deleted Successfully",
+              placement: "top",
+              className: "error-notification",
+            });
+            setRefresh(!refresh);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      onCancel() {},
+    });
   };
 
   const handleSearch = async (close, selectedKeys, dataIndex) => {
@@ -263,7 +273,9 @@ const TemplateTable = (props) => {
         { title: "Document NFT", value: "document" },
         { title: "Other", value: "other" },
       ]),
-      render: (_, { nftType }) => <div>{nftType.toString().replace(/^\w/, c => c.toUpperCase())}</div>,
+      render: (_, { nftType }) => (
+        <div>{nftType.toString().replace(/^\w/, (c) => c.toUpperCase())}</div>
+      ),
     },
     {
       title: "Traits",
@@ -299,8 +311,8 @@ const TemplateTable = (props) => {
       title: "Delete",
       dataIndex: "_id",
       key: "_id",
-      render: (_, { _id }) => (
-        <Button type="text" onClick={() => deleteTemplate(_id)}>
+      render: (_, { _id, name }) => (
+        <Button type="text" onClick={() => deleteTemplate(_id, name)}>
           <DeleteOutlined />
         </Button>
       ),

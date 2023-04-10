@@ -53,7 +53,7 @@ export default function MyApp({ Component, pageProps }) {
     <AppContext.Provider value={{ loggedInDetails, dispatch }}>
       <Head>
         <title>Drunken Bytes</title>
-        <meta charSet="UTF-8" />
+        {/* <meta charSet="UTF-8" />
         <meta name="author" content="Akshat Gadodia" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
@@ -64,7 +64,7 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png" />
         <link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" /> */}
       </Head>
       <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-VYMRDDLQCS" />
       <Script

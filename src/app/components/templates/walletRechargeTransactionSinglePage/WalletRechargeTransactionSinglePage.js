@@ -37,7 +37,10 @@ const WalletRechargeTransactionSinglePage = (props) => {
           property="og:description"
           content="View details of a single wallet recharge transaction on Drunken Bytes. Get transaction ID, status, date, amount, and other relevant information."
         />
-        <meta property="og:image" content="" />
+        <meta
+          property="og:image"
+          content="https://drunkenbytes.vercel.app/images/page-shots/wallet-recharge-transaction.png"
+        />
         <meta
           name="twitter:title"
           content="Wallet Recharge Transaction | Drunken Bytes"
@@ -46,10 +49,17 @@ const WalletRechargeTransactionSinglePage = (props) => {
           name="twitter:description"
           content="View details of a single wallet recharge transaction on Drunken Bytes. Get transaction ID, status, date, amount, and other relevant information."
         />
-        <meta name="twitter:image" content="" />
+        <meta
+          name="twitter:image"
+          content="https://drunkenbytes.vercel.app/images/page-shots/wallet-recharge-transaction.png"
+        />
         <link
           rel="canonical"
           href="https://drunkenbytes.vercel.app/transactions/wallet-recharge/"
+        />
+        <link
+          rel="og:url"
+          href="https://drunkenbytes.vercel.app/transactions/wallet-recharge"
         />
       </Head>
       {transactionData?.txId === undefined ? (

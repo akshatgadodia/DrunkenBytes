@@ -1,6 +1,15 @@
 import React from "react";
 import { SearchOutlined, FilterFilled, CheckOutlined } from "@ant-design/icons";
-import { Button, Input, Space, Table, notification, DatePicker, Radio } from "antd";
+import {
+  Button,
+  Input,
+  Space,
+  Table,
+  notification,
+  DatePicker,
+  Radio,
+  Modal,
+} from "antd";
 import { useRef, useState, useEffect } from "react";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import Link from "next/link";
@@ -42,18 +51,28 @@ const IssuesTable = (props) => {
   }, [currentPage, pageSize, filters, refresh, sort]);
 
   const solveIssue = async (id) => {
-    try {
-      await sendRequest(`/issue/solve-issue/${id}`, "PATCH");
-      if (!error) {
-        notification.success({
-          message: "Success",
-          description: "Issue Solved Successfully",
-          placement: "top",
-          className: "error-notification",
-        });
-        setRefresh(!refresh);
-      }
-    } catch (err) {}
+    Modal.confirm({
+      title: "Confirm",
+      content: `Are you sure you have resolved the issue and want to close it?`,
+      okText: "Yes",
+      cancelText: "No",
+      className: "confirm-modal",
+      async onOk() {
+        try {
+          await sendRequest(`/issue/solve-issue/${id}`, "PATCH");
+          if (!error) {
+            notification.success({
+              message: "Success",
+              description: "Issue Solved Successfully",
+              placement: "top",
+              className: "error-notification",
+            });
+            setRefresh(!refresh);
+          }
+        } catch (err) {}
+      },
+      onCancel() {},
+    });
   };
 
   const handleSearch = async (close, selectedKeys, dataIndex) => {

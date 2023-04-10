@@ -39,14 +39,15 @@ const WalletPage = () => {
           property="og:description"
           content="Manage your wallet securely on Drunken Bytes wallet page. Easily transfer your eth from your crypto wallet to Drunken Bytes Wallet. Keep your transactions safe with our state-of-the-art security features."
         />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="https://drunkenbytes.vercel.app/images/page-shots/wallet.png" />
         <meta name="twitter:title" content="Wallet | Drunken Bytes" />
         <meta
           name="twitter:description"
           content="Manage your wallet securely on Drunken Bytes wallet page. Easily transfer your eth from your crypto wallet to Drunken Bytes Wallet. Keep your transactions safe with our state-of-the-art security features."
         />
-        <meta name="twitter:image" content="" />
+        <meta name="twitter:image" content="https://drunkenbytes.vercel.app/images/page-shots/wallet.png" />
         <link rel="canonical" href="https://drunkenbytes.vercel.app/wallet" />
+        <link rel="og:url" href="https://drunkenbytes.vercel.app/wallet" />
       </Head>
       <AddMoneyModal
         open={modalOpen}
