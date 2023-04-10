@@ -1,23 +1,25 @@
 .secondFold{
   width: 100%;
   padding: 50px 10vw;
-  display: flex !important;
+  gap: 10px;
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  color: var(--black);
-  gap:10px;
+  align-items: flex-end;
 }
-
-.clearFilterButton{
-align-self: flex-end;
+.buttonDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.tableContainer{
+  width: 100%;
 }
 
 @media only screen and (max-width: 768px) {
-.secondFold {
-  display: flex !important;
-  padding: 40px 5vw;
-  flex-direction: column;
-  gap: 40px;
-}    
+  .secondFold {
+    padding: 40px 5vw;
+    align-items: center;
+  }
 }

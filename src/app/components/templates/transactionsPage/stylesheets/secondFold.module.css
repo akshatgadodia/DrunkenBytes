@@ -30,9 +30,11 @@
   font-size: 30px;
   line-height: 40px;
   text-align: center;
+  color: var(--purple) !important;
 }
 .linkDiv:hover{
   transform: scale(1.02) !important;
+  color: var(--purple) !important;
 }
 @media only screen and (max-width: 768px) {
   .transactionsPage {
