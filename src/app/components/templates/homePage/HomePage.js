@@ -11,7 +11,7 @@ const HomePage = (props) => {
   return (
     <>
       <Head>
-        <title>Drunken Bytes</title>
+        <title>Drunken Bytes | Products and Credentials NFT Platform for Businesses</title>
         <meta
           name="description"
           content="Drunken Bytes is an innovative platform for creating and trading NFTs. Discover unique digital assets and join the blockchain revolution today."
