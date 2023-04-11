@@ -17,7 +17,7 @@ const FifthFold = () => {
         </div>
       </div>
       <div className={styles.imageDiv}>
-        <img src="/favicon-192x192.png" alt="" className={styles.image}/>
+        <img src="/favicon-192x192.png" alt="drunken-bytes-logo" className={styles.image}/>
       </div>
     </div>
   );
