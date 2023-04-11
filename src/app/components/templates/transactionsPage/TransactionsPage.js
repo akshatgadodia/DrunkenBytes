@@ -9,7 +9,7 @@ const CreateTemplatePage = () => {
     <Head>
         <title>Transactions | Drunken Bytes</title>
         <meta name="description" content="Explore your NFT transactions or wallet recharge transactions with Drunken Bytes Transactions page. Choose which transaction you want to view and manage easily."></meta>
-        <meta name="keywords" content="Explore your NFT transactions or wallet recharge transactions with Drunken Bytes Transactions page. Choose which transaction you want to view and manage easily."></meta>
+        <meta name="keywords" content="Drunken Bytes, transaction page, nft, transactions, manage, status."></meta>
         <meta property="og:title" content="Transactions | Drunken Bytes" />
         <meta property="og:description" content="Explore your NFT transactions or wallet recharge transactions with Drunken Bytes Transactions page. Choose which transaction you want to view and manage easily." />
         <meta property="og:image" content="https://drunkenbytes.vercel.app/images/page-shots/transactions.png" />

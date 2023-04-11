@@ -36,6 +36,7 @@ const FirstFold = () => {
             cursor={true}
             repeat={Infinity}
             className={styles.typingHeading}
+            aria-label="NFT's you can use to grow your business, use to enhance client experience, and use to verify authenticity"
           />
         </h1>
         <p className={styles.subParagraph}>

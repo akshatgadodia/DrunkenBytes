@@ -9,7 +9,7 @@ const BlogsPage = () => {
       <Head>
         <title>Blogs | Drunken Bytes</title>
         <meta name="description" content="Stay updated with the latest blogs from Drunken Bytes on NFTs, blockchain, technology, and more. Discover insightful articles, news, and updates about digital assets, blockchain trends, and the intersection of technology and NFTs." />
-        <meta name="keywords" content="Drunken Bytes blogs, NFT articles, blockchain updates, technology news, digital assets, blockchain trends, NFT insights, technology blogs, Drunken Bytes news, NFT and blockchain blogs." />
+        <meta name="keywords" content="Drunken Bytes blogs, NFT articles, blockchain updates, technology news, digital assets, blockchain trends, NFT insights, technology blogs, Drunken Bytes news, NFT and blockchain blogs, Drunken Bytes." />
         <meta property="og:title" content="Drunken Bytes" />
         <meta property="og:description" content="Stay updated with the latest blogs from Drunken Bytes on NFTs, blockchain, technology, and more. Discover insightful articles, news, and updates about digital assets, blockchain trends, and the intersection of technology and NFTs." />
         <meta property="og:image" content="https://drunkenbytes.vercel.app/images/page-shots/blogs.png" />

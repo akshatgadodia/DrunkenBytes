@@ -3,13 +3,7 @@ import styles from "./ticketsSinglePage.module.css";
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import Head from "next/head";
 import SkeletonLoader from "../../modules/SkeletonLoader";
-import {
-  Button,
-  Form,
-  Input,
-  Spin,
-  notification,
-} from "antd";
+import { Button, Form, Input, Spin, notification } from "antd";
 
 const ProfilePage = (props) => {
   const { sendRequest, isLoading, error } = useHttpClient();
@@ -31,7 +25,7 @@ const ProfilePage = (props) => {
         `/ticket/${props.id}/reply`,
         "PUT",
         JSON.stringify({
-          message: values.reply
+          message: values.reply,
         })
       );
       if (!error) {
@@ -39,7 +33,7 @@ const ProfilePage = (props) => {
           message: "Success",
           description: "Replied Successfully",
           placement: "top",
-          className: "error-notification"
+          className: "error-notification",
         });
         form.resetFields();
         setRefresh(true);
@@ -64,13 +58,19 @@ const ProfilePage = (props) => {
           property="og:description"
           content="View information about your ticket, chat history with support, and reply to support inquiries. Get personalized assistance for your NFT-related issues at Drunken Bytes."
         />
-        <meta property="og:image" content="https://drunkenbytes.vercel.app/images/page-shots/ticket.png" />
+        <meta
+          property="og:image"
+          content="https://drunkenbytes.vercel.app/images/page-shots/ticket.png"
+        />
         <meta name="twitter:title" content="Ticket | Drunken Bytes" />
         <meta
           name="twitter:description"
           content="View information about your ticket, chat history with support, and reply to support inquiries. Get personalized assistance for your NFT-related issues at Drunken Bytes."
         />
-        <meta name="twitter:image" content="https://drunkenbytes.vercel.app/images/page-shots/ticket.png" />
+        <meta
+          name="twitter:image"
+          content="https://drunkenbytes.vercel.app/images/page-shots/ticket.png"
+        />
         <link rel="canonical" href="https://drunkenbytes.vercel.app/tickets" />
         <link rel="og:url" href="https://drunkenbytes.vercel.app/tickets" />
       </Head>

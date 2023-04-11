@@ -32,7 +32,7 @@ const WalletPage = () => {
         />
         <meta
           name="keywords"
-          content="Drunken Bytes wallet, cryptocurrency wallet, secure transactions"
+          content="Drunken Bytes wallet, cryptocurrency wallet, secure transactions, Drunken Bytes"
         />
         <meta property="og:title" content="Wallet | Drunken Bytes" />
         <meta

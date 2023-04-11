@@ -49,6 +49,7 @@ export default function Document() {
           href="apple-touch-icon.png"
         />
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"></link>
         <meta property="og:locale" content="en_GB" />
         <meta name="language" content="en" />
         <meta name="twitter:card" content="summary" />
