@@ -21,7 +21,7 @@
 }
 .companyContainer img {
   height: 50px !important;
-  width: fit-content;
+  width: auto;
 }
 .companyContainer p {
   color: var(--white);
