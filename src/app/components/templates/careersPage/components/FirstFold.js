@@ -32,7 +32,7 @@ const FirstFold = () => {
         />
       </div>
       <div className={styles.mainImageDiv} id="main-image-div">
-        <img src="/images/careers.png" alt="Image" className={styles.mainImage} />
+        <img src="/images/careers.png" alt="careers-image" className={styles.mainImage} />
       </div>
     </div>
   );
