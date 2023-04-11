@@ -13,7 +13,7 @@ const FourthFold = () => {
       <CustomButton type="Gradient" text="See open roles" onClick={() => {
         notification.info({
           message: "Sorry",
-          description: "Drunken Bytes is current not hiring",
+          description: "Drunken Bytes is currently not hiring",
           placement: "top",
           className: "error-notification"
         });
