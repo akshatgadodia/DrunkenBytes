@@ -24,7 +24,7 @@ const FirstFold = () => {
         <CustomButton type="Gradient" text="View our open positions" onClick={() => {
           notification.info({
             message: "Sorry",
-            description: "Drunken Bytes is current not hiring",
+            description: "Drunken Bytes is currently not hiring",
             placement: "top",
             className: "error-notification"
           });
