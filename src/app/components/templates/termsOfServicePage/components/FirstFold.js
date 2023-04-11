@@ -10,9 +10,9 @@ const FirstFold = () => {
           ")"
       }}
     >
-        <div className={styles.heading}>
+        <h1 className={styles.heading}>
         Terms of Service
-        </div>
+        </h1>
             <p className={styles.subParagraph}>
             Last Revised - March 4, 2023
             </p>
