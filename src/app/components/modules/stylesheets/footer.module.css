@@ -21,7 +21,9 @@
 }
 .companyContainer img {
   height: 50px !important;
+  object-fit: contain; /* maintain aspect ratio and fit within the container */
   width: auto;
+  align-self: flex-start;
 }
 .companyContainer p {
   color: var(--white);
@@ -87,6 +89,9 @@
     max-width: 100%;
     align-items: center;
     text-align: center;
+  }
+  .companyContainer img {
+    align-self: center;
   }
   .copyrightDiv {
     display: flex;

@@ -3,11 +3,20 @@ import styles from "../stylesheets/thirdHalfFold.module.css";
 import CustomButton from "@/app/components/elements/CustomButton";
 import { useWeb3Modal } from "@web3modal/react";
 import { useRouter } from 'next/router'
-const ThirdHalfFold = (props) => {
+import { useContext } from "react";
+import AppContext from "@/app/context/AppContext";
+
+const ThirdHalfFold = () => {
+  const { loggedInDetails } = useContext(AppContext);
   const router = useRouter();
   const { open } = useWeb3Modal();
   const onClickHandler = async () => {
-    await open();
+    if(loggedInDetails.isConnected){
+      router.push("/create")
+    }
+    else{
+      await open();
+    }
   }
   return (
     <div className={styles.thirdHalfFold}>
@@ -16,7 +25,7 @@ const ThirdHalfFold = (props) => {
         Free to get started.
       </p>
       <div className={styles.buttonContainer}>
-          <CustomButton type="OnlyBorder" text="Try Now" onClick={onClickHandler}/>
+          <CustomButton type="OnlyBorder" text={"Try Now"} onClick={onClickHandler}/>
           <CustomButton type="Gradient" text="Talk to Us" onClick={()=>router.push("/contact-us")}/>
         </div>
     </div>

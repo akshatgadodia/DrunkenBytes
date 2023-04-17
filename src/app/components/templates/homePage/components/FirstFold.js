@@ -24,7 +24,7 @@ const FirstFold = () => {
               1000,
               "", // Deletes 'One' and types 'Two'
               500,
-              "use to enhance client experinece",
+              "use to enhance client experience",
               1000,
               "", // Deletes 'One' and types 'Two'
               500,
