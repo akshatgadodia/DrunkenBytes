@@ -24,7 +24,7 @@ const FirstFold = () => {
         <CustomButton type="Gradient" text="View our open positions" onClick={() => {
           notification.info({
             message: "Sorry",
-            description: "Drunken Bytes is current not hiring",
+            description: "Drunken Bytes is currently not hiring",
             placement: "top",
             className: "error-notification"
           });
@@ -32,7 +32,7 @@ const FirstFold = () => {
         />
       </div>
       <div className={styles.mainImageDiv} id="main-image-div">
-        <img src="/images/careers.png" alt="Image" className={styles.mainImage} />
+        <img src="/images/careers.png" alt="careers-image" className={styles.mainImage} />
       </div>
     </div>
   );

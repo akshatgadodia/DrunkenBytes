@@ -10,9 +10,9 @@ const FirstFold = () => {
           ")"
       }}
     >
-        <div className={styles.heading}>
+        <h1 className={styles.heading}>
         Privacy Policy
-        </div>
+        </h1>
             <p className={styles.subParagraph}>
             Last Revised - March 31, 2023
             </p>

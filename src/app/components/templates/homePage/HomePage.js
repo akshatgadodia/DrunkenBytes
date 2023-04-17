@@ -11,7 +11,7 @@ const HomePage = (props) => {
   return (
     <>
       <Head>
-        <title>Drunken Bytes</title>
+        <title>Drunken Bytes | Products and Credentials NFT Platform for Businesses</title>
         <meta
           name="description"
           content="Drunken Bytes is an innovative platform for creating and trading NFTs. Discover unique digital assets and join the blockchain revolution today."
@@ -20,7 +20,7 @@ const HomePage = (props) => {
           name="keywords"
           content="Drunken Bytes, NFT, blockchain, digital assets, trading, marketplace."
         />
-        <meta property="og:title" content="Drunken Bytes" />
+        <meta property="og:title" content="Drunken Bytes | Products and Credentials NFT Platform for Businesses" />
         <meta
           property="og:description"
           content="Drunken Bytes is an innovative platform for creating and trading NFTs. Discover unique digital assets and join the blockchain revolution today."
@@ -29,7 +29,7 @@ const HomePage = (props) => {
           property="og:image"
           content="https://drunkenbytes.vercel.app/images/page-shots/home.png"
         />
-        <meta name="twitter:title" content="Drunken Bytes" />
+        <meta name="twitter:title" content="Drunken Bytes | Products and Credentials NFT Platform for Businesses" />
         <meta
           name="twitter:description"
           content="Drunken Bytes is an innovative platform for creating and trading NFTs. Discover unique digital assets and join the blockchain revolution today."
