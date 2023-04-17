@@ -290,7 +290,7 @@ const Navbar = () => {
       </div>
       <div className={styles.buttonsContainer}>
         <div className={styles.linksContainer}>
-          {isConnected && (
+          {loggedInDetails.isConnected && (
             <div
               href="/create"
               className={styles.link}
@@ -309,7 +309,7 @@ const Navbar = () => {
             Documentation
           </Link>
         </div>
-        {isConnected ? (
+        {loggedInDetails.isConnected ? (
           <Dropdown
             menu={{
               items,
