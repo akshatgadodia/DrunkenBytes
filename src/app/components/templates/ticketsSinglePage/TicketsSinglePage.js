@@ -133,9 +133,9 @@ const ProfilePage = (props) => {
                 else
                   return (
                     <div className={styles.container} key={idx}>
-                      <div className={styles.messageDiv}></div>
+                      <div className={styles.messageDiv}>{data.message}</div>
                       <div className={styles.nameDiv}>
-                        <p className={styles.title}>{data.sender.name}</p>
+                        <p className={styles.title}>Drunken Bytes</p>
                         <p className={styles.value}>
                           {new Date(data.createdAt).getDate() +
                             "/" +
