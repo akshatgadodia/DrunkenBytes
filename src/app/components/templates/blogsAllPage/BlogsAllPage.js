@@ -3,11 +3,11 @@ import Head from "next/head";
 import FirstFold from "./components/FirstFold";
 import SecondFold from './components/SecondFold';
 
-const HelpCenterPage = (props) => {
+const BlogsAllPage = (props) => {
   return (
     <div>
       <Head>
-        <title>Help Center | Drunken Bytes</title>
+        <title>Blogs | Drunken Bytes</title>
         <meta name="description" content="Looking for help with our products and services? Visit our Help Center for answers to frequently asked questions, tutorials, and guides." />
         <meta name="keywords" content="Drunken Bytes, help center, customer support, FAQs, tutorials, guides." />
         <meta property="og:title" content="Drunken Bytes" />
@@ -21,9 +21,9 @@ const HelpCenterPage = (props) => {
         <meta property="og:url" content="https://drunkenbytes.vercel.app/help-center"/>
       </Head>
       <FirstFold />
-      <SecondFold articlesData={props.articlesData} totalArticles={props.totalArticles}/>
+      <SecondFold blogsData={props.blogsData} totalBlogs={props.totalBlogs}/>
     </div>
   );
 };
 
-export default HelpCenterPage;
+export default BlogsAllPage;

@@ -1,26 +1,31 @@
 .firstFold {
+  position: relative;
+  top: -80px;
+  right: 0;
+  left: 0;
   width: 100%;
   padding: 50px 10vw;
+  padding-top: calc(50px + 80px);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
   object-fit: cover;
-}
-.mainDiv {
-  width: 40%;
+  text-align: center;
+  margin-bottom: -80px;
 }
 .heading {
   color: var(--black);
-  font-size: 40px;
+  font-size: 55px;
   line-height: 1.2em;
-  font-weight: 600;
+  font-weight: 540;
   margin: 0 0 10px;
+  max-width: 700px;
 }
 .subParagraph {
-  margin-top: 20px;
   margin-bottom: 30px;
   font-family: Hauora, sans-serif;
   font-size: 16px;
@@ -28,41 +33,15 @@
   font-weight: 400;
   letter-spacing: 0.3px;
   color: var(--footerText);
-}
-.mainImageDiv {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.mainImage {
-  height: 100%;
-  width: 100%;
+  max-width: 600px;
 }
 
 @media only screen and (max-width: 768px) {
   .firstFold {
     padding: 40px 5vw;
-    padding-bottom: 50px;
-    gap: 30px;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .mainDiv {
-    order: 2;
-    width: 100%;
-    text-align: center;
+    padding-top: calc(40px + 80px);
   }
   .heading {
     font-size: 40px;
-  }
-  .mainImageDiv{
-    width: 100%;
-  }
-  .mainImage {
-    order: 1;
-    height: 90%;
-    width: 90%;
   }
 }
