@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 
 const SecondFold = (props) => {
   const [initialized, setInitialized] = useState(false);
-  console.log(props);
   useEffect(() => {
     setInitialized(true);
   }, []);

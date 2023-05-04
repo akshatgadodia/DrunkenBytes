@@ -25,7 +25,7 @@ export async function getStaticProps(context) {
   };
   try {
     const blogs = await fetch(
-      `${baseURL}/blog/get-blogs?page=1&size=10`,
+      `${baseURL}/blog/get-blogs?page=1&size=9`,
       config
     );
     const blogsData = await blogs.json();
