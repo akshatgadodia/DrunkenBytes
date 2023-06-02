@@ -7,6 +7,7 @@ import { useWeb3Modal } from "@web3modal/react";
 import { uploadImage, deleteImage } from "@/app/utils/uploadImage"
 import { useHttpClient } from "@/app/hooks/useHttpClient";
 import { PlusOutlined } from "@ant-design/icons"
+import { notification } from "antd";
 
 const RegisterModal = (props) => {
     const { open } = useWeb3Modal();
